@@ -106,7 +106,7 @@ function startCalendar(year) {
     let f3 = document.getElementById('f3');
     year = +year;
     if (year < 0 || year > 5000) year = new Date().getFullYear();
-    f3.innerText = year + ' год';
+    f3.innerText = year;
     document.getElementById('allArea').innerHTML = `<div id = "container"></div>`;
     for (let month = 0; month < 12; month++) {
         createCalendar(year, month, 'container')
