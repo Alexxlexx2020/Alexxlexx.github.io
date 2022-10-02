@@ -1,0 +1,257 @@
+body {
+    background: url(image/background_5.jpg);
+    margin: 0px;
+}
+
+.backgroundImg {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+}
+
+.f1 {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 80px;
+    margin: 0px;
+    margin-bottom: 30px;
+}
+
+#f2 {
+    font-family: monospace;
+    position: relative;
+    left: 0px;
+    margin-left: 18px;
+    color: azure;
+    font-size: 60px;
+    color: rgb(199, 229, 243)
+}
+
+#f3 {
+    position: relative;
+    top: -76px;
+    margin: 0px;
+    text-align: center;
+    color: azure;
+    font-size: 80px;
+    height: 64px;
+}
+
+.ClassCalendar {
+    height: 200px;
+    /* margin-left: 20px; */
+    /* margin-bottom: 5px; */
+    margin: 5px;
+    margin-top: 10px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+caption {
+    color: aliceblue;
+    background-color: rgb(130, 130, 130);
+    font-size: xx-large;
+    border: solid 1px black;
+    text-align: center;
+    /* letter-spacing: 4px; */
+}
+
+th,
+td {
+    position:relative;
+    background-color: rgb(239, 228, 248);
+    padding: 3px 8px;
+    border: 1px solid black;
+    font-size: large;
+    /* filter: brightness(107%); */
+    /* cursor: pointer; */
+    /* user-select: none; */
+}
+
+th {
+    background-color: antiquewhite;
+}
+
+.celebrate {
+    color: rgb(196, 33, 33);
+}
+
+.date_no_empty:hover {
+    box-shadow: inset 0px 0px 2px 2px rgb(29, 105, 219);
+}
+.date_no_empty{
+    cursor: pointer;
+    user-select: none;
+    background-color: rgb(234, 216, 250);
+    text-align: center;
+    /* filter: brightness(100%); */
+}
+
+.wday {
+    background-color: aqua;
+}
+
+span {
+    font-family: Verdana;
+    font-size: 40px;
+    color: white;
+}
+
+.spanH,
+.spanM,
+.spanS {
+    color: white;
+}
+
+#container {
+    /* position: relative; */
+    top: 100px;
+    min-height: 600px;
+    min-width: 800px;
+    /* background-color: rgb(42, 126, 105); */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#clock {
+    /* width: 260px; */
+    text-align: right;
+    /* background-color: #d6e9c6; */
+    /* border-style: solid; */
+    border-color: #000;
+    position: relative;
+    top: -120px;
+    right: 19px;
+    margin: auto;
+    /* left: 70%; */
+}
+
+.current_date{
+    color: #ddd;
+    cursor: pointer;
+    text-decoration:underline;
+}
+
+#inputYear {
+    margin-top: 30px;
+    text-align: center;
+}
+
+label {
+    font-size: xx-large;
+}
+
+#areaInput {
+    position: relative;
+    display: flex;
+    width: 90%;
+    justify-content:center;
+    margin: auto;
+}
+
+#inputka {
+    margin-top: 20px;
+    text-align: center;
+    background-color: #e8f3ce;
+    color: #000;
+    width: 165px;
+    height: 30px;
+    font-size: 200%;
+    box-shadow: 0 0 10px 10px rgba(130, 130, 255, 0.9);
+}
+
+#one {
+    position: relative;
+    top: 1px;
+    left: 10px;
+    width: 100px;
+    height: 35px;
+    font-size: 120%;
+    margin-top: 20px
+}
+
+#allArea {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+    color: rgb(53, 53, 8);
+    /* justify-items: ; */
+}
+
+.table_style{
+    /* box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.67); */
+    box-shadow: 0 0 10px 10px rgba(130, 130, 255, 0.9);
+}
+
+.weather {
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    top: 40px;
+    left: 17px;
+    width:max-content;
+    box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.77);
+}
+
+#weather__city,
+#weather__forecast,
+#weather__discription {
+    color: white;
+    font-size: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: blue; */
+}
+
+#weather__city {
+    padding-left: 10px;
+}
+
+#weather__icon {
+    position: relative;
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* height: 100px; */
+}
+
+button::-moz-focus-inner {
+    padding: 0px;
+    border: 0px;
+}
+
+#mess {
+    position: absolute;
+    width: 500px;
+    height: 400px;
+    text-align: justify;
+    color: black;
+    padding: 15px;
+    margin: 0px;
+    border: rgb(87, 96, 226) solid 10px;
+    border-style: double;
+    background-color: rgb(250, 250, 246);
+    word-wrap: break-word;
+    font-size:large;
+    /* font-weight: 300; */
+    overflow: auto;
+    z-index: 10;
+    cursor:auto;
+    user-select:text;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.9);
+    /* display: none; */
+}
+
+#closer_point {
+    position:sticky;
+    font-size:xx-large;
+    top: 0px;
+    left: 100%;
+    /* margin: 5px; */
+    color: red;
+    font-weight: 500;
+    z-index: 12;
+    cursor: pointer;
+    user-select: none;
+}
