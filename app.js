@@ -96,7 +96,7 @@ function myTime(elem) {
             i.innerHTML = s1;
         };
         // console.log(document.getElementByClassName("current_date").classList);
-        document.getElementsByClassName("current_date")[0].innerHTML = new Date().getDate() + "  " + month2[new Date().getMonth()] + " " + new Date().getFullYear() + " года";
+        document.getElementsByClassName("current_date")[0].innerHTML = new Date().getDate() + "  " + month2[new Date().getMonth()] + " " + new Date().getFullYear();
     }
     timeCalc();
     setInterval(timeCalc, 1000);
