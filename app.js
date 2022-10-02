@@ -76,7 +76,7 @@ function myTime(elem) {
         'ноября',
         'декабря'
     ];
-    elem.insertAdjacentHTML("afterbegin", `<div id="clock"><span class="spanH"></span><span>:</span><span class="spanM"></span><span>:</span><span class="spanS"></span><span>  </span><span class="current_date"></span></div>`);
+    elem.insertAdjacentHTML("afterbegin", `<div id="clock"><span class="spanH"></span><span>:</span><span class="spanM"></span><span>:</span><span class="spanS"></span><br><span class="current_date"></span></div>`);
     
     console.log (new Date().getFullYear());
 
