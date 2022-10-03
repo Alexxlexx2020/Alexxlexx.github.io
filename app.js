@@ -76,7 +76,7 @@ function myTime(elem) {
         'ноября',
         'декабря'
     ];
-    elem.insertAdjacentHTML("afterbegin", `<div id="clock"><span class="spanH"></span><span>:</span><span class="spanM"></span><span>:</span><span class="spanS"></span><br><span class="current_date"></span></div>`);
+    elem.insertAdjacentHTML("afterbegin", `<div id="clock"><span class="spanH"></span><span>:</span><span class="spanM"></span><span>:</span><span class="spanS"></span><span></span><br><span class="current_date"></span></div>`);
     
     console.log (new Date().getFullYear());
 
@@ -154,7 +154,7 @@ function startCalendar(year) {
             };
             mess.style.display = "";
             elem1.insertAdjacentElement("beforeend", mess);
-        }
+        } else if (mess.style.display != "none" && document.elementFromPoint(xClick,yClick) != mess){ mess.style.display = "none"}
     
     })
 }
