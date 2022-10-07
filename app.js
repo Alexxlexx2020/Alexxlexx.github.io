@@ -164,7 +164,7 @@ myTime(document.getElementById('f4'));
 // ----------------------------------------запрос погоды в массив data--------------------------------------------------
 let data = {};
 function Weather() {
-    fetch('http://api.openweathermap.org/data/2.5/weather?id=710719&lang=ru&appid=ed7cbb7322e69c56dd6645d9c8ee8748').then(function (resp) {
+    fetch('https://api.openweathermap.org/data/2.5/weather?id=710719&lang=ru&appid=ed7cbb7322e69c56dd6645d9c8ee8748').then(function (resp) {
             return resp.json()
         }).then(function (data) {
             //добавляем название города
