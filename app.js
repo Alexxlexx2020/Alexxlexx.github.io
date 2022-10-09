@@ -198,7 +198,7 @@ startCalendar(2022);
 // one.addEventListener("click",() => startCalendar(document.getElementById("inputka").value));
 closer_point.addEventListener("click",function(event){ mess.style.display = "none"; event.stopPropagation()});
 document.getElementsByClassName('weather')[0].addEventListener("click", function(event){Weather()});
-document.getElementsByClassName('current_date')[0].addEventListener("click", function(event){startCalendar(2022)});
+document.getElementsByClassName('current_date')[0].addEventListener("click", function(event){mess.style.display = "none"; startCalendar(2022)});
 document.getElementById('inputka').oninput = ()=>{ mess.style.display = "none"; startCalendar(document.getElementById("inputka").value)};
 
 //----------------база данных в массиве по месяцам и дням месяца---------------------------------------------------------
