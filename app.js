@@ -77,8 +77,6 @@ function myTime(elem) {
         'декабря'
     ];
     elem.insertAdjacentHTML("afterbegin", `<div id="clock"><span class="spanH"></span><span>:</span><span class="spanM"></span><span>:</span><span class="spanS"></span><span></span><br><span class="current_date"></span></div>`);
-    
-    console.log (new Date().getFullYear());
 
     function timeCalc() {
         let h1 = new Date().getHours();
@@ -103,6 +101,8 @@ function myTime(elem) {
 }
 
 function startCalendar(year) {
+    mess.style.display = "none";
+    document.getElementById('allArea').innerHTML = ``;
     let f3 = document.getElementById('f3');
     year = +year;
     if (year < 0 || year > 5000) year = new Date().getFullYear();
@@ -127,11 +127,13 @@ function startCalendar(year) {
     ];
 
     // ----------------------------обработка клика по таблице ----------------------------------
-    document.getElementById('all').addEventListener("click", function f333(event) {
+    document.getElementById('allArea').addEventListener("click", function f333(event) {
         let xClick = event.clientX;
         let yClick = event.clientY;
         let elem1 = document.elementFromPoint(xClick, yClick);
-        if (elem1.tagName == "TD" && elem1.innerText != "" && mess.style.display == "none" ) {
+        console.log("элемент: " + elem1.tagName + "   текст внутри ячейки:" + elem1.innerText + "   mess.style.display:" + mess.style.display);
+        if (elem1.tagName == "TD" && elem1.innerText != "" && mess.style.display == "none") {
+            event.stopPropagation();
             let t1 = "Неизвестная информация.";
             if (massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1] != undefined) t1 = massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1];
             elem1.insertAdjacentElement("beforeend", mess);
@@ -152,10 +154,11 @@ function startCalendar(year) {
                 mess.style.bottom = "";
                 mess.style.top = "30px";
             };
-            mess.style.display = "";
+
             elem1.insertAdjacentElement("beforeend", mess);
-        } else if (mess.style.display != "none" && document.elementFromPoint(xClick,yClick) != mess){ mess.style.display = "none"}
-    
+            mess.style.display = "block";
+        } //else if (document.elementFromPoint(xClick,yClick) != mess){ mess.style.display = "none"}
+
     })
 }
 //---------запуск часов------------------
@@ -163,11 +166,12 @@ myTime(document.getElementById('f4'));
 
 // ----------------------------------------запрос погоды в массив data--------------------------------------------------
 let data = {};
+
 function Weather() {
     fetch('https://api.openweathermap.org/data/2.5/weather?id=710719&lang=ru&appid=ed7cbb7322e69c56dd6645d9c8ee8748').then(function (resp) {
             return resp.json()
         }).then(function (data) {
-            //добавляем название города
+            //добавляем название города "lat":48.2864702,"lon":25.9376532
             document.getElementById("weather__city").innerHTML = data.name + ', ' + Math.round(data.main.temp - 273) + '°  ' + `<br>` + data.weather[0]['description'] + "  " + data.main.pressure + "/" + data.main.grnd_level;
             //data.main.temp содержит значение в Кельвинах, отнимаем от  273, чтобы получить значение в градусах Цельсия
             //Добавляем иконку погоды
@@ -196,10 +200,23 @@ startCalendar(2022);
 //--------------обработчики событий--------------------------------------
 
 // one.addEventListener("click",() => startCalendar(document.getElementById("inputka").value));
-closer_point.addEventListener("click",function(event){ mess.style.display = "none"; event.stopPropagation()});
-document.getElementsByClassName('weather')[0].addEventListener("click", function(event){Weather()});
-document.getElementsByClassName('current_date')[0].addEventListener("click", function(event){mess.style.display = "none"; startCalendar(2022)});
-document.getElementById('inputka').oninput = ()=>{ mess.style.display = "none"; startCalendar(document.getElementById("inputka").value)};
+document.getElementById("all").addEventListener("click", function (event) {
+    if (document.elementFromPoint(event.clientX, event.clientY) != mess && mess.style.display != "none") {
+        mess.style.display = "none";
+        console.log('вне поля сообщения')
+    }
+})
+closer_point.addEventListener("click", function (event) {
+    mess.style.display = "none";
+    event.stopPropagation()
+});
+document.getElementsByClassName('weather')[0].addEventListener("click", function (event) {
+    Weather()
+});
+// document.getElementsByClassName('current_date')[0].addEventListener("click", function(event){startCalendar(2022)});
+document.getElementById('inputka').oninput = function (event) {
+    startCalendar(this.value)
+};
 
 //----------------база данных в массиве по месяцам и дням месяца---------------------------------------------------------
 let massive = [
