@@ -202,7 +202,6 @@ label {
     display: flex;
     justify-content: flex-start;
     position: relative;
-    left: 17px;
     width:max-content;
     box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.77);
     cursor: pointer;
