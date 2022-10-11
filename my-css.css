@@ -19,7 +19,6 @@ body {
     background-color: rgba(0, 0, 0, 0.3);
     /* height: 80px; */
     margin: 0px;
-    margin-bottom: 30px;
 }
 
 #f2 {
@@ -203,11 +202,11 @@ label {
     display: flex;
     justify-content: flex-start;
     position: relative;
-    top: 40px;
     left: 17px;
     width:max-content;
     box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.77);
     cursor: pointer;
+    margin: auto
 }
 .weather :hover{
     box-shadow: 0 0 10px 10px rgba(130, 130, 255, 0.9);
