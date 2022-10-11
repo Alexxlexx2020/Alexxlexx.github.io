@@ -1,5 +1,6 @@
 body {
-    background: url(image/background_5.jpg);
+    background: url(image/background_5.jpg) no-repeat;
+    background-size: cover;
     margin: 0px;
 }
 
@@ -12,9 +13,9 @@ body {
 .f1 {
     /* position: relative; */
     display: grid;
-    justify-content:space-around;
+    /* justify-content:space-around; */
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
+    /* grid-template-rows: auto; */
     background-color: rgba(0, 0, 0, 0.3);
     /* height: 80px; */
     margin: 0px;
@@ -25,7 +26,7 @@ body {
     font-family: monospace;
     position: relative;
     /* left: 0px; */
-    margin-left: 18px;
+    /* margin-left: 18px; */
     color: azure;
     font-size: 60px;
     color: rgb(199, 229, 243)
@@ -40,6 +41,10 @@ body {
     color: azure;
     font-size: 80px;
     /* height: 64px; */
+}
+
+#f4{
+    text-align: right;
 }
 
 .ClassCalendar {
@@ -201,6 +206,10 @@ label {
     box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.77);
     cursor: pointer;
 }
+.weather :hover{
+    box-shadow: 0 0 10px 10px rgba(130, 130, 255, 0.9);
+
+}
 
 #weather__city,
 #weather__forecast,
@@ -239,7 +248,7 @@ button::-moz-focus-inner {
     border-style: double;
     background-color: rgb(250, 250, 246);
     word-wrap: break-word;
-    font-size:1.3rem;
+    font-size:1.25rem;
     /* font-weight: 300; */
     overflow: auto;
     z-index: 10;
