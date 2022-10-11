@@ -103,10 +103,10 @@ function myTime(elem) {
 function startCalendar(year) {
     mess.style.display = "none";
     document.getElementById('allArea').innerHTML = ``;
-    let f3 = document.getElementById('f3');
-    year = +year;
-    if (year < 0 || year > 5000) year = new Date().getFullYear();
-    f3.innerText = year;
+    // let f3 = document.getElementById('f3');
+    // year = +year;
+    // if (year < 0 || year > 5000) year = new Date().getFullYear();
+    // f3.innerText = year;
     document.getElementById('allArea').innerHTML = `<div id = "container"></div>`;
     for (let month = 0; month < 12; month++) {
         createCalendar(year, month, 'container')
@@ -213,7 +213,7 @@ closer_point.addEventListener("click", function (event) {
 document.getElementsByClassName('weather')[0].addEventListener("click", function (event) {
     Weather()
 });
-// document.getElementsByClassName('current_date')[0].addEventListener("click", function(event){startCalendar(2022)});
+document.getElementsByClassName('current_date')[0].addEventListener("click", function(event){document.getElementById('inputka').value = "2022"; startCalendar(2022)});
 document.getElementById('inputka').oninput = function (event) {
     startCalendar(this.value)
 };

@@ -32,16 +32,7 @@ body {
     color: rgb(199, 229, 243)
 }
 
-#f3 {
-    position: relative;
-    /* top: -76px; */
-    margin: 0px;
-    text-align: center;
-    
-    color: azure;
-    font-size: 80px;
-    /* height: 64px; */
-}
+
 
 #f4{
     text-align: right;
@@ -152,24 +143,36 @@ span {
 label {
     font-size: xx-large;
 }
+#f3 {
+    position: relative;
+    /* top: -76px; */
+    margin: 0px;
+    text-align: center;
+    
+    /* color: azure; */
+    /* font-size: 30px; */
+    /* height: 64px; */
+}
 
 #areaInput {
     position: relative;
     display: flex;
-    width: 90%;
     justify-content:center;
-    margin: auto;
+    margin: 0px;
+    height: 100%;
 }
 
 #inputka {
-    margin-top: 20px;
+    position: relative;
+    padding: 0;
+    height: 96%;
+    margin-top: 0px;
     text-align: center;
     background-color: #e8f3ce;
     color: #000;
-    width: 165px;
-    height: 30px;
-    font-size: 200%;
-    box-shadow: 0 0 10px 10px rgba(130, 130, 255, 0.9);
+    width: 270px;
+    font-size: 500%;
+    /* box-shadow: 0 0 10px 10px rgba(130, 130, 255, 0.9); */
 }
 
 #one {

@@ -8,14 +8,16 @@
     <link href="my-css.css" rel="stylesheet" type="text/css">
 
 <body>
-    <div id = "all" class="backgroundImg">
+    <div id="all" class="backgroundImg">
         <div class="f1">
             <div id="f2">Календарь</div>
-            <div id="f3"></div>
+            <div id="f3">
+                <div id="areaInput"><input id="inputka" type="number" value="2022"></input></div>
+            </div>
             <div id="f4"></div>
         </div>
-        <div id="allArea"> </div>
-        <div id="areaInput"><input id="inputka" type="number" value="2022"></input></div>
+        <div id="allArea"></div>
+        <!-- <div id="areaInput"><input id="inputka" type="number" value="2022"></input></div> -->
 
 
         <div class="weather">
@@ -24,7 +26,7 @@
             <!-- <span id="weather__forecast">температура</span> -->
             <span id="weather__icon"></span>
         </div>
-        <script src="app.js">
+        <script defer src="app.js">
         </script>
     </div>
 </body>
