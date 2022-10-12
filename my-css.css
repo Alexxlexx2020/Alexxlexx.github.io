@@ -10,6 +10,11 @@ body {
     padding: 0px;
 }
 
+.photo{
+    width: 100%;
+
+}
+
 .f1 {
     /* position: relative; */
     display: grid;
@@ -28,7 +33,8 @@ body {
     /* margin-left: 18px; */
     color: azure;
     font-size: 60px;
-    color: rgb(199, 229, 243)
+    color: rgb(199, 229, 243);
+    text-align: right;
 }
 
 
@@ -239,7 +245,7 @@ button::-moz-focus-inner {
 
 #mess {
     position: absolute;
-    width: 500px;
+    width: 400px;
     height: 400px;
     text-align: justify;
     color: black;
