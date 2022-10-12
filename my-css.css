@@ -246,6 +246,7 @@ button::-moz-focus-inner {
 #mess {
     position:fixed;
     top: 0px;
+    max-width: 90vh;
 
     /* width: 400px;
     height: 400px; */
