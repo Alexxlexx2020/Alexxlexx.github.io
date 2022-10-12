@@ -244,9 +244,11 @@ button::-moz-focus-inner {
 }
 
 #mess {
-    position: absolute;
-    width: 400px;
-    height: 400px;
+    position:fixed;
+    /* width: 400px;
+    height: 400px; */
+    height: 100vh;
+    width: 100vh;
     text-align: justify;
     color: black;
     padding: 15px;

@@ -140,22 +140,23 @@ function startCalendar(year) {
             mess.innerHTML = "";
             mess.innerHTML = `<b>${elem1.innerText} ${month2[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]]}  ${year} года</b><br><br>${t1}`;
             mess.insertAdjacentElement('afterbegin', closer_point);
-            if (xClick > document.documentElement.clientWidth / 2) {
-                mess.style.left = "";
-                mess.style.right = "40px";
-            } else {
-                mess.style.right = "";
-                mess.style.left = "40px";
-            };
-            if (yClick > document.documentElement.clientHeight / 2) {
-                mess.style.bottom = "30px";
-                mess.style.top = "";
-            } else {
-                mess.style.bottom = "";
-                mess.style.top = "30px";
-            };
+            // if (xClick > document.documentElement.clientWidth / 2) {
+            //     mess.style.left = "";
+            //     mess.style.right = "40px";
+            // } else {
+            //     mess.style.right = "";
+            //     mess.style.left = "40px";
+            // };
+            // if (yClick > document.documentElement.clientHeight / 2) {
+            //     mess.style.bottom = "30px";
+            //     mess.style.top = "";
+            // } else {
+            //     mess.style.bottom = "";
+            //     mess.style.top = "30px";
+            // };
 
-            elem1.insertAdjacentElement("beforeend", mess);
+            // elem1.insertAdjacentElement("beforeend", mess);
+            document.getElementById('all').insertAdjacentElement("afterbegin", mess);
             mess.style.display = "block";
         } //else if (document.elementFromPoint(xClick,yClick) != mess){ mess.style.display = "none"}
 
