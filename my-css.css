@@ -11,7 +11,7 @@ body {
 }
 
 .photo{
-    width: 100%;
+    width: 90vh;
 
 }
 
@@ -245,10 +245,13 @@ button::-moz-focus-inner {
 
 #mess {
     position:fixed;
+    top: 0px;
+
     /* width: 400px;
     height: 400px; */
-    height: 100vh;
-    width: 100vh;
+    /* height: 100vh; */
+    /* width: 90%; */
+    /* height: 100%; */
     text-align: justify;
     color: black;
     padding: 15px;

@@ -138,7 +138,8 @@ function startCalendar(year) {
             if (massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1] != undefined) t1 = massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1];
             elem1.insertAdjacentElement("beforeend", mess);
             mess.innerHTML = "";
-            mess.innerHTML = `<b>${elem1.innerText} ${month2[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]]}  ${year} года</b><br><br>${t1}`;
+            // mess.innerHTML = `<b>${elem1.innerText} ${month2[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]]}  ${year} года</b><br><br>${t1}`;
+            mess.innerHTML = `<div><b>${elem1.innerText} ${month2[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]]}  ${year} года</b></div><div>${t1}</div>`;
             mess.insertAdjacentElement('afterbegin', closer_point);
             // if (xClick > document.documentElement.clientWidth / 2) {
             //     mess.style.left = "";
