@@ -138,29 +138,20 @@ function startCalendar(year) {
             if (massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1] != undefined) t1 = massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1];
             elem1.insertAdjacentElement("beforeend", mess);
             mess.innerHTML = "";
-            // mess.innerHTML = `<b>${elem1.innerText} ${month2[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]]}  ${year} года</b><br><br>${t1}`;
-            // mess.innerHTML = `<div><b>${elem1.innerText} ${month2[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]]}  ${year} года</b></div><div>${t1}</div>`;
             mess.innerHTML = `<div class = "text"><b>${elem1.innerText} ${month2[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]]}  ${year} года</b></div>${t1}`;
             mess.insertAdjacentElement('afterbegin', closer_point);
-            // if (xClick > document.documentElement.clientWidth / 2) {
-            //     mess.style.left = "";
-            //     mess.style.right = "40px";
-            // } else {
-            //     mess.style.right = "";
-            //     mess.style.left = "40px";
-            // };
-            // if (yClick > document.documentElement.clientHeight / 2) {
-            //     mess.style.bottom = "30px";
-            //     mess.style.top = "";
-            // } else {
-            //     mess.style.bottom = "";
-            //     mess.style.top = "30px";
-            // };
-
-            // elem1.insertAdjacentElement("beforeend", mess);
+            if (document.body.clientWidth >= document.body.clientHeight) {
+                mess.classList.remove("mess_tel");
+                mess.classList.remove("mess_comp");
+                mess.classList.add('mess_comp')
+            } else {
+                mess.classList.remove('mess_comp');
+                mess.classList.remove("mess_tel");
+                mess.classList.add('mess_tel')
+            }
             document.getElementById('all').insertAdjacentElement("afterbegin", mess);
             mess.style.display = "block";
-        } //else if (document.elementFromPoint(xClick,yClick) != mess){ mess.style.display = "none"}
+        }
 
     })
 }
@@ -216,7 +207,10 @@ closer_point.addEventListener("click", function (event) {
 document.getElementsByClassName('weather')[0].addEventListener("click", function (event) {
     Weather()
 });
-document.getElementsByClassName('current_date')[0].addEventListener("click", function(event){document.getElementById('inputka').value = "2022";startCalendar(2022) });//
+document.getElementsByClassName('current_date')[0].addEventListener("click", function (event) {
+    document.getElementById('inputka').value = "2022";
+    startCalendar(2022)
+}); //
 document.getElementById('inputka').oninput = function (event) {
     startCalendar(this.value)
 };
@@ -228,7 +222,7 @@ let massive = [
     [],
     [],
     [1, 2, '<img class = "photo" src="image/Vita.jpg" alt="фото" />'],
-    [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,'<img class = "photo" src="image/Alisa.jpg" alt="фото" />'],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, '<img class = "photo" src="image/Alisa.jpg" alt="фото" />'],
     [],
     [1, '<img class = "photo" src="image/Sasha.png" alt="фото" />'],
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, "<b><u><br><br>Православие:</u></b><br><br>—отдание праздника Рождества Пресвятой Богородицы;<br>—память священномученика Автонома, епископа Италийского (313 год);<br>—память преподобного Афанасия Высоцкого, Серпуховского чудотворца (1395 год);<br>—память священномучеников Феодора Лебедева, Иоанна Прудентова, Николая Житова, пресвитеров, мученика Алексия (Ворошина) (1937 год);<br>—воспоминание перенесения мощей праведного Симеона Верхотурского (1704 год);<br>—память преподобного Вассиана Тиксненского (1624 год);<br>—память мученика Иулиана и с ним 40 мучеников (IV век)[6];<br>—память мученика Феодора Александрийского;<br>—память священномученика Корнута, епископа Никомидийского (Иконийского) (249-259 годы)[7];<br>—память мучеников Авадира и Ирая.<hr><b><u>Именины:</u></b><br><br>Католические: Аврелия, Амелия.<br>Православные: Семён, Фёдор, Юлиан, Святополк.",
