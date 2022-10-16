@@ -42,10 +42,10 @@ body {
     color: rgb(201, 41, 41);
 }
 .f1 {
-    position:;
+    position: relative;
     display: grid;
     /* justify-content:space-around; */
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 2fr;
     /* grid-template-rows: auto; */
     background-color: rgba(0, 0, 0, 0.3);
     /* height: 80px; */
@@ -143,11 +143,13 @@ span {
     font-size: 40px;
     color: white;
 }
-
+.current_date,
+.spanX,
 .spanH,
 .spanM,
 .spanS {
-    color: white;
+    color: rgb(12, 12, 12);
+    background-color: antiquewhite;
 }
 
 #container {
@@ -164,22 +166,23 @@ span {
 
 #clock {
     /* width: 260px; */
+    margin-top: 6px;
     text-align: right;
     /* background-color: #d6e9c6; */
     /* border-style: solid; */
-    border-color: #000;
+    /* border-color: #000; */
     position: relative;
     /* top: -120px; */
     right: 19px;
-    margin: auto;
+    /* margin: auto; */
     /* left: 70%; */
 }
 
-.current_date{
+/* .current_date{
     color: #ddd;
     cursor: pointer;
     text-decoration:underline;
-}
+} */
 
 #inputYear {
     margin-top: 30px;
