@@ -15,6 +15,7 @@ body {
     top:0px;
     left: 0px;
     width: 100%;
+    margin-bottom: -5px;
 
 }
 
@@ -30,6 +31,15 @@ body {
     color: rgb(5, 5, 5);
     background-color:rgba(247, 243, 243, 0.75);
     z-index: 13;
+}
+
+.text1{
+    margin: 10px
+}
+
+.no_info{
+    text-align: center;
+    color: rgb(201, 41, 41);
 }
 .f1 {
     position: fixed;
@@ -94,6 +104,14 @@ td {
 
 th {
     background-color: antiquewhite;
+}
+
+.td_full{
+    border: solid rgb(7, 158, 20);
+    cursor: pointer;
+    user-select: none;
+    background-color: white;
+    text-align: center;
 }
 
 .celebrate {
@@ -234,10 +252,9 @@ label {
     /* box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.77); */
     cursor: pointer;
 }
-.weather :hover{
+/* .weather :hover{
     box-shadow: 0 0 10px 10px rgba(130, 130, 255, 0.9);
-
-}
+} */
 
 .osnova{
     min-height: 100%;
@@ -271,18 +288,8 @@ button::-moz-focus-inner {
 #mess {
     position:fixed;
     padding-bottom: 0;
-    top: 0;
-	left: 0;
-    margin:0;
-    /* min-height: 15%;
-    max-height: 97vh;
-    min-width: 98%;
-    max-width: 98vh; */
-    /* width: 400px;
-    height: 400px; */
-    /* height: 100vh; */
-    
-    /* height: 100%; */
+    /* transition: 2s all; */
+    transition: width 2s;
     text-align: justify;
     color: black;
     border: rgb(87, 96, 226) solid 10px;
@@ -304,6 +311,9 @@ button::-moz-focus-inner {
     max-height: 97vh;
     min-width: 20%;
     max-width: 50vh;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .mess_tel{
     min-height: 15%;

@@ -1,3 +1,27 @@
+let massive = [
+    [],
+    [],
+    [],
+    [, , , , '<img class = "photo" src="image/Lesha.jpg" alt="фото" />', , , , , , , , , , , , ,
+        '<img class = "photo" src="image/Papa.jpg" alt="фото" />'
+    ],
+    [, ,
+        '<img class = "photo" src="image/Vita.jpg" alt="фото" />'
+    ],
+    [, , , , , , , , , , , , , , , , , , , ,
+        '<img class = "photo" src="image/Alisa.jpg" alt="фото" />'
+    ],
+    [],
+    [, '<img class = "photo" src="image/Sasha.jpg" alt="фото" />'],
+    [, , , , , , , , , , , , , , , , , , , , , , , ,
+        "<div class = 'text1'><br><br><b>Православие:</b><br><br>—отдание праздника Рождества Пресвятой Богородицы;<br>—память священномученика Автонома, епископа Италийского (313 год);<br>—память преподобного Афанасия Высоцкого, Серпуховского чудотворца (1395 год);<br>—память священномучеников Феодора Лебедева, Иоанна Прудентова, Николая Житова, пресвитеров, мученика Алексия (Ворошина) (1937 год);<br>—воспоминание перенесения мощей праведного Симеона Верхотурского (1704 год);<br>—память преподобного Вассиана Тиксненского (1624 год);<br>—память мученика Иулиана и с ним 40 мучеников (IV век)[6];<br>—память мученика Феодора Александрийского;<br>—память священномученика Корнута, епископа Никомидийского (Иконийского) (249-259 годы)[7];<br>—память мучеников Авадира и Ирая.<hr><b>Именины:</b><br><br>Католические: Аврелия, Амелия.<br>Православные: Семён, Фёдор, Юлиан, Святополк.</div>",
+        "<div class = 'text1'><b><br><br>Католическая церковь:</b><br>—память святых бессребреников Космы и Дамиана.<br><b>Православие:</b><br>—память обновления (освящения) храма Воскресения Христова в Иерусалиме (Воскресение словущее) (335 год);<br>—предпразднство Воздвижения Честно́го и Животворящего Креста Господня;<br>—память священномученика Корнилия сотника (I век);<br>—память священномучеников Стефана Костогрыза, Александра Аксёнова, пресвитеров и Николая Васюковича, диакона (1937 год);<br>—память мучеников Кронида, Леонтия и Серапиона (около 237 года);<br>—память мучеников Селевка и Стратоника (III век);<br>—память мучеников Макровия и Гордиана (320 год);<br>—память священномученика Иулиана пресвитера (IV век);<br>—память мучеников Илии, Зотика, Лукиана и Валериана (320 год);<br>—память преподобного Петра в Атрое (IX век);<br>—память великомученицы Кетевани, царицы Кахетинской (1624 год) (Груз.).<hr><b>Именины:</b><br> Православные: Валериан, Илья, Корнелий, Леонтий, Лукьян, Пётр, Юлиан.<br>Католические: Люция, Юстина, Дамиан, Киприан.</div>"
+    ],
+    [],
+    [],
+    [],
+]
+
 function createCalendar(year, month, elem) {
     let days = [];
     let myDate = new Date(year, month, 1);
@@ -54,6 +78,12 @@ function createCalendar(year, month, elem) {
             }
             Table.rows[y1 + 1].cells[x1].innerHTML = i1;
             Table.rows[y1 + 1].cells[x1].classList.add('date_no_empty');
+            if (massive[month][i1 - 1] != undefined) {
+                if (massive[month][i1 - 1].indexOf('<img class = "photo"') != -1) {
+                    Table.rows[y1 + 1].cells[x1].classList.remove('date_no_empty');
+                    Table.rows[y1 + 1].cells[x1].classList.add('td_full')
+                }
+            };
             if (new Date(year, month, i1).getDate() == new Date().getDate() && new Date(year, month, i1).getMonth() == new Date().getMonth() && new Date(year, month, i1).getFullYear() == new Date().getFullYear()) {
                 Table.rows[y1 + 1].cells[x1].style.backgroundColor = "#9ACD32";
             }
@@ -131,10 +161,11 @@ function startCalendar(year) {
         let xClick = event.clientX;
         let yClick = event.clientY;
         let elem1 = document.elementFromPoint(xClick, yClick);
-        console.log("элемент: " + elem1.tagName + "   текст внутри ячейки:" + elem1.innerText + "   mess.style.display:" + mess.style.display);
-        if (elem1.tagName == "TD" && elem1.innerText != "" && mess.style.display == "none") {
+        // console.log("элемент: " + elem1.tagName + "   текст внутри ячейки:" + elem1.innerText + "   mess.style.display:" + mess.style.display);
+        // if (elem1.tagName == "TD" && elem1.innerText != "" && mess.style.display == "none") {
+        if (elem1.tagName == "TD" && elem1.innerText != "") {
             event.stopPropagation();
-            let t1 = "<br><br>Неизвестная информация.";
+            let t1 = "<div class = 'no_info'><br><br><br>*Нет информации по этой дате.*</div>";
             if (massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1] != undefined) t1 = massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1];
             elem1.insertAdjacentElement("beforeend", mess);
             mess.innerHTML = "";
@@ -143,11 +174,11 @@ function startCalendar(year) {
             if (document.body.clientWidth >= document.body.clientHeight) {
                 mess.classList.remove("mess_tel");
                 mess.classList.remove("mess_comp");
-                mess.classList.add('mess_comp')
+                mess.classList.add('mess_comp');
             } else {
                 mess.classList.remove('mess_comp');
                 mess.classList.remove("mess_tel");
-                mess.classList.add('mess_tel')
+                mess.classList.add('mess_tel');
             }
             document.getElementById('all').insertAdjacentElement("afterbegin", mess);
             mess.style.display = "block";
@@ -195,7 +226,8 @@ startCalendar(2022);
 
 // one.addEventListener("click",() => startCalendar(document.getElementById("inputka").value));
 document.getElementById("all").addEventListener("click", function (event) {
-    if (document.elementFromPoint(event.clientX, event.clientY) != mess && mess.style.display != "none") {
+    console.log(document.elementFromPoint(event.clientX, event.clientY));
+    if (document.elementFromPoint(event.clientX, event.clientY).closest('#mess') != mess && mess.style.display != "none") {
         mess.style.display = "none";
         console.log('вне поля сообщения')
     }
@@ -216,19 +248,3 @@ document.getElementById('inputka').oninput = function (event) {
 };
 
 //----------------база данных в массиве по месяцам и дням месяца---------------------------------------------------------
-let massive = [
-    [],
-    [],
-    [],
-    [],
-    [1, 2, '<img class = "photo" src="image/Vita.jpg" alt="фото" />'],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, '<img class = "photo" src="image/Alisa.jpg" alt="фото" />'],
-    [],
-    [1, '<img class = "photo" src="image/Sasha.png" alt="фото" />'],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, "<b><u><br><br>Православие:</u></b><br><br>—отдание праздника Рождества Пресвятой Богородицы;<br>—память священномученика Автонома, епископа Италийского (313 год);<br>—память преподобного Афанасия Высоцкого, Серпуховского чудотворца (1395 год);<br>—память священномучеников Феодора Лебедева, Иоанна Прудентова, Николая Житова, пресвитеров, мученика Алексия (Ворошина) (1937 год);<br>—воспоминание перенесения мощей праведного Симеона Верхотурского (1704 год);<br>—память преподобного Вассиана Тиксненского (1624 год);<br>—память мученика Иулиана и с ним 40 мучеников (IV век)[6];<br>—память мученика Феодора Александрийского;<br>—память священномученика Корнута, епископа Никомидийского (Иконийского) (249-259 годы)[7];<br>—память мучеников Авадира и Ирая.<hr><b><u>Именины:</u></b><br><br>Католические: Аврелия, Амелия.<br>Православные: Семён, Фёдор, Юлиан, Святополк.",
-        "<b><br><br><u>Католическая церковь:</u></b><br>—память святых бессребреников Космы и Дамиана.<br><b><u>Православие:</u></b><br>—память обновления (освящения) храма Воскресения Христова в Иерусалиме (Воскресение словущее) (335 год);<br>—предпразднство Воздвижения Честно́го и Животворящего Креста Господня;<br>—память священномученика Корнилия сотника (I век);<br>—память священномучеников Стефана Костогрыза, Александра Аксёнова, пресвитеров и Николая Васюковича, диакона (1937 год);<br>—память мучеников Кронида, Леонтия и Серапиона (около 237 года);<br>—память мучеников Селевка и Стратоника (III век);<br>—память мучеников Макровия и Гордиана (320 год);<br>—память священномученика Иулиана пресвитера (IV век);<br>—память мучеников Илии, Зотика, Лукиана и Валериана (320 год);<br>—память преподобного Петра в Атрое (IX век);<br>—память великомученицы Кетевани, царицы Кахетинской (1624 год) (Груз.).<hr><u><b>Именины:</b></u><br> Православные: Валериан, Илья, Корнелий, Леонтий, Лукьян, Пётр, Юлиан.<br>Католические: Люция, Юстина, Дамиан, Киприан."
-    ],
-    [],
-    [],
-    [],
-]
