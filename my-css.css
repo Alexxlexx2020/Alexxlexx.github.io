@@ -114,6 +114,10 @@ th {
     text-align: center;
 }
 
+.td_full:hover{
+    box-shadow: inset 0px 0px 2px 2px rgb(29, 105, 219);
+}
+
 .celebrate {
     color: rgb(196, 33, 33);
 }
