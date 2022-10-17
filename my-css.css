@@ -21,7 +21,7 @@ body {
 
 .text{
     position: absolute;
-    font-size: 1.5em;
+    font-size: 30px;
     top:0;
     left:0;
     padding-left: 5px;
@@ -29,7 +29,7 @@ body {
     margin-top: 0px;
     margin-left: 0px;
     color: rgb(5, 5, 5);
-    background-color:rgba(247, 243, 243, 0.75);
+    background-color:rgba(247, 243, 243, 0.65);
     z-index: 13;
 }
 
@@ -167,22 +167,23 @@ span {
 #clock {
     /* width: 260px; */
     margin-top: 6px;
+    margin-right: 5px;
     text-align: right;
     /* background-color: #d6e9c6; */
     /* border-style: solid; */
     /* border-color: #000; */
     position: relative;
     /* top: -120px; */
-    right: 19px;
+    right: 0px;
     /* margin: auto; */
     /* left: 70%; */
 }
 
-/* .current_date{
-    color: #ddd;
+.current_date:hover{
+    background-color: aquamarine;
     cursor: pointer;
-    text-decoration:underline;
-} */
+    /* text-decoration:underline; */
+}
 
 #inputYear {
     margin-top: 30px;
