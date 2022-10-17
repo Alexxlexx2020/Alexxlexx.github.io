@@ -57,7 +57,7 @@ body {
     /* justify-content:space-around; */
     grid-template-columns: 2fr 1fr 2fr;
     /* grid-template-rows: auto; */
-    background-color: rgba(0, 0, 0, 0.3);
+    /* background-color: rgba(0, 0, 0, 0.3); */
     /* height: 80px; */
     margin: 0px;
     width: 100%;
@@ -75,13 +75,14 @@ body {
     font-size: 60px;
     color: rgb(199, 229, 243);
     text-align: left;
+    background-color: rgb(7, 158, 147, 50%);
 }
 
 
 
 #f4{
     text-align: right;
-    background-color: rgb(7, 158, 147, 78%);
+    background-color: rgb(7, 158, 147, 50%);
 }
 
 .ClassCalendar {
@@ -293,7 +294,7 @@ label {
 
 #weather__city {
     padding-left: 15px;
-    background-color: rgb(7 158 147 / 78%)
+    /* background-color: rgb(7 158 147 / 78%) */
 }
 
 #weather__icon {
