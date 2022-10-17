@@ -281,6 +281,7 @@ label {
 
 #weather__city {
     padding-left: 15px;
+    background-color: rgb(7 158 147 / 78%)
 }
 
 #weather__icon {

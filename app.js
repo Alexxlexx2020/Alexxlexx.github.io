@@ -1,3 +1,4 @@
+//----------------база данных в массиве по месяцам и дням месяца---------------------------------------------------------
 let massive = [
     [, , , , , , , , , , , ,
         '<img class = "photo" src="image/Mama_1953.jpg" alt="фото" />'
@@ -25,11 +26,12 @@ let massive = [
         "<div class = 'text1'><br><br><b>Православие:</b><br><br>—отдание праздника Рождества Пресвятой Богородицы;<br>—память священномученика Автонома, епископа Италийского (313 год);<br>—память преподобного Афанасия Высоцкого, Серпуховского чудотворца (1395 год);<br>—память священномучеников Феодора Лебедева, Иоанна Прудентова, Николая Житова, пресвитеров, мученика Алексия (Ворошина) (1937 год);<br>—воспоминание перенесения мощей праведного Симеона Верхотурского (1704 год);<br>—память преподобного Вассиана Тиксненского (1624 год);<br>—память мученика Иулиана и с ним 40 мучеников (IV век)[6];<br>—память мученика Феодора Александрийского;<br>—память священномученика Корнута, епископа Никомидийского (Иконийского) (249-259 годы)[7];<br>—память мучеников Авадира и Ирая.<hr><b>Именины:</b><br><br>Католические: Аврелия, Амелия.<br>Православные: Семён, Фёдор, Юлиан, Святополк.</div>",
         "<div class = 'text1'><b><br><br>Католическая церковь:</b><br>—память святых бессребреников Космы и Дамиана.<br><b>Православие:</b><br>—память обновления (освящения) храма Воскресения Христова в Иерусалиме (Воскресение словущее) (335 год);<br>—предпразднство Воздвижения Честно́го и Животворящего Креста Господня;<br>—память священномученика Корнилия сотника (I век);<br>—память священномучеников Стефана Костогрыза, Александра Аксёнова, пресвитеров и Николая Васюковича, диакона (1937 год);<br>—память мучеников Кронида, Леонтия и Серапиона (около 237 года);<br>—память мучеников Селевка и Стратоника (III век);<br>—память мучеников Макровия и Гордиана (320 год);<br>—память священномученика Иулиана пресвитера (IV век);<br>—память мучеников Илии, Зотика, Лукиана и Валериана (320 год);<br>—память преподобного Петра в Атрое (IX век);<br>—память великомученицы Кетевани, царицы Кахетинской (1624 год) (Груз.).<hr><b>Именины:</b><br> Православные: Валериан, Илья, Корнелий, Леонтий, Лукьян, Пётр, Юлиан.<br>Католические: Люция, Юстина, Дамиан, Киприан.</div>"
     ],
-    [, , , , , , ,'<img class = "photo" src="image/Larisa_1936.jpg" alt="фото" />', , , , , , , , , , , , , , , , , , , , , , , '<img class = "photo" src="image/Zhenya_1929.jpg" alt="фото" />'],
+    [, , , , , , , '<img class = "photo" src="image/Larisa_1936.jpg" alt="фото" />', , , , , , , , , , , , , , , , , , , , , , , '<img class = "photo" src="image/Zhenya_1929.jpg" alt="фото" />'],
     [],
     [],
 ]
 
+// ---------------------------- функция формирования блока одного месяца календаря конкретного года и вставки в элемент elem --------------------
 function createCalendar(year, month, elem) {
     let days = [];
     let myDate = new Date(year, month, 1);
@@ -59,7 +61,6 @@ function createCalendar(year, month, elem) {
             days[i] = myDay;
         } else break
     }
-
     let Table = document.createElement('table');
     let Thead = document.createElement('thead');
     let Tbody = document.createElement('tbody');
@@ -92,13 +93,15 @@ function createCalendar(year, month, elem) {
                     Table.rows[y1 + 1].cells[x1].classList.add('td_full')
                 }
             };
-            if (new Date(year, month, i1).getDate() == new Date().getDate() && new Date(year, month, i1).getMonth() == new Date().getMonth() && new Date(year, month, i1).getFullYear() == new Date().getFullYear()) {
+            let Date1 =  new Date(year, month, i1);
+            if (Date1.getDate() == new Date().getDate() && Date1.getMonth() == new Date().getMonth() && Date1.getFullYear() == new Date().getFullYear()) {
                 Table.rows[y1 + 1].cells[x1].style.backgroundColor = "#9ACD32";
             }
         } else break
     }
 }
 
+// ----------------- функция запуска и вставки часов в элемент elem ---------------------------------
 function myTime(elem) {
     let month2 = [
         'января',
@@ -114,7 +117,8 @@ function myTime(elem) {
         'ноября',
         'декабря'
     ];
-    elem.insertAdjacentHTML("afterbegin", `<div id="clock"><span class="spanH"></span><span class="spanX">:</span><span class="spanM"></span><span class="spanX">:</span><span class="spanS"></span><span></span><br><span class="current_date"></span></div>`);
+    elem.insertAdjacentHTML("afterbegin",
+        `<div id="clock"><span class="spanH"></span><span class="spanX">:</span><span class="spanM"></span><span class="spanX">:</span><span class="spanS"></span><span></span><br><span class="current_date"></span></div>`);
 
     function timeCalc() {
         let h1 = new Date().getHours();
@@ -131,7 +135,6 @@ function myTime(elem) {
         for (let i of document.getElementsByClassName('spanS')) {
             i.innerHTML = s1;
         };
-        // console.log(document.getElementByClassName("current_date").classList);
         document.getElementsByClassName("current_date")[0].innerHTML = new Date().getDate() + "  " + month2[new Date().getMonth()] + " " + new Date().getFullYear();
     }
     timeCalc();
@@ -141,14 +144,11 @@ function myTime(elem) {
 function startCalendar(year) {
     mess.style.display = "none";
     document.getElementById('allArea').innerHTML = ``;
-    // let f3 = document.getElementById('f3');
-    // year = +year;
-    // if (year < 0 || year > 5000) year = new Date().getFullYear();
-    // f3.innerText = year;
     document.getElementById('allArea').innerHTML = `<div id = "container"></div>`;
     for (let month = 0; month < 12; month++) {
         createCalendar(year, month, 'container')
     }
+
     let month2 = [
         'января',
         'февраля',
@@ -169,19 +169,19 @@ function startCalendar(year) {
         let xClick = event.clientX;
         let yClick = event.clientY;
         let elem1 = document.elementFromPoint(xClick, yClick);
-        // console.log("элемент: " + elem1.tagName + "   текст внутри ячейки:" + elem1.innerText + "   mess.style.display:" + mess.style.display);
-        // if (elem1.tagName == "TD" && elem1.innerText != "" && mess.style.display == "none") {
         if (elem1.tagName == "TD" && elem1.innerText != "") {
             event.stopPropagation();
             let t1 = "<div class = 'no_info'><br><br><br>*Нет информации по этой дате.*</div>";
-            if (massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1] != undefined) t1 = massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1];
+            if (massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1] != undefined)
+                t1 = massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1];
             elem1.insertAdjacentElement("beforeend", mess);
             let oldYear = "-";
             if (t1.indexOf('.jpg') != -1) oldYear = document.getElementById('inputka').value - t1.slice(t1.indexOf('.jpg') - 4, t1.indexOf('.jpg'));
             if (isNaN(oldYear) || +oldYear < 0) oldYear = "-";
             console.log(oldYear);
             mess.innerHTML = "";
-            mess.innerHTML = `<div class = "text"><b>${elem1.innerText} ${month2[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]]}  ${year} года, ${oldYear}</b></div>${t1}`;
+            mess.innerHTML =
+                `<div class = "text"><b>${elem1.innerText} ${month2[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]]}  ${year} года, ${oldYear}</b></div>${t1}`;
             mess.insertAdjacentElement('afterbegin', closer_point);
             if (document.body.clientWidth >= document.body.clientHeight) {
                 mess.classList.remove("mess_tel");
@@ -198,18 +198,17 @@ function startCalendar(year) {
 
     })
 }
-//---------запуск часов------------------
-myTime(document.getElementById('f4'));
 
-// ----------------------------------------запрос погоды в массив data--------------------------------------------------
+// ------------------- функция запроса и записи погоды в массив data--------------------------------------------------
 let data = {};
-
 function Weather() {
     fetch('https://api.openweathermap.org/data/2.5/weather?id=710719&lang=ru&appid=ed7cbb7322e69c56dd6645d9c8ee8748').then(function (resp) {
             return resp.json()
         }).then(function (data) {
             //добавляем название города "lat":48.2864702,"lon":25.9376532
-            document.getElementById("weather__city").innerHTML = data.name + ' ' + Math.round(data.main.temp - 273) + '°, ' + data.weather[0]['description'] + ", давление:" + Math.round(data.main.pressure * 0.750062) + " мм р. с."; // + "/" + data.main.grnd_level;
+            document.getElementById("weather__city").innerHTML =
+                data.name + ' ' + Math.round(data.main.temp - 273) + '°, ' + data.weather[0]['description'] + ", давление:" +
+                Math.round(data.main.pressure * 0.750062) + " мм р. с."; // + "/" + data.main.grnd_level;
             //data.main.temp содержит значение в Кельвинах, отнимаем от  273, чтобы получить значение в градусах Цельсия
             //Добавляем иконку погоды
             // document.getElementById('weather__icon').innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">`;
@@ -217,13 +216,10 @@ function Weather() {
         .catch(function () {
             // Обрабатываем ошибки при загрузке погоды
             document.getElementById("weather__city").innerHTML = "ошибка загрузки погоды"
-            // prompt('погода не загрузилась');
         });
 }
 
-Weather();
-setInterval(() => Weather(), 100000);
-
+// ----------------- набор глобальных значений и переменных ---------------------------------------
 let mess = document.createElement('div');
 mess.id = 'mess';
 mess.style.display = "none";
@@ -231,12 +227,18 @@ let closer_point = document.createElement('button');
 closer_point.id = 'closer_point';
 closer_point.innerText = 'X';
 
-
+// ----------------- первый старт календаря -----------------------------------------
 startCalendar(new Date().getFullYear());
 
-//--------------обработчики событий--------------------------------------
+//------------------ запуск часов ------------------
+myTime(document.getElementById('f4'));
 
-// one.addEventListener("click",() => startCalendar(document.getElementById("inputka").value));
+// ----------------- первый и периодический запуск погоды -------------------------------------
+Weather();
+setInterval(() => Weather(), 100000);
+
+
+//------------------ обработчики событий таблицы, закрытия окна mess, погоды, текущей даты, поля ввода года ---------------
 document.getElementById("all").addEventListener("click", function (event) {
     console.log(document.elementFromPoint(event.clientX, event.clientY));
     if (document.elementFromPoint(event.clientX, event.clientY).closest('#mess') != mess && mess.style.display != "none") {
@@ -258,5 +260,3 @@ document.getElementsByClassName('current_date')[0].addEventListener("click", fun
 document.getElementById('inputka').oninput = function (event) {
     startCalendar(this.value)
 };
-
-//----------------база данных в массиве по месяцам и дням месяца---------------------------------------------------------
