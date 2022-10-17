@@ -181,7 +181,7 @@ function startCalendar(year) {
             console.log(oldYear);
             mess.innerHTML = "";
             mess.innerHTML =
-                `<div class = "text"><b>${elem1.innerText} ${month2[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]]}  ${year} года, ${oldYear}</b></div>${t1}`;
+                `<div class = "text"><b>${elem1.innerText} ${month2[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]]}  ${document.getElementById('inputka').value} года, ${oldYear}</b></div>${t1}`;
             mess.insertAdjacentElement('afterbegin', closer_point);
             if (document.body.clientWidth >= document.body.clientHeight) {
                 mess.classList.remove("mess_tel");
