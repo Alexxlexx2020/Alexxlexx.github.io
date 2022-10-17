@@ -13,10 +13,10 @@ let massive = [
         '<img class = "photo" src="image/Papa_1952.jpg" alt="фото" />'
     ],
     [, ,
-        '<img class = "photo" src="image/Vita.jpg" alt="фото" />'
+        '<img class = "photo" src="image/Vita.jpg" alt="фото" />',,,,,,,,,,,,,,'<img class = "photo" src="image/Fenya_1912.jpg" alt="фото" />'
     ],
     [, , , , , , , , , , , , , , , , , , , ,
-        '<img class = "photo" src="image/Alisa.jpg" alt="фото" />'
+        '<img class = "photo" src="image/Alisa_1996.jpg" alt="фото" />'
     ],
     [],
     [,
