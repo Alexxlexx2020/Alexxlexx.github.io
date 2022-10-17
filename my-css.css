@@ -62,6 +62,7 @@ body {
     margin: 0px;
     width: 100%;
     z-index: 10;
+    border-bottom: solid 4px rgb(5, 50, 100);
 }
 
 #f2 {
@@ -80,6 +81,7 @@ body {
 
 #f4{
     text-align: right;
+    background-color: rgb(7, 158, 147, 78%);
 }
 
 .ClassCalendar {
@@ -225,12 +227,12 @@ label {
 #inputka {
     position: relative;
     padding: 0;
-    height: 96%;
+    height: 100%;
     margin-top: 0px;
     text-align: center;
     background-color: #e8f3ce;
     color: #000;
-    width: 270px;
+    width: 100%;
     font-size: 500%;
     /* box-shadow: 0 0 10px 10px rgba(130, 130, 255, 0.9); */
 }
