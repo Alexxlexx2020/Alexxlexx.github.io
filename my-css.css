@@ -54,11 +54,7 @@ body {
 .f1 {
     position: relative;
     display: grid;
-    /* justify-content:space-around; */
-    grid-template-columns: 2fr 1fr 2fr;
-    /* grid-template-rows: auto; */
-    /* background-color: rgba(0, 0, 0, 0.3); */
-    /* height: 80px; */
+    grid-template-columns: 3fr 2fr 3fr;
     margin: 0px;
     width: 100%;
     z-index: 10;
@@ -66,11 +62,8 @@ body {
 }
 
 #f2 {
-    /* font-family: monospace; */
     position: flex;
     justify-content: center;
-    /* left: 0px; */
-    /* margin-left: 18px; */
     color: azure;
     font-size: 60px;
     color: rgb(199, 229, 243);
@@ -87,8 +80,6 @@ body {
 
 .ClassCalendar {
     height: 200px;
-    /* margin-left: 20px; */
-    /* margin-bottom: 5px; */
     margin: 5px;
     margin-top: 10px;
     border-collapse: collapse;
@@ -111,9 +102,6 @@ td {
     padding: 3px 8px;
     border: 1px solid black;
     font-size: 1.25rem;
-    /* filter: brightness(107%); */
-    /* cursor: pointer; */
-    /* user-select: none; */
 }
 
 th {
@@ -144,7 +132,6 @@ th {
     user-select: none;
     background-color: rgb(234, 216, 250);
     text-align: center;
-    /* filter: brightness(100%); */
 }
 
 .wday {
@@ -170,7 +157,6 @@ span {
     top: 100px;
     min-height: 600px;
     min-width: 800px;
-    /* background-color: rgb(42, 126, 105); */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -178,13 +164,9 @@ span {
 }
 
 #clock {
-    /* width: 260px; */
     margin-top: 6px;
     margin-right: 5px;
     text-align: right;
-    /* background-color: #d6e9c6; */
-    /* border-style: solid; */
-    /* border-color: #000; */
     position: relative;
     /* top: -120px; */
     right: 0px;
@@ -208,13 +190,8 @@ label {
 }
 #f3 {
     position: relative;
-    /* top: -76px; */
     margin: 0px;
     text-align: center;
-    
-    /* color: azure; */
-    /* font-size: 30px; */
-    /* height: 64px; */
 }
 
 #areaInput {
@@ -235,7 +212,6 @@ label {
     color: #000;
     width: 100%;
     font-size: 500%;
-    /* box-shadow: 0 0 10px 10px rgba(130, 130, 255, 0.9); */
 }
 
 #one {
@@ -255,29 +231,20 @@ label {
     align-items: center;
     padding-top: 20px;
     color: rgb(53, 53, 8);
-    /* justify-items: ; */
 }
 
 .table_style{
-    /* box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.67); */
     box-shadow: 0 0 10px 10px rgba(130, 130, 255, 0.9);
 }
 
 .weather {
-    /* position: fixed;
-	bottom: 0px;
-    display: flex;
-    width: 100%; */
+    display: grid;
+    grid-template-columns: 4fr 1fr;
     justify-content:left;
-    /* width:max-content; */
-    /* box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.77); */
     cursor: pointer;
     bottom: 0px;
     line-height: 1.1;
 }
-/* .weather :hover{
-    box-shadow: 0 0 10px 10px rgba(130, 130, 255, 0.9);
-} */
 
 .osnova{
     min-height: 100%;
@@ -288,20 +255,14 @@ label {
 #weather__discription {
     color: white;
     font-size: 50px;
-    /* background-color: rgba(0, 0, 0, 0.5); */
-    /* background-color: blue; */
 }
 
 #weather__city {
     padding-left: 15px;
-    /* background-color: rgb(7 158 147 / 78%) */
 }
 
 #weather__icon {
     position: relative;
-    /* width: 100px; */
-    /* background-color: rgba(0, 0, 0, 0.5); */
-    /* height: 100px; */
 }
 
 button::-moz-focus-inner {
@@ -312,7 +273,6 @@ button::-moz-focus-inner {
 #mess {
     position:fixed;
     padding-bottom: 0;
-    /* transition: 2s all; */
     transition: width 2s;
     text-align: justify;
     color: black;
@@ -321,13 +281,11 @@ button::-moz-focus-inner {
     background-color: rgb(250, 250, 246);
     word-wrap: break-word;
     font-size:1.25rem;
-    /* font-weight: 300; */
     overflow: auto;
     z-index: 12;
     cursor:auto;
     user-select:text;
     box-shadow: 10px 10px 10px rgba(0,0,0,0.9);
-    /* display: none; */
 }
 
 .mess_comp{
@@ -351,7 +309,6 @@ button::-moz-focus-inner {
     font-size:xx-large;
     top: 0px;
     right: 0px;
-    /* margin: 5px; */
     color: red;
     font-weight: 500;
     z-index: 12;

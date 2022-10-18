@@ -210,19 +210,18 @@ function startCalendar(year) {
 }
 
 // ------------------- функция запроса и записи погоды в массив data--------------------------------------------------
-let data = {};
-
 function Weather() {
+    // let data = {};
     fetch('https://api.openweathermap.org/data/2.5/weather?id=710719&lang=ru&appid=ed7cbb7322e69c56dd6645d9c8ee8748').then(function (resp) {
             return resp.json()
         }).then(function (data) {
             //добавляем название города "lat":48.2864702,"lon":25.9376532
             document.getElementById("weather__city").innerHTML =
-                data.name + ' ' + Math.round(data.main.temp - 273) + '°, ' + data.weather[0]['description'] + ", давление:" +
-                Math.round(data.main.pressure * 0.750062) + " мм р. с."; // + "/" + data.main.grnd_level;
+                data.name + ' ' + Math.round(data.main.temp - 273) + '°, ' + data.weather[0]['description'] + "<br>давление:" +
+                Math.round(data.main.pressure * 0.750062); // + "/" + data.main.grnd_level;
             //data.main.temp содержит значение в Кельвинах, отнимаем от  273, чтобы получить значение в градусах Цельсия
             //Добавляем иконку погоды
-            // document.getElementById('weather__icon').innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">`;
+            document.getElementById('weather__icon').innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">`;
         })
         .catch(function () {
             // Обрабатываем ошибки при загрузке погоды
@@ -230,7 +229,7 @@ function Weather() {
         });
 }
 
-// ----------------- набор глобальных значений и переменных ---------------------------------------
+// ----------------- создание окна mess с данными по человеку или дате ---------------------------------------
 let mess = document.createElement('div');
 mess.id = 'mess';
 mess.style.display = "none";
