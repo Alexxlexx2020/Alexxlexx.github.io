@@ -118,7 +118,7 @@ function myTime(elem) {
         'декабря'
     ];
     elem.insertAdjacentHTML("afterbegin",
-        `<div id="clock"><span class="spanH"></span><span class="spanX">:</span><span class="spanM"></span><span class="spanX">:</span><span class="spanS"></span><span></span><br><span class="current_date"></span></div>`);
+        `<div id="clock"><span class="spanH"></span><span class="spanX">:</span><span class="spanM"></span><span class="spanX">.</span><span class="spanS"></span><span></span><br><span class="current_date"></span></div>`);
 
     function timeCalc() {
         let h1 = new Date().getHours();
@@ -217,8 +217,8 @@ function Weather() {
         }).then(function (data) {
             //добавляем название города "lat":48.2864702,"lon":25.9376532
             document.getElementById("weather__city").innerHTML =
-                data.name + ' ' + Math.round(data.main.temp - 273) + '°, ' + data.weather[0]['description'] + "<br>давление:" +
-                Math.round(data.main.pressure * 0.750062); // + "/" + data.main.grnd_level;
+                data.name + ' ' + Math.round(data.main.temp - 273) + '°, ' + Math.round(data.main.pressure * 0.750062) + " мм.<br>" + data.weather[0]['description'];
+                // + "/" + data.main.grnd_level;
             //data.main.temp содержит значение в Кельвинах, отнимаем от  273, чтобы получить значение в градусах Цельсия
             //Добавляем иконку погоды
             document.getElementById('weather__icon').innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">`;
