@@ -74,8 +74,11 @@ body {
 
 
 #f4{
-    text-align: right;
-    background-color: rgb(7, 158, 147, 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(7, 158, 147, 60%);
 }
 
 .ClassCalendar {
@@ -149,12 +152,13 @@ span {
 .spanM,
 .spanS {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: rgb(12, 12, 12);
+    color: white;
+    font-style: normal;
     /* background-color: antiquewhite; */
 }
 
 .spanS{
-    color: rgb(12, 12, 12, .5);
+    color: rgba(252, 248, 248, 0.5);
     font-size: 28px;
 }
 

@@ -179,11 +179,9 @@ function startCalendar(year) {
             let innerName = " ";
             if (t1.indexOf('.jpg') != -1) {
                 oldYear = document.getElementById('inputka').value - t1.slice(t1.indexOf('. ') + 2, t1.indexOf('. ') + 6);
-                console.log(t1.slice(t1.indexOf('. ') + 2, t1.indexOf('. ') + 6));
                 innerName = t1.slice(32,(t1.indexOf('.jpg')));
             };
             if (isNaN(oldYear) || +oldYear < 0) oldYear = "-";
-            console.log(oldYear);
             mess.innerHTML = "";
             mess.innerHTML =
                 `<div class = "text"><b>${elem1.innerText} ${month2[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]]}  ${document.getElementById('inputka').value} года, ${oldYear}</b></div>${t1}`;
@@ -250,10 +248,8 @@ setInterval(() => Weather(), 100000);
 
 //------------------ обработчики событий таблицы, закрытия окна mess, погоды, текущей даты, поля ввода года ---------------
 document.getElementById("all").addEventListener("click", function (event) {
-    console.log(document.elementFromPoint(event.clientX, event.clientY));
     if (document.elementFromPoint(event.clientX, event.clientY).closest('#mess') != mess && mess.style.display != "none") {
         mess.style.display = "none";
-        console.log('вне поля сообщения')
     }
 })
 closer_point.addEventListener("click", function (event) {
