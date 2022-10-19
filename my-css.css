@@ -185,7 +185,7 @@ span {
 }
 
 .current_date:hover{
-    background-color: aquamarine;
+    background-color: rgb(18, 29, 182);
     cursor: pointer;
     /* text-decoration:underline; */
 }
@@ -275,6 +275,10 @@ label {
     display: flex;
     align-items: center;
     /* justify-content: center */
+}
+
+.imageIcon{
+    height: 100%;
 }
 
 #mess {
