@@ -258,10 +258,10 @@ closer_point.addEventListener("click", function (event) {
     event.stopPropagation()
 });
 
-mess.addEventListener("touchend", function (event) {
-    mess.style.display = "none";
-    event.stopPropagation()
-});
+// mess.addEventListener("touchend", function (event) {    
+//     event.stopPropagation();
+//     mess.style.display = "none";
+// });
 
 mess.addEventListener("click", function (event) {
     event.stopPropagation()
