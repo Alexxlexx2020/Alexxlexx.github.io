@@ -219,7 +219,7 @@ function Weather() {
                 // + "/" + data.main.grnd_level;
             //data.main.temp содержит значение в Кельвинах, отнимаем от  273, чтобы получить значение в градусах Цельсия
             //Добавляем иконку погоды
-            document.getElementById('weather__icon').innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">`;
+            document.getElementById('weather__icon').innerHTML = `<img class = "imageIcon" src="https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">`;
         })
         .catch(function () {
             // Обрабатываем ошибки при загрузке погоды
@@ -252,10 +252,17 @@ document.getElementById("all").addEventListener("click", function (event) {
         mess.style.display = "none";
     }
 })
+
 closer_point.addEventListener("click", function (event) {
     mess.style.display = "none";
     event.stopPropagation()
 });
+
+mess.addEventListener("touchmove", function (event) {
+    mess.style.display = "none";
+    event.stopPropagation()
+});
+
 document.getElementsByClassName('weather')[0].addEventListener("click", function (event) {
     Weather()
 });
