@@ -258,7 +258,7 @@ closer_point.addEventListener("click", function (event) {
     event.stopPropagation()
 });
 
-mess.addEventListener("touchmove", function (event) {
+mess.addEventListener("touchend", function (event) {
     mess.style.display = "none";
     event.stopPropagation()
 });
