@@ -263,6 +263,10 @@ mess.addEventListener("touchend", function (event) {
     event.stopPropagation()
 });
 
+mess.addEventListener("click", function (event) {
+    event.stopPropagation()
+});
+
 document.getElementsByClassName('weather')[0].addEventListener("click", function (event) {
     Weather()
 });
