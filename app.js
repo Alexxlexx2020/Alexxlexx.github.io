@@ -1,35 +1,4 @@
-//----------------база данных в массиве по месяцам и дням месяца---------------------------------------------------------
-let massive = [
-    [, , , , , , , , , , , , ,
-        '<img class = "photo" src="image/Козолуп Л.В. 1953-2010.jpg" alt="фото" />'
-    ],
-    [, , , , , , , , , , , , , , , , , , ,
-        '<img class = "photo" src="image/Козолуп В.И. 1924-2001.jpg" alt="фото" />'
-    ],
-    [],
-    [, , , ,
-        '<img class = "photo" src="image/Козолуп А.В. 1982.jpg" alt="фото" />', , , , , ,
-        '<img class = "photo" src="image/Одайник А.И. 1931-2021.jpg" alt="фото" />', , , , , , ,
-        '<img class = "photo" src="image/Козолуп В.В. 1952.jpg" alt="фото" />'
-    ],
-    [, ,
-        '<img class = "photo" src="image/Ружицкая В.Е..jpg" alt="фото" />', , , , , , , , , , , , , , '<img class = "photo" src="image/Одайник Ф.Д. 1912-1991.jpg" alt="фото" />'
-    ],
-    [, , , , , , , , , , , , , , , , , , , ,
-        '<img class = "photo" src="image/Козолуп А.А. 1996.jpg" alt="фото" />'
-    ],
-    [],
-    [,
-        '<img class = "photo" src="image/Козолуп А.В. 1973.jpg" alt="фото" />'
-    ],
-    [, , , , , , , , , , , , , , , , , , , , , , , ,
-        "<div class = 'text1'><br><br><b>Православие:</b><br><br>—отдание праздника Рождества Пресвятой Богородицы;<br>—память священномученика Автонома, епископа Италийского (313 год);<br>—память преподобного Афанасия Высоцкого, Серпуховского чудотворца (1395 год);<br>—память священномучеников Феодора Лебедева, Иоанна Прудентова, Николая Житова, пресвитеров, мученика Алексия (Ворошина) (1937 год);<br>—воспоминание перенесения мощей праведного Симеона Верхотурского (1704 год);<br>—память преподобного Вассиана Тиксненского (1624 год);<br>—память мученика Иулиана и с ним 40 мучеников (IV век)[6];<br>—память мученика Феодора Александрийского;<br>—память священномученика Корнута, епископа Никомидийского (Иконийского) (249-259 годы)[7];<br>—память мучеников Авадира и Ирая.<hr><b>Именины:</b><br><br>Католические: Аврелия, Амелия.<br>Православные: Семён, Фёдор, Юлиан, Святополк.</div>",
-        "<div class = 'text1'><b><br><br>Католическая церковь:</b><br>—память святых бессребреников Космы и Дамиана.<br><b>Православие:</b><br>—память обновления (освящения) храма Воскресения Христова в Иерусалиме (Воскресение словущее) (335 год);<br>—предпразднство Воздвижения Честно́го и Животворящего Креста Господня;<br>—память священномученика Корнилия сотника (I век);<br>—память священномучеников Стефана Костогрыза, Александра Аксёнова, пресвитеров и Николая Васюковича, диакона (1937 год);<br>—память мучеников Кронида, Леонтия и Серапиона (около 237 года);<br>—память мучеников Селевка и Стратоника (III век);<br>—память мучеников Макровия и Гордиана (320 год);<br>—память священномученика Иулиана пресвитера (IV век);<br>—память мучеников Илии, Зотика, Лукиана и Валериана (320 год);<br>—память преподобного Петра в Атрое (IX век);<br>—память великомученицы Кетевани, царицы Кахетинской (1624 год) (Груз.).<hr><b>Именины:</b><br> Православные: Валериан, Илья, Корнелий, Леонтий, Лукьян, Пётр, Юлиан.<br>Католические: Люция, Юстина, Дамиан, Киприан.</div>"
-    ],
-    [, , , , , , , '<img class = "photo" src="image/Рудич Л.Ф. 1936.jpg" alt="фото" />', , , , , , , , , , , , , , , , , , , , , , , '<img class = "photo" src="image/Ружицкий Е.Н. 1929-2004.jpg" alt="фото" />'],
-    [],
-    [],
-]
+//----------------база данных в массиве по месяцам и дням месяца находится в файле database.js ---------------------------------------------------------
 
 // ---------------------------- функция формирования блока одного месяца календаря конкретного года и вставки в элемент elem --------------------
 function createCalendar(year, month, elem) {
@@ -171,10 +140,12 @@ function startCalendar(year) {
         let elem1 = document.elementFromPoint(xClick, yClick);
         if (elem1.tagName == "TD" && elem1.innerText != "") {
             event.stopPropagation();
-            let t1 = "<div class = 'no_info'><br><br><br>*Нет информации по этой дате.*</div>";
-            if (massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1] != undefined)
-                t1 = massive[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]][elem1.innerText - 1];
-            elem1.insertAdjacentElement("beforeend", mess);
+            let t1 = "<div class = 'no_info'><br>  *Нет информации по этой дате.*  </div>";
+            let massiveMonth = +elem1.parentNode.parentNode.parentNode.id.split(".")[1];
+            let massiveDate = elem1.innerText - 1;
+            if (massive[massiveMonth][massiveDate] != undefined)
+                t1 = massive[massiveMonth][massiveDate];
+            // elem1.insertAdjacentElement("beforeend", mess);
             let oldYear = "-";
             let innerName = " ";
             if (t1.indexOf('.jpg') != -1) {
@@ -182,25 +153,29 @@ function startCalendar(year) {
                 innerName = t1.slice(32,(t1.indexOf('.jpg')));
             };
             if (isNaN(oldYear) || +oldYear < 0) oldYear = "-";
-            mess.innerHTML = "";
-            mess.innerHTML =
-                `<div class = "text"><b>${elem1.innerText} ${month2[+elem1.parentNode.parentNode.parentNode.id.split(".")[1]]}  ${document.getElementById('inputka').value} года, ${oldYear}</b></div>${t1}`;
-            mess.insertAdjacentElement('afterbegin', closer_point);
-            //---------- вставка в mess имени человека --------------
-            let nameMess = document.createElement('div');
-            nameMess.innerText = innerName;
-            nameMess.id = "nameMess";
-            mess.insertAdjacentElement('beforeend', nameMess);
-            if (document.body.clientWidth >= document.body.clientHeight) {
-                mess.classList.remove("mess_tel");
-                mess.classList.remove("mess_comp");
-                mess.classList.add('mess_comp');
-            } else {
-                mess.classList.remove('mess_comp');
-                mess.classList.remove("mess_tel");
-                mess.classList.add('mess_tel');
-            }
-            document.getElementById('all').insertAdjacentElement("afterbegin", mess);
+           
+            mess1.innerHTML = "";
+            mess1.innerHTML = `<div class = "text"><b>${elem1.innerText} ${month2[massiveMonth]}  ${document.getElementById('inputka').value} года, ${oldYear}</b></div>`;
+                // `<div class = "text"><b>${elem1.innerText} ${month2[massiveMonth]}  ${document.getElementById('inputka').value} года, ${oldYear}</b></div>${t1}`;
+                
+            //---------- вставка в mess3 имени человека --------------
+            // let nameMess = document.createElement('div'); 
+            mess1.insertAdjacentElement("beforeend", closer_point);
+            mess2.innerHTML = t1;
+            mess3.innerText = innerName;
+
+            //--------- проверка по ширине экрана комп или смартфон -------------
+            // if (document.body.clientWidth >= document.body.clientHeight) {
+            //     mess.classList.remove("mess_tel");
+            //     mess.classList.remove("mess_comp");
+            //     mess.classList.add('mess_comp');
+            // } else {
+            //     mess.classList.remove('mess_comp');
+            //     mess.classList.remove("mess_tel");
+            //     mess.classList.add('mess_tel');
+            // }
+            // document.getElementById('all').insertAdjacentElement("afterbegin", mess);
+            document.getElementsByClassName('osnova')[0].insertAdjacentElement("afterbegin", mess);
             mess.style.display = "block";
         }
 
@@ -231,9 +206,26 @@ function Weather() {
 let mess = document.createElement('div');
 mess.id = 'mess';
 mess.style.display = "none";
+
+let mess1 = document.createElement('div');
+mess1.id = 'mess1';
+
+let mess2 = document.createElement('div');
+mess2.id = 'mess2';
+
+let mess3 = document.createElement('div');
+mess3.id = 'mess3';
+
+mess.insertAdjacentElement("afterbegin", mess3);
+mess.insertAdjacentElement("afterbegin", mess2);
+mess.insertAdjacentElement("afterbegin", mess1);
+
 let closer_point = document.createElement('button');
 closer_point.id = 'closer_point';
 closer_point.innerText = 'X';
+
+// mess1.insertAdjacentElement("beforeend", closer_point);
+
 
 // ----------------- первый старт календаря -----------------------------------------
 startCalendar(new Date().getFullYear());
@@ -263,9 +255,10 @@ closer_point.addEventListener("click", function (event) {
 //     mess.style.display = "none";
 // });
 
-mess.addEventListener("click", function (event) {
-    event.stopPropagation()
-});
+// mess.addEventListener("click", function (event) {
+//     event.stopPropagation();
+//     mess.style.display = "none";
+// });
 
 document.getElementsByClassName('weather')[0].addEventListener("click", function (event) {
     Weather()

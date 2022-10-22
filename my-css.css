@@ -19,22 +19,10 @@ body {
 
 }
 
-.text{
-    position: absolute;
-    font-size: 30px;
-    top:0;
-    left:0;
-    padding-left: 5px;
-    padding-right: 5px;
-    margin-top: 0px;
-    margin-left: 0px;
-    color: rgb(5, 5, 5);
-    background-color:rgba(247, 243, 243, 0.65);
-    z-index: 13;
-}
+
 
 #nameMess{
-    position: absolute;
+    position: sticky;
     font-size: 30px;
     bottom: 0;
     padding-left: 5px;
@@ -282,10 +270,10 @@ label {
 }
 
 #mess {
-    position:fixed;
-    padding-bottom: 0;
-    transition: width 2s;
-    text-align: justify;
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     color: black;
     border: rgb(87, 96, 226) solid 10px;
     border-style: double;
@@ -297,8 +285,43 @@ label {
     cursor:auto;
     user-select:text;
     box-shadow: 10px 10px 10px rgba(0,0,0,0.9);
+    max-width: 420px;
+    max-height: 95%;
 }
 
+#mess2{
+    word-wrap: break-word;
+}
+
+#mess1{
+    position: sticky;
+    top:0;
+    left:0;
+    z-index: 5;
+    width: 100%;
+    background-color:rgb(230, 231, 226);
+}
+
+.text{
+    position:relative;
+    display: block;
+    font-size: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 0px;
+    margin-left: 0px;
+    color: rgb(5, 5, 5);
+    z-index: 13;
+}
+
+#mess3{
+    position:sticky;
+    font-size: 30px;
+    bottom: 0;
+    left: 0;
+    z-index: 13;
+    background-color:rgb(230, 231, 226);
+}
 .mess_comp{
     min-height: 15%;
     max-height: 97vh;
@@ -322,7 +345,7 @@ label {
     right: 0px;
     color: red;
     font-weight: 500;
-    z-index: 12;
+    z-index: 122;
     cursor: pointer;
     user-select: none;
 }
