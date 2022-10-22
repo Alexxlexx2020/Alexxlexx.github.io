@@ -165,15 +165,15 @@ function startCalendar(year) {
             mess3.innerText = innerName;
 
             //--------- проверка по ширине экрана комп или смартфон -------------
-            // if (document.body.clientWidth >= document.body.clientHeight) {
-            //     mess.classList.remove("mess_tel");
-            //     mess.classList.remove("mess_comp");
-            //     mess.classList.add('mess_comp');
-            // } else {
-            //     mess.classList.remove('mess_comp');
-            //     mess.classList.remove("mess_tel");
-            //     mess.classList.add('mess_tel');
-            // }
+            if (document.body.clientWidth >= document.body.clientHeight) {
+                mess.classList.remove("mess_tel");
+                mess.classList.remove("mess_comp");
+                mess.classList.add('mess_comp');
+            } else {
+                mess.classList.remove('mess_comp');
+                mess.classList.remove("mess_tel");
+                mess.classList.add('mess_tel');
+            }
             // document.getElementById('all').insertAdjacentElement("afterbegin", mess);
             document.getElementsByClassName('osnova')[0].insertAdjacentElement("afterbegin", mess);
             mess.style.display = "block";

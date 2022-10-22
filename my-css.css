@@ -327,9 +327,6 @@ label {
     max-height: 97vh;
     min-width: 20%;
     max-width: 50vh;
-    top: 50%; 
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 .mess_tel{
     min-height: 15%;
