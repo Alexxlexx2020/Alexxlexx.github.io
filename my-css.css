@@ -429,7 +429,7 @@ label {
     position: absolute;
     width: auto;
     font-size: 30px;
-    max-width: 50%;
+    max-width: 100%;
     height: auto;
     left: 15px;
     overflow: auto;
