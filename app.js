@@ -40,7 +40,7 @@ function createCalendar(year, month, elem) {
     Thead.insertAdjacentHTML("afterbegin", `<tr><th class = "head_calendar">пн.</th><th class = "head_calendar">вт.</th><th class = "head_calendar">ср.</th><th class = "head_calendar">чт.</th><th class = "head_calendar">пт.</th><th class="wday">сб.</th><th class="wday">вс.</th></tr>`);
     document.getElementById(elem).append(Table);
 
-    Table.id = "calendar." + month;
+    Table.id = "calendar-" + month;
     Table.classList.add('table_style');
     let i1 = 0;
     let z;
@@ -250,7 +250,7 @@ function startCalendar(year) {
         if (elem1.tagName == "TD" && elem1.innerText != "") {
             event.stopPropagation();
             let t1 = "<div class = 'no_info'><br>  *Нет информации по этой дате.*  </div>";
-            let massiveMonth = +elem1.parentNode.parentNode.parentNode.id.split(".")[1];
+            let massiveMonth = +elem1.parentNode.parentNode.parentNode.id.split("-")[1];
             let massiveDate = elem1.innerText - 1;
             for (item of massive1) {
                 if (+item["birthday"].substr(8, 2) == +massiveMonth + 1 && +item["birthday"].substr(5, 2) == +massiveDate + 1) {

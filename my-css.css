@@ -56,10 +56,25 @@ body {
     background-color: rgb(239, 228, 248);
     padding: 3px 8px;
     border: 1px solid black;
-    box-shadow: 0 0 10px 10px rgba(130, 130, 255, 0.9);
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, .9);
 }
 
-
+#calendar-1 caption, #calendar-0 caption, #calendar-11 caption {
+    background-color: rgb(214, 213, 213);
+    color: black;
+}
+#calendar-2 caption, #calendar-3 caption, #calendar-4 caption {
+    background-color: rgb(93, 192, 93);
+    color: black;
+}
+#calendar-5 caption, #calendar-6 caption, #calendar-7 caption {
+    background-color: rgb(223, 158, 39);
+    color: black;
+}
+#calendar-8 caption, #calendar-9 caption, #calendar-10 caption {
+    background-color: rgb(214, 214, 39);
+    color: black;
+}
 
 /* th {
     background-color: antiquewhite;
@@ -294,7 +309,7 @@ label {
     z-index: 120;
     cursor: auto;
     user-select: text;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.9);
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.9);
 }
 
 #mess2 {
@@ -411,7 +426,7 @@ label {
     cursor: pointer;
     border-radius: 7px;
     background-color: rgb(7, 121, 121, 0.75);
-    box-shadow: 10px 5px 5px 0 black;
+    box-shadow: 10px 10px 5px 0 black;
     transition-duration: 0.3s;
 }
 .button_table:hover{
@@ -439,7 +454,7 @@ label {
     z-index: 100;
     padding: 10px;
     margin-top: 20px;
-    box-shadow: 10px 5px 5px 0 black;
+    box-shadow: 10px 10px 5px 0 black;
 }
 
 .ClassTableMan {
