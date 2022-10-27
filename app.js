@@ -1,4 +1,4 @@
-//----------------база данных в массиве по месяцам и дням месяца находится в файле database.js ---------------------------------------------------------
+//---------------- база данных в массиве находится в файле database.js ---------------------------------------------------------
 
 // ---------------------------- функция формирования блока одного месяца календаря конкретного года и вставки в элемент elem --------------------
 function createCalendar(year, month, elem) {
@@ -36,8 +36,8 @@ function createCalendar(year, month, elem) {
     Table.className = "ClassCalendar";
     Table.append(Thead);
     Table.append(Tbody);
-    Table.insertAdjacentHTML("afterbegin", `<caption>${Month1[month].toUpperCase()}</caption>`)
-    Thead.insertAdjacentHTML("afterbegin", `<tr><th>пн.</th><th>вт.</th><th>ср.</th><th>чт.</th><th>пт.</th><th class="wday">сб.</th><th class="wday">вс.</th></tr>`);
+    Table.insertAdjacentHTML("afterbegin", `<caption class = "caption_calendar">${Month1[month].toUpperCase()}</caption>`)
+    Thead.insertAdjacentHTML("afterbegin", `<tr><th class = "head_calendar">пн.</th><th class = "head_calendar">вт.</th><th class = "head_calendar">ср.</th><th class = "head_calendar">чт.</th><th class = "head_calendar">пт.</th><th class="wday">сб.</th><th class="wday">вс.</th></tr>`);
     document.getElementById(elem).append(Table);
 
     Table.id = "calendar." + month;
@@ -51,14 +51,15 @@ function createCalendar(year, month, elem) {
         let x1 = i - y1 * 7;
         if (days[i1] != undefined) {
             if (y1 != z) {
-                Tbody.insertAdjacentHTML("beforeend", "<tr><td></td><td></td><td></td><td></td><td></td><td class = 'celebrate'></td><td class = 'celebrate'></td></tr>");
+                Tbody.insertAdjacentHTML("beforeend", "<tr><td class = 'td_empty'></td><td class = 'td_empty'></td><td class = 'td_empty'></td><td class = 'td_empty'></td><td class = 'td_empty'></td><td class = 'celebrate td_empty'></td><td class = 'celebrate'></td></tr>");
                 z = y1
             }
             Table.rows[y1 + 1].cells[x1].innerHTML = i1;
             Table.rows[y1 + 1].cells[x1].classList.add('date_no_empty');
-            if (massive[month][i1 - 1] != undefined) {
-                if (massive[month][i1 - 1].indexOf('<img class = "photo"') != -1) {
+            if (massive2[month][i1 - 1] != 1) {
+                if (massive2[month][i1 - 1].indexOf('photo') != -1) {
                     Table.rows[y1 + 1].cells[x1].classList.remove('date_no_empty');
+                    Table.rows[y1 + 1].cells[x1].classList.remove('td_empty');
                     Table.rows[y1 + 1].cells[x1].classList.add('td_full')
                 }
             };
@@ -66,9 +67,25 @@ function createCalendar(year, month, elem) {
             if (Date1.getDate() == new Date().getDate() && Date1.getMonth() == new Date().getMonth() && Date1.getFullYear() == new Date().getFullYear()) {
                 Table.rows[y1 + 1].cells[x1].style.backgroundColor = "#9ACD32";
             }
-        } else break
+        } else break;
     }
 }
+
+//------------ функция заполнения двухмерного массива massive2 из massive1 для обозначения полей в календаре --------------
+let massive2 = [1,1,1,1,1,1,1,1,1,1,1,1];
+function massiveToMassive2() {
+    for (let i = 0; i <= 11; i++) {
+        massive2[i] = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+        for (let j = 0; j <= 31; j++) {
+            for (item of massive1) {
+                if (i == +item["birthday"].substr(8, 2)-1 && j == +item["birthday"].substr(5, 2) - 1) {
+                    massive2[i][j] = "photo"; break
+                };
+            }
+        }
+    }
+}
+massiveToMassive2();
 
 // ----------------- функция запуска и вставки часов в элемент elem ---------------------------------
 function myTime(elem) {
@@ -110,6 +127,98 @@ function myTime(elem) {
     setInterval(timeCalc, 1000);
 }
 
+//-------------- функция заполнения таблицы с людьми --------------------------
+function table_list(array, arrayProp, arrayProp1, elem) {
+    elem.innerHTML = "";
+    let tableMan = document.createElement('table');
+    tableMan.id = "tableMan";
+    let thead_tableMan = document.createElement('thead');
+    let tbody_tableMan = document.createElement('tbody');
+    tableMan.className = "ClassTableMan";
+    tableMan.append(thead_tableMan);
+    tableMan.append(tbody_tableMan);
+    tableMan.insertAdjacentHTML("afterbegin", `<caption>сортируется по колонкам</caption>`);
+    let itemProp = "";
+    let i = 0;
+    for (item of arrayProp1) {
+        itemProp = itemProp + `<th id = "${arrayProp[i]}">${item}</th>`;
+        i++;
+    }
+    itemProp = `<tr>${itemProp}</tr>`;
+    thead_tableMan.insertAdjacentHTML("afterbegin", itemProp);
+
+    for (item of array) {
+        let itemProp1 = "";
+        for (item1 of arrayProp) {
+            itemProp1 = itemProp1 + `<td id = "${item['id']}">${item[item1]}</td>`;
+        }
+        itemProp1 = `<tr>${itemProp1}</tr>`;
+        tbody_tableMan.insertAdjacentHTML("beforeend", itemProp1);
+    }
+
+    elem.insertAdjacentElement("beforeend", tableMan);
+}
+
+//---------- функция сортировки массива по свойству объекта -------------
+let minmax_global = "max"
+
+function arraySort(array, prop) {
+    let minmax = minmax_global;
+    if (minmax == "min") {
+        array.sort((a, b) => {
+            if (a[prop] > b[prop]) {
+                return 1
+            } else return -1
+        });
+        minmax_global = "max";
+    } else if (minmax == "max") {
+        array.sort((a, b) => {
+            if (a[prop] < b[prop]) {
+                return 1
+            } else return -1
+        });
+        minmax_global = "min";
+    }
+}
+
+//------- функция вывода окна с фотографией в существующий блок mess-----------------------
+
+function showPhoto(idMan) {
+    let k = {};
+    for (item of massive1) {
+        if (item["id"] == idMan) {
+            k = item;
+            break
+        }
+    }
+    // console.log(k["name1"]);
+    let realYear = document.getElementById('inputka').value;
+    let oldYear = realYear - +k["birthday"].slice(0, 4);
+    mess1.innerHTML = "";
+    mess1.innerHTML = `<div class = "text"><b>в ${realYear} году:  ${oldYear} лет</b></div>`;
+    mess1.insertAdjacentElement("beforeend", closer_point);
+    mess2.innerHTML = `<img class = "photo" src="image/${k["photo"]}" alt="фото" />`;
+    mess3.innerHTML = `${k["photo"].slice(0, -4)}`;
+
+    //--------- проверка по ширине экрана комп или смартфон -------------
+    if (document.body.clientWidth >= document.body.clientHeight) {
+        mess.classList.remove("mess_tel");
+        mess.classList.remove("mess_comp");
+        mess.classList.add('mess_comp');
+    } else {
+        mess.classList.remove('mess_comp');
+        mess.classList.remove("mess_tel");
+        mess.classList.add('mess_tel');
+    }
+    document.getElementsByClassName('osnova')[0].insertAdjacentElement("afterbegin", mess);
+    mess.classList.add("OpacityAnimation");
+    // mess.classList.add("big");
+    mess.style.display = "block";
+}
+
+
+
+
 function startCalendar(year) {
     mess.style.display = "none";
     document.getElementById('allArea').innerHTML = ``;
@@ -143,55 +252,25 @@ function startCalendar(year) {
             let t1 = "<div class = 'no_info'><br>  *Нет информации по этой дате.*  </div>";
             let massiveMonth = +elem1.parentNode.parentNode.parentNode.id.split(".")[1];
             let massiveDate = elem1.innerText - 1;
-            if (massive[massiveMonth][massiveDate] != undefined)
-                t1 = massive[massiveMonth][massiveDate];
-            // elem1.insertAdjacentElement("beforeend", mess);
-            let oldYear = "-";
-            let innerName = " ";
-            if (t1.indexOf('.jpg') != -1) {
-                oldYear = document.getElementById('inputka').value - t1.slice(t1.indexOf('. ') + 2, t1.indexOf('. ') + 6);
-                innerName = t1.slice(32,(t1.indexOf('.jpg')));
-            };
-            if (isNaN(oldYear) || +oldYear < 0) oldYear = "-";
-           
-            mess1.innerHTML = "";
-            mess1.innerHTML = `<div class = "text"><b>${elem1.innerText} ${month2[massiveMonth]}  ${document.getElementById('inputka').value} года, ${oldYear}</b></div>`;
-                // `<div class = "text"><b>${elem1.innerText} ${month2[massiveMonth]}  ${document.getElementById('inputka').value} года, ${oldYear}</b></div>${t1}`;
-                
-            //---------- вставка в mess3 имени человека --------------
-            // let nameMess = document.createElement('div'); 
-            mess1.insertAdjacentElement("beforeend", closer_point);
-            mess2.innerHTML = t1;
-            mess3.innerText = innerName;
-
-            //--------- проверка по ширине экрана комп или смартфон -------------
-            if (document.body.clientWidth >= document.body.clientHeight) {
-                mess.classList.remove("mess_tel");
-                mess.classList.remove("mess_comp");
-                mess.classList.add('mess_comp');
-            } else {
-                mess.classList.remove('mess_comp');
-                mess.classList.remove("mess_tel");
-                mess.classList.add('mess_tel');
+            for (item of massive1) {
+                if (+item["birthday"].substr(8, 2) == +massiveMonth + 1 && +item["birthday"].substr(5, 2) == +massiveDate + 1) {
+                    showPhoto(item["id"]);
+                    break;
+                }
             }
-            // document.getElementById('all').insertAdjacentElement("afterbegin", mess);
-            document.getElementsByClassName('osnova')[0].insertAdjacentElement("afterbegin", mess);
-            mess.style.display = "block";
         }
-
     })
 }
 
 // ------------------- функция запроса и записи погоды в массив data--------------------------------------------------
 function Weather() {
-    // let data = {};
     fetch('https://api.openweathermap.org/data/2.5/weather?id=710719&lang=ru&appid=ed7cbb7322e69c56dd6645d9c8ee8748').then(function (resp) {
             return resp.json()
         }).then(function (data) {
             //добавляем название города "lat":48.2864702,"lon":25.9376532
             document.getElementById("weather__city").innerHTML =
                 data.name + ' ' + Math.round(data.main.temp - 273) + '°, ' + Math.round(data.main.pressure * 0.750062) + " мм.<br>" + data.weather[0]['description'];
-                // + "/" + data.main.grnd_level;
+            // + "/" + data.main.grnd_level;
             //data.main.temp содержит значение в Кельвинах, отнимаем от  273, чтобы получить значение в градусах Цельсия
             //Добавляем иконку погоды
             document.getElementById('weather__icon').innerHTML = `<img class = "imageIcon" src="https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">`;
@@ -219,12 +298,14 @@ mess3.id = 'mess3';
 mess.insertAdjacentElement("afterbegin", mess3);
 mess.insertAdjacentElement("afterbegin", mess2);
 mess.insertAdjacentElement("afterbegin", mess1);
-
+// ---кнопка закрытия mess----------------
 let closer_point = document.createElement('button');
 closer_point.id = 'closer_point';
 closer_point.innerText = 'X';
 
-// mess1.insertAdjacentElement("beforeend", closer_point);
+let table_area = document.getElementsByClassName('table_area')[0]; //--- создание области таблицы людей  ----------
+
+
 
 
 // ----------------- первый старт календаря -----------------------------------------
@@ -236,6 +317,10 @@ myTime(document.getElementById('f4'));
 // ----------------- первый и периодический запуск погоды -------------------------------------
 Weather();
 setInterval(() => Weather(), 100000);
+
+
+//----------------- запуск постоения таблицы людей и вставки в elem ----------------------------
+table_list(massive1, ["surname", "name1", "name2", "birthday"], ["фамилия", "имя", "отчество", "дата"], table_area);
 
 
 //------------------ обработчики событий таблицы, закрытия окна mess, погоды, текущей даты, поля ввода года ---------------
@@ -250,15 +335,11 @@ closer_point.addEventListener("click", function (event) {
     event.stopPropagation()
 });
 
-// mess.addEventListener("touchend", function (event) {    
-//     event.stopPropagation();
-//     mess.style.display = "none";
-// });
-
-// mess.addEventListener("click", function (event) {
-//     event.stopPropagation();
-//     mess.style.display = "none";
-// });
+document.getElementsByClassName('button_table')[0].addEventListener("click", function (event) {
+    if (table_area.style.display == "none") {
+        table_area.style.display = "block"
+    } else table_area.style.display = "none";
+})
 
 document.getElementsByClassName('weather')[0].addEventListener("click", function (event) {
     Weather()
@@ -270,3 +351,17 @@ document.getElementsByClassName('current_date')[0].addEventListener("click", fun
 document.getElementById('inputka').oninput = function (event) {
     startCalendar(this.value)
 };
+
+document.getElementsByClassName("table_area")[0].addEventListener("click", function (event) {
+    event.stopPropagation();
+    let th = event.target.closest("th");
+    let td = event.target.closest("td");
+    if (th) {
+        arraySort(massive1, event.target.closest("th").id);
+        table_list(massive1, ["surname", "name1", "name2", "birthday"], ["фамилия", "имя", "отчество", "дата"], table_area);
+        return;
+    }
+    if (td) {
+        showPhoto(td.id);
+    }
+})

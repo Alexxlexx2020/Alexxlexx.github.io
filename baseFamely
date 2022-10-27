@@ -1,0 +1,11 @@
+export let base = [
+    {
+        "id":1,
+        "name": "Александр",
+        "surname":"",
+        "yearBorn":"1973",
+        "parent":"",
+        "children":"",
+        "notes":"создатель базы данных семьи"
+    }
+]
