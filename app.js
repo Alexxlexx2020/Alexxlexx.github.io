@@ -201,7 +201,8 @@ function showPhoto(idMan) {
     mess3.innerHTML = `${k["photo"].slice(0, -4)}`;
 
     //--------- проверка по ширине экрана комп или смартфон -------------
-    if (document.body.clientWidth >= document.body.clientHeight) {
+    // if (document.body.clientWidth >= document.body.clientHeight) {
+    if (window.innerWidth >= window.innerHeight) {
         mess.classList.remove("mess_tel");
         mess.classList.remove("mess_comp");
         mess.classList.add('mess_comp');
@@ -216,7 +217,12 @@ function showPhoto(idMan) {
     mess.style.display = "block";
 }
 
-
+//--------- проверка по ширине экрана комп или смартфон -------------
+if (window.innerWidth <= window.innerHeight) {
+    console.log(window.innerWidth + "----" + window.innerHeight);
+    document.getElementById('weather__icon').classList.remove('weather__icon');
+    document.getElementById('weather__icon').classList.add('displayNone');
+}
 
 
 function startCalendar(year) {
@@ -327,6 +333,9 @@ table_list(massive1, ["surname", "name1", "name2", "birthday"], ["фамилия
 document.getElementById("all").addEventListener("click", function (event) {
     if (document.elementFromPoint(event.clientX, event.clientY).closest('#mess') != mess && mess.style.display != "none") {
         mess.style.display = "none";
+    }
+    if (!document.elementFromPoint(event.clientX, event.clientY).closest('.button_table') && table_area.style.display == "block") {
+        table_area.style.display = "none"
     }
 })
 

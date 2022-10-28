@@ -45,6 +45,11 @@ body {
     background-color: rgb(7, 158, 147, 60%);
 }
 
+.displayNone {
+    display: none;
+    background-color: red;
+}
+
 .ClassCalendar {
     height: 200px;
     margin: 5px;
@@ -60,7 +65,7 @@ body {
 }
 
 #calendar-1 caption, #calendar-0 caption, #calendar-11 caption {
-    background-color: rgb(214, 213, 213);
+    background-color: rgb(245, 245, 245);
     color: black;
 }
 #calendar-2 caption, #calendar-3 caption, #calendar-4 caption {
@@ -284,7 +289,7 @@ label {
     padding-left: 15px;
 }
 
-#weather__icon {
+.weather__icon {
     display: flex;
     align-items: center;
     /* justify-content: center */
