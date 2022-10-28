@@ -204,7 +204,7 @@ function closerDR() {
     if (massive1[0]["days_for_bd"] == 0) {
         document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} сегодня день рождения`
     } else
-        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} осталось ${massive1[0]["days_for_bd"]}д.`;
+        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} через ${massive1[0]["days_for_bd"]}д.`;
     document.getElementById("dr_photo").innerHTML = `<img class = "dr_photo_class" src="image/${massive1[0]["photo"]}" alt="фото" />`;
     minmax_global = "min";
     // arraySort(massive1, "surname");
