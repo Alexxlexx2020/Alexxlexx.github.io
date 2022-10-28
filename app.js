@@ -156,15 +156,22 @@ function table_list(array, arrayProp, arrayProp1, elem) {
         }
         itemProp1 = `<tr>${itemProp1}</tr>`;
         tbody_tableMan.insertAdjacentHTML("beforeend", itemProp1);
-    }
-
+    };
     elem.insertAdjacentElement("beforeend", tableMan);
+    console.log(global_prop);
+    // document.getElementById(global_prop).classList.add("column_sign");
+    document.getElementById(global_prop).style.backgroundColor = "#FFA07A";
+    let arrow;
+    if (minmax_global == "max") {arrow = "⇩ "} else if (minmax_global == "min") {arrow = "⇧ "};
+    document.getElementById(global_prop).innerHTML = arrow + document.getElementById(global_prop).innerHTML;
 }
 
 //---------- функция сортировки массива по свойству объекта -------------
-let minmax_global = "min"
+let minmax_global = "min";
+let global_prop = "days_for_bd";
 
 function arraySort(array, prop) {
+    global_prop = prop;
     let minmax = minmax_global;
     if (minmax == "min") {
         array.sort((a, b) => {
@@ -204,9 +211,9 @@ function closerDR() {
     if (massive1[0]["days_for_bd"] == 0) {
         document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} сегодня день рождения`
     } else
-        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} через ${massive1[0]["days_for_bd"]}д.`;
+        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} через <strong>${massive1[0]["days_for_bd"]}</strong> д.`;
     document.getElementById("dr_photo").innerHTML = `<img class = "dr_photo_class" src="image/${massive1[0]["photo"]}" alt="фото" />`;
-    minmax_global = "min";
+    minmax_global = "max";
     // arraySort(massive1, "surname");
 }
 

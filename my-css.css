@@ -68,7 +68,6 @@ body {
 
 .displayNone {
     display: none;
-    background-color: red;
 }
 
 .ClassCalendar {
@@ -213,6 +212,7 @@ span {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    /* align-items: center; */
 }
 
 #clock {
