@@ -45,6 +45,26 @@ body {
     background-color: rgb(7, 158, 147, 60%);
 }
 
+.f5_class{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100px;
+}
+
+.dr_class{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding-left: 10px;
+    font-size: 50px;
+    height: 100%;
+    width: auto;
+}
+
+.dr_photo_class{
+    height: 100%;
+}
+
 .displayNone {
     display: none;
     background-color: red;
@@ -427,7 +447,7 @@ label {
     color: white;
     font-size: 50px;
     padding: 15px;
-    margin: 25px 15px 0px 15px;
+    margin: 10px 15px 10px 15px;
     cursor: pointer;
     border-radius: 7px;
     background-color: rgb(7, 121, 121, 0.75);
@@ -515,4 +535,5 @@ label {
     background: #C9E3FE;
     margin-left: 30px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
 }

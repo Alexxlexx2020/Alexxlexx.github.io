@@ -72,14 +72,16 @@ function createCalendar(year, month, elem) {
 }
 
 //------------ функция заполнения двухмерного массива massive2 из massive1 для обозначения полей в календаре --------------
-let massive2 = [1,1,1,1,1,1,1,1,1,1,1,1];
+let massive2 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+
 function massiveToMassive2() {
     for (let i = 0; i <= 11; i++) {
-        massive2[i] = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+        massive2[i] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
         for (let j = 0; j <= 31; j++) {
             for (item of massive1) {
-                if (i == +item["birthday"].substr(8, 2)-1 && j == +item["birthday"].substr(5, 2) - 1) {
-                    massive2[i][j] = "photo"; break
+                if (i == +item["birthday"].substr(8, 2) - 1 && j == +item["birthday"].substr(5, 2) - 1) {
+                    massive2[i][j] = "photo";
+                    break
                 };
             }
         }
@@ -160,7 +162,7 @@ function table_list(array, arrayProp, arrayProp1, elem) {
 }
 
 //---------- функция сортировки массива по свойству объекта -------------
-let minmax_global = "max"
+let minmax_global = "min"
 
 function arraySort(array, prop) {
     let minmax = minmax_global;
@@ -180,6 +182,35 @@ function arraySort(array, prop) {
         minmax_global = "min";
     }
 }
+
+//-----------------функция записи остатка дней до ДР и вывода ближайшего день рождения в элемент-----------------------------
+
+function closerDR() {
+    let start_year = new Date(new Date().getFullYear(), 0, 1);
+    let start_year1 = new Date(new Date().getFullYear() + 1, 0, 1);
+    let date_now = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+    let before_year = date_now - start_year; // ------ сколько времени прошло с начала года до сегоднящней даты -----------------
+    let after_year = start_year1 - date_now; // ------ сколько времени осталось от текущей даты до следующего года --------------
+    for (item of massive1) {
+        let date_man = new Date(new Date().getFullYear(), +item["birthday"].slice(8) - 1, +item["birthday"].slice(5, 7));
+        let before_man = date_man - start_year; // -------- сколько времени прошло с начала года до дня рождения ------------
+        if ((before_man - before_year) > 0) {
+            item["days_for_bd"] = Math.round((before_man - before_year) / 86400000);
+        } else {
+            item["days_for_bd"] = Math.round((after_year + before_man) / 86400000)
+        }
+    }
+    arraySort(massive1, "days_for_bd");
+    if (massive1[0]["days_for_bd"] == 0) {
+        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} сегодня день рождения`
+    } else
+        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} осталось ${massive1[0]["days_for_bd"]}д.`;
+    document.getElementById("dr_photo").innerHTML = `<img class = "dr_photo_class" src="image/${massive1[0]["photo"]}" alt="фото" />`;
+    minmax_global = "min";
+    // arraySort(massive1, "surname");
+}
+
+
 
 //------- функция вывода окна с фотографией в существующий блок mess-----------------------
 
@@ -217,7 +248,7 @@ function showPhoto(idMan) {
     mess.style.display = "block";
 }
 
-//--------- проверка по ширине экрана комп или смартфон -------------
+//--------- проверка по ширине экрана комп или смартфон для показа.скрытия иконки погоды-------------
 if (window.innerWidth <= window.innerHeight) {
     console.log(window.innerWidth + "----" + window.innerHeight);
     document.getElementById('weather__icon').classList.remove('weather__icon');
@@ -312,10 +343,12 @@ closer_point.innerText = 'X';
 let table_area = document.getElementsByClassName('table_area')[0]; //--- создание области таблицы людей  ----------
 
 
-
-
+//------------------ заполнение массива числом остатка дней до дня рождения ------------
+closerDR();
 // ----------------- первый старт календаря -----------------------------------------
+
 startCalendar(new Date().getFullYear());
+
 
 //------------------ запуск часов ------------------
 myTime(document.getElementById('f4'));
@@ -326,7 +359,7 @@ setInterval(() => Weather(), 100000);
 
 
 //----------------- запуск постоения таблицы людей и вставки в elem ----------------------------
-table_list(massive1, ["surname", "name1", "name2", "birthday"], ["фамилия", "имя", "отчество", "дата"], table_area);
+table_list(massive1, ["surname", "name1", "name2", "birthday", "days_for_bd"], ["фамилия", "имя", "отчество", "дата", "дней до ДР"], table_area);
 
 
 //------------------ обработчики событий таблицы, закрытия окна mess, погоды, текущей даты, поля ввода года ---------------
@@ -367,7 +400,8 @@ document.getElementsByClassName("table_area")[0].addEventListener("click", funct
     let td = event.target.closest("td");
     if (th) {
         arraySort(massive1, event.target.closest("th").id);
-        table_list(massive1, ["surname", "name1", "name2", "birthday"], ["фамилия", "имя", "отчество", "дата"], table_area);
+        // table_list(massive1, ["surname", "name1", "name2", "birthday"], ["фамилия", "имя", "отчество", "дата"], table_area);
+        table_list(massive1, ["surname", "name1", "name2", "birthday", "days_for_bd"], ["фамилия", "имя", "отчество", "дата", "дней до ДР"], table_area);
         return;
     }
     if (td) {
