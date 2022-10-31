@@ -201,7 +201,7 @@ function closerDR() {
     for (item of massive1) {
         let date_man = new Date(new Date().getFullYear(), +item["birthday"].slice(8) - 1, +item["birthday"].slice(5, 7));
         let before_man = date_man - start_year; // -------- сколько времени прошло с начала года до дня рождения ------------
-        if ((before_man - before_year) > 0) {
+        if ((before_man - before_year) >= 0) {
             item["days_for_bd"] = Math.round((before_man - before_year) / 86400000);
         } else {
             item["days_for_bd"] = Math.round((after_year + before_man) / 86400000)
