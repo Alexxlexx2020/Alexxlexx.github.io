@@ -507,8 +507,11 @@ label {
 }
 
 #tableMan th {
+    position: sticky;
+    top: 0px;
     background-color: aliceblue;
     text-align: center;
+    border-right: 1px black solid;
 }
 
 #tableMan td,
