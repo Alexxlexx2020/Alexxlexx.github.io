@@ -441,10 +441,20 @@ label {
     }
 }
 
+#float_text{
+    position: absolute;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    border:#000 1px solid;
+    color: white;
+    font-size: 20px;
+    z-index: 1000;
+}
 .button_table {
     /* border: #000 solid ; */
     border: white solid 2px;
     color: white;
+    line-height: .7;
     font-size: 50px;
     padding: 15px;
     margin: 10px 15px 10px 15px;
@@ -470,14 +480,14 @@ label {
     width: auto;
     font-size: 30px;
     max-width: 100%;
-    height: auto;
+    max-height: 70%;
     left: 15px;
     overflow: auto;
-    border: solid 2px black;
+    border: solid 7px white;
     border-radius: 7px;
-    background-color: #107ab8;
+    /* background-color: #107ab8; */
     z-index: 100;
-    padding: 10px;
+    /* padding: 10px; */
     margin-top: 20px;
     box-shadow: 10px 10px 5px 0 black;
 }
@@ -487,7 +497,7 @@ label {
     font-size: 25px;
     border: 1px solid grey;
     background-color: #e8f3ce;
-    text-align: left;
+    /* text-align: left; */
 }
 
 #tableMan caption {
@@ -510,30 +520,47 @@ label {
 
 }
 
-#tableMan tr:hover {
-    background-color: #ddd;
-}
+
 #tableMan th:hover {
     background-color: #ddd;
     cursor: s-resize;
 }
 
-#tableMan td:hover {
+/* #tableMan td:hover {
     background-color: #ddd;
     cursor: pointer;
-}
+} */
 
 #tableMan tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
+#tableMan tr:hover {
+    background-color: rgb(73, 241, 171);
+    cursor: pointer;
+}
+
 #tableMan tr:nth-child(even):hover {
-    background-color: #ddd;
+    background-color: rgb(73, 241, 171);
 }
 
 #tableMan td:last-child {
-    background: #C9E3FE;
+    /* background: #C9E3FE; */
     margin-left: 30px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
     text-align: center;
+    border-left: black 1px solid;
+}
+
+#tableMan td:nth-child(4){
+    text-align: center;
+    border-left: #000 1px solid;
+    border-right: #000 1px solid;
+}
+#tableMan td:nth-child(1), #tableMan td:nth-child(2), #tableMan td:nth-child(3){
+    text-align: center;
+    /* background-color: #C9E3FE; */
+    font-style: italic;
+    text-align: left;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

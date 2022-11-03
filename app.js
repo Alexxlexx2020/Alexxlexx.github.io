@@ -79,7 +79,7 @@ function massiveToMassive2() {
         massive2[i] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
         for (let j = 0; j <= 31; j++) {
             for (item of massive1) {
-                if (i == +item["birthday"].substr(8, 2) - 1 && j == +item["birthday"].substr(5, 2) - 1) {
+                if (i == +item["birthday"].substr(5, 2) - 1 && j == +item["birthday"].substr(8, 2) - 1) {
                     massive2[i][j] = "photo";
                     break
                 };
@@ -139,7 +139,7 @@ function table_list(array, arrayProp, arrayProp1, elem) {
     tableMan.className = "ClassTableMan";
     tableMan.append(thead_tableMan);
     tableMan.append(tbody_tableMan);
-    tableMan.insertAdjacentHTML("afterbegin", `<caption>сортируется по колонкам</caption>`);
+    tableMan.insertAdjacentHTML("afterbegin", `<caption>нажмите на заголовки для сортировки</caption>`);
     let itemProp = "";
     let i = 0;
     for (item of arrayProp1) {
@@ -159,10 +159,13 @@ function table_list(array, arrayProp, arrayProp1, elem) {
     };
     elem.insertAdjacentElement("beforeend", tableMan);
     console.log(global_prop);
-    // document.getElementById(global_prop).classList.add("column_sign");
     document.getElementById(global_prop).style.backgroundColor = "#FFA07A";
     let arrow;
-    if (minmax_global == "max") {arrow = "⇩ "} else if (minmax_global == "min") {arrow = "⇧ "};
+    if (minmax_global == "max") {
+        arrow = "⇩ "
+    } else if (minmax_global == "min") {
+        arrow = "⇧ "
+    };
     document.getElementById(global_prop).innerHTML = arrow + document.getElementById(global_prop).innerHTML;
 }
 
@@ -199,8 +202,9 @@ function closerDR() {
     let before_year = date_now - start_year; // ------ сколько времени прошло с начала года до сегоднящней даты -----------------
     let after_year = start_year1 - date_now; // ------ сколько времени осталось от текущей даты до следующего года --------------
     for (item of massive1) {
-        let date_man = new Date(new Date().getFullYear(), +item["birthday"].slice(8) - 1, +item["birthday"].slice(5, 7));
+        let date_man = new Date(new Date().getFullYear(), +item["birthday"].slice(5, 7) - 1, +item["birthday"].slice(8));
         let before_man = date_man - start_year; // -------- сколько времени прошло с начала года до дня рождения ------------
+        item["age"]= new Date().getFullYear() - +item["birthday"].slice(0, 4)//----- запись возраста в таблицу
         if ((before_man - before_year) >= 0) {
             item["days_for_bd"] = Math.round((before_man - before_year) / 86400000);
         } else {
@@ -211,18 +215,18 @@ function closerDR() {
     if (massive1[0]["days_for_bd"] == 0) {
         document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} сегодня день рождения`
     } else
-        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} через <strong>${massive1[0]["days_for_bd"]}</strong> д.`;
+        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)}<br> день рождения через <strong>${massive1[0]["days_for_bd"]}</strong> д.`;
     document.getElementById("dr_photo").innerHTML = `<img class = "dr_photo_class" src="image/${massive1[0]["photo"]}" alt="фото" />`;
     minmax_global = "max";
-    // arraySort(massive1, "surname");
 }
 
 
 
 //------- функция вывода окна с фотографией в существующий блок mess-----------------------
+let k = {};
 
 function showPhoto(idMan) {
-    let k = {};
+
     for (item of massive1) {
         if (item["id"] == idMan) {
             k = item;
@@ -239,7 +243,6 @@ function showPhoto(idMan) {
     mess3.innerHTML = `${k["photo"].slice(0, -4)}`;
 
     //--------- проверка по ширине экрана комп или смартфон -------------
-    // if (document.body.clientWidth >= document.body.clientHeight) {
     if (window.innerWidth >= window.innerHeight) {
         mess.classList.remove("mess_tel");
         mess.classList.remove("mess_comp");
@@ -251,7 +254,6 @@ function showPhoto(idMan) {
     }
     document.getElementsByClassName('osnova')[0].insertAdjacentElement("afterbegin", mess);
     mess.classList.add("OpacityAnimation");
-    // mess.classList.add("big");
     mess.style.display = "block";
 }
 
@@ -291,15 +293,21 @@ function startCalendar(year) {
         let xClick = event.clientX;
         let yClick = event.clientY;
         let elem1 = document.elementFromPoint(xClick, yClick);
-        if (elem1.tagName == "TD" && elem1.innerText != "") {
+        if (elem1.tagName == "TD" && elem1.innerText != "" && mess.style.display == "none") {
             event.stopPropagation();
             let t1 = "<div class = 'no_info'><br>  *Нет информации по этой дате.*  </div>";
             let massiveMonth = +elem1.parentNode.parentNode.parentNode.id.split("-")[1];
             let massiveDate = elem1.innerText - 1;
             for (item of massive1) {
-                if (+item["birthday"].substr(8, 2) == +massiveMonth + 1 && +item["birthday"].substr(5, 2) == +massiveDate + 1) {
-                    showPhoto(item["id"]);
-                    break;
+                if (+item["birthday"].substr(5, 2) == massiveMonth + 1 && +item["birthday"].substr(8, 2) == massiveDate + 1) {
+                    arrDR.push(item["id"]);
+                    nubmer_arrDR = 0;
+                    if (arrDR.length > 1) {
+                        mess.style.cursor = "pointer"
+                    } else {
+                        mess.style.cursor = "default"
+                    }
+                    showPhoto(arrDR[nubmer_arrDR]);
                 }
             }
         }
@@ -325,7 +333,7 @@ function Weather() {
         });
 }
 
-// ----------------- создание окна mess с данными по человеку или дате ---------------------------------------
+// ----------------- создание окна mess с данными по человеку или дате и глобальные переменные---------------------------------------
 let mess = document.createElement('div');
 mess.id = 'mess';
 mess.style.display = "none";
@@ -346,33 +354,33 @@ mess.insertAdjacentElement("afterbegin", mess1);
 let closer_point = document.createElement('button');
 closer_point.id = 'closer_point';
 closer_point.innerText = 'X';
-
-let table_area = document.getElementsByClassName('table_area')[0]; //--- создание области таблицы людей  ----------
+// ---создание области таблицы людей  ----------
+let table_area = document.getElementsByClassName('table_area')[0];
+// ---массив из id людей с др в один день----
+let arrDR = [];
+let nubmer_arrDR = 0;
 
 
 //------------------ заполнение массива числом остатка дней до дня рождения ------------
 closerDR();
 // ----------------- первый старт календаря -----------------------------------------
-
 startCalendar(new Date().getFullYear());
-
-
 //------------------ запуск часов ------------------
 myTime(document.getElementById('f4'));
 
 // ----------------- первый и периодический запуск погоды -------------------------------------
 Weather();
 setInterval(() => Weather(), 100000);
-
-
 //----------------- запуск постоения таблицы людей и вставки в elem ----------------------------
-table_list(massive1, ["surname", "name1", "name2", "birthday", "days_for_bd"], ["фамилия", "имя", "отчество", "дата", "дней до ДР"], table_area);
+table_list(massive1, ["surname", "name1", "name2", "age", "birthday", "days_for_bd"], ["фамилия", "имя", "отчество", "возраст", "дата ДР", "дней до ДР"], table_area);
 
 
 //------------------ обработчики событий таблицы, закрытия окна mess, погоды, текущей даты, поля ввода года ---------------
 document.getElementById("all").addEventListener("click", function (event) {
     if (document.elementFromPoint(event.clientX, event.clientY).closest('#mess') != mess && mess.style.display != "none") {
         mess.style.display = "none";
+        nubmer_arrDR = 0;
+        arrDR.length = 0;
     }
     if (!document.elementFromPoint(event.clientX, event.clientY).closest('.button_table') && table_area.style.display == "block") {
         table_area.style.display = "none"
@@ -381,6 +389,8 @@ document.getElementById("all").addEventListener("click", function (event) {
 
 closer_point.addEventListener("click", function (event) {
     mess.style.display = "none";
+    nubmer_arrDR = 0;
+    arrDR.length = 0;
     event.stopPropagation()
 });
 
@@ -407,11 +417,51 @@ document.getElementsByClassName("table_area")[0].addEventListener("click", funct
     let td = event.target.closest("td");
     if (th) {
         arraySort(massive1, event.target.closest("th").id);
-        // table_list(massive1, ["surname", "name1", "name2", "birthday"], ["фамилия", "имя", "отчество", "дата"], table_area);
-        table_list(massive1, ["surname", "name1", "name2", "birthday", "days_for_bd"], ["фамилия", "имя", "отчество", "дата", "дней до ДР"], table_area);
+        table_list(massive1, ["surname", "name1", "name2", "age", "birthday", "days_for_bd"], ["фамилия", "имя", "отчество", "возраст", "дата ДР", "дней до ДР"], table_area);
         return;
     }
     if (td) {
         showPhoto(td.id);
     }
+});
+
+// -----------обработка клика по фотографии mess------------
+mess.addEventListener("click", function (event) {
+    event.stopPropagation();
+    if (nubmer_arrDR + 1 == arrDR.length) {
+        nubmer_arrDR = 0
+    } else nubmer_arrDR++;
+    if (arrDR.length > 1) {
+        mess.style.cursor = "pointer";
+        showPhoto(arrDR[nubmer_arrDR])
+    } else {
+        mess.style.cursor = "default"
+    };
+});
+
+// --------- обработка наведения курсора на mess ----------
+mess2.addEventListener("mousemove", function (event) {
+    if (arrDR.length > 1) {
+        let x = event.clientX;
+        let y = event.clientY;
+        float_text.style.left = x + 20 + "px";
+        float_text.style.top = y - 20 + "px";
+        float_text.innerHTML = `нажмите для показа<br>следующего человека `;
+        float_text.style.display = "block";
+    }
+})
+
+mess2.addEventListener("mouseover", function (event) {
+    if (arrDR.length > 1) {
+        let x = event.clientX;
+        let y = event.clientY;
+        float_text.style.left = x + 20 + "px";
+        float_text.style.top = y - 20 + "px";
+        float_text.innerHTML = `нажмите для показа<br>следующего человека `;
+        float_text.style.display = "block";
+    }
+})
+
+mess2.addEventListener("mouseleave", function (event) {
+    float_text.style.display = "none";
 })
