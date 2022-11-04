@@ -139,7 +139,7 @@ function table_list(array, arrayProp, arrayProp1, elem) {
     tableMan.className = "ClassTableMan";
     tableMan.append(thead_tableMan);
     tableMan.append(tbody_tableMan);
-    tableMan.insertAdjacentHTML("afterbegin", `<caption>нажмите на заголовки для сортировки</caption>`);
+    tableMan.insertAdjacentHTML("afterbegin", `<caption>нажимайте на заголовки колонок для сортировки</caption>`);
     let itemProp = "";
     let i = 0;
     for (item of arrayProp1) {
@@ -215,25 +215,18 @@ function closerDR() {
     if (massive1[0]["days_for_bd"] == 0) {
         document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} сегодня день рождения`
     } else
-        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)}<br> день рождения через <strong>${massive1[0]["days_for_bd"]}</strong> д.`;
+        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)}<br> день рождения через <span class="dayDR">${massive1[0]["days_for_bd"]}</span> д.`;
     document.getElementById("dr_photo").innerHTML = `<img class = "dr_photo_class" src="image/${massive1[0]["photo"]}" alt="фото" />`;
     minmax_global = "max";
 }
 
 
 
-//------- функция вывода окна с фотографией в существующий блок mess-----------------------
+//------- функция вывода окна с фотографией и описанием в существующий блок mess-----------------------
 let k = {};
 
 function showPhoto(idMan) {
-
-    for (item of massive1) {
-        if (item["id"] == idMan) {
-            k = item;
-            break
-        }
-    }
-    // console.log(k["name1"]);
+    massive1.map((item)=>{if (item["id"] == idMan){k = item; return}});
     let realYear = document.getElementById('inputka').value;
     let oldYear = realYear - +k["birthday"].slice(0, 4);
     mess1.innerHTML = "";
