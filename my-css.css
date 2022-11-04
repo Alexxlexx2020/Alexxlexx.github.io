@@ -207,7 +207,9 @@ span {
     color: white;
 }
 
-.current_date,
+.current_date{
+    color: white;
+}
 .spanX,
 .spanH,
 .spanM,
@@ -215,6 +217,7 @@ span {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: white;
     font-style: normal;
+    font-size: 60px;
     /* background-color: antiquewhite; */
 }
 
@@ -235,14 +238,12 @@ span {
 }
 
 #clock {
-    margin-top: 6px;
-    margin-right: 5px;
+    margin-top: 0px;
+    margin-right: 0px;
     text-align: right;
     position: relative;
-    /* top: -120px; */
     right: 0px;
-    /* margin: auto; */
-    /* left: 70%; */
+    padding: 0px;
 }
 
 .current_date:hover {
