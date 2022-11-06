@@ -147,6 +147,20 @@ body {
     box-shadow: inset 0px 0px 2px 2px rgb(29, 105, 219);
 }
 
+.td_parrent {
+    font-size: large;
+    text-align: left;
+    border-left: #000 1px solid;
+}
+
+.td_parrent:hover {
+    box-shadow: inset 0px 0px 2px 2px rgb(29, 105, 219);
+}
+
+.td_parrent:hover{
+    background-color: rgb(130, 223, 240);
+}
+
 .celebrate {
     color: rgb(196, 33, 33);
 }
@@ -472,7 +486,7 @@ label {
 }
 
 .dayDR{
-    background-color: rgb(20, 187, 90);
+    background-color: rgb(10, 182, 81);
     color:white;
     border-radius: 12px;
     font-size: 55px;
@@ -480,20 +494,20 @@ label {
 .button_table {
     /* border: #000 solid ; */
     border: white solid 2px;
-    color: white;
+    color: black;
     line-height: .8;
     font-size: 50px;
     padding: 15px;
     margin: 10px 15px 10px 15px;
     cursor: pointer;
     border-radius: 7px;
-    background-color: rgb(7, 121, 121, 0.75);
+    background-color: rgb(226, 226, 18);
     box-shadow: 10px 10px 5px 0 black;
     transition-duration: 0.3s;
 }
 .button_table:hover{
     color: white;
-    background-color: rgb(7, 121, 121);
+    background-color: rgb(10, 182, 81);
 
 }
 .button_table:active {
@@ -528,7 +542,7 @@ label {
 }
 
 #tableMan caption {
-    background-color: rgb(150, 89, 89);
+    background-color: #2d647b;
     color: white;
     text-align: center;
 }
@@ -541,15 +555,20 @@ label {
     border-right: 1px black solid;
 }
 
-#tableMan td,
-#tableMan th {
+#tableMan td {
     margin: 0;
-    padding: 5px 5px;
+    /* padding: 5px 5px; */
     border-bottom: 1px solid black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 }
 
+#tableMan th {
+    margin: 0;
+    padding: 5px 5px;
+    border-bottom: 1px solid black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 
 #tableMan th:hover {
     background-color: #ddd;
@@ -582,7 +601,7 @@ label {
     border-left: black 1px solid;
 }
 
-#tableMan td:nth-child(4){
+#tableMan td:nth-child(6){
     text-align: center;
     border-left: #000 1px solid;
     border-right: #000 1px solid;
@@ -593,4 +612,11 @@ label {
     font-style: italic;
     text-align: left;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.table_man_photo{
+    display: block;
+    max-height: 50px;
+    padding: 0;
+    margin: 0;
 }

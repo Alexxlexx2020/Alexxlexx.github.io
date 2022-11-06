@@ -139,7 +139,7 @@ function table_list(array, arrayProp, arrayProp1, elem) {
     tableMan.className = "ClassTableMan";
     tableMan.append(thead_tableMan);
     tableMan.append(tbody_tableMan);
-    tableMan.insertAdjacentHTML("afterbegin", `<caption>нажимайте на заголовки колонок для сортировки</caption>`);
+    tableMan.insertAdjacentHTML("afterbegin", `<caption>нажимайте на заголовки колонок для сортировки<br>нажмите на ячейку РОДИТЕЛИ для их показа</caption>`);
     let itemProp = "";
     let i = 0;
     for (item of arrayProp1) {
@@ -152,7 +152,21 @@ function table_list(array, arrayProp, arrayProp1, elem) {
     for (item of array) {
         let itemProp1 = "";
         for (item1 of arrayProp) {
-            itemProp1 = itemProp1 + `<td id = "${item['id']}">${item[item1]}</td>`;
+            //--- проверка на колонку РОДИТЕЛИ ----
+            if (item1 == "parrent") {
+                ;
+                let parrentNames = "";
+                if (item[item1].length != 0) {
+                    for (item2 of item[item1]) {
+                        parrentNames = parrentNames + massive1.find(q => (q.id == item2)).photo.slice(0, -4) + "<br>";
+                    }
+                } else parrentNames = "нет данных";
+                itemProp1 = itemProp1 + `<td id = "${item['id']}" class = "td_parrent">${parrentNames}</td>`;
+            } else if (item1 == "photo") {
+                itemProp1 = itemProp1 + `<td id = "${item['id']}"><img class = "table_man_photo" src="image/${item["photo"]}" onError="this.src='image/none.png'" alt="фото" /></td>`
+            } else {
+                itemProp1 = itemProp1 + `<td id = "${item['id']}">${item[item1]}</td>`
+            };
         }
         itemProp1 = `<tr>${itemProp1}</tr>`;
         tbody_tableMan.insertAdjacentHTML("beforeend", itemProp1);
@@ -204,7 +218,7 @@ function closerDR() {
     for (item of massive1) {
         let date_man = new Date(new Date().getFullYear(), +item["birthday"].slice(5, 7) - 1, +item["birthday"].slice(8));
         let before_man = date_man - start_year; // -------- сколько времени прошло с начала года до дня рождения ------------
-        item["age"]= new Date().getFullYear() - +item["birthday"].slice(0, 4)//----- запись возраста в таблицу
+        item["age"] = new Date().getFullYear() - +item["birthday"].slice(0, 4) //----- запись возраста в таблицу
         if ((before_man - before_year) >= 0) {
             item["days_for_bd"] = Math.round((before_man - before_year) / 86400000);
         } else {
@@ -226,13 +240,15 @@ function closerDR() {
 let k = {};
 
 function showPhoto(idMan) {
-    massive1.map((item)=>{if (item["id"] == idMan){k = item; return}});
+    // massive1.map((item)=>{if (item["id"] == idMan){k = item; return}});
+    k = massive1.find(item => (item.id == idMan));
+    if (k == undefined) return;
     let realYear = document.getElementById('inputka').value;
     let oldYear = realYear - +k["birthday"].slice(0, 4);
     mess1.innerHTML = "";
     mess1.innerHTML = `<div class = "text"><b>в ${realYear} году:  ${oldYear} лет</b></div>`;
     mess1.insertAdjacentElement("beforeend", closer_point);
-    mess2.innerHTML = `<img class = "photo" src="image/${k["photo"]}" alt="фото" />`;
+    mess2.innerHTML = `<img class = "photo" src="image/${k["photo"]}" onError="this.src='image/none.png'" alt="фото" />`;
     mess3.innerHTML = `${k["photo"].slice(0, -4)}`;
 
     //--------- проверка по ширине экрана комп или смартфон -------------
@@ -365,7 +381,7 @@ myTime(document.getElementById('f4'));
 Weather();
 setInterval(() => Weather(), 100000);
 //----------------- запуск постоения таблицы людей и вставки в elem ----------------------------
-table_list(massive1, ["surname", "name1", "name2", "age", "birthday", "days_for_bd"], ["фамилия", "имя", "отчество", "возраст", "дата ДР", "дней до ДР"], table_area);
+table_list(massive1, ["photo", "surname", "name1", "name2", "parrent", "age", "birthday", "days_for_bd"], ["фото", "фамилия", "имя", "отчество", "родители", "возраст", "дата ДР", "дней до ДР"], table_area);
 
 
 //------------------ обработчики событий таблицы, закрытия окна mess, погоды, текущей даты, поля ввода года ---------------
@@ -404,17 +420,42 @@ document.getElementById('inputka').oninput = function (event) {
     startCalendar(this.value)
 };
 
+// --------------- обработчик событий таблицы людей (сортировка если по заголовку, показ родителей или самого человека ) -----------------------
 document.getElementsByClassName("table_area")[0].addEventListener("click", function (event) {
     event.stopPropagation();
     let th = event.target.closest("th");
     let td = event.target.closest("td");
-    if (th) {
-        arraySort(massive1, event.target.closest("th").id);
-        table_list(massive1, ["surname", "name1", "name2", "age", "birthday", "days_for_bd"], ["фамилия", "имя", "отчество", "возраст", "дата ДР", "дней до ДР"], table_area);
-        return;
-    }
+    if (th)
+        if (th.innerHTML != "родители" && th.innerHTML != "фото") {
+            arraySort(massive1, event.target.closest("th").id);
+            table_list(massive1, ["photo", "surname", "name1", "name2", "parrent", "age", "birthday", "days_for_bd"], ["фото", "фамилия", "имя", "отчество", "родители", "возраст", "дата ДР", "дней до ДР"], table_area);
+            return;
+        }
+    //----------------вычисление колонки родители или дети для их показа ------------
     if (td) {
-        showPhoto(td.id);
+        let count_td = td;
+        let number_column = 0;
+        for (let i = 0; i <= 20; i++) {
+            if (count_td.previousElementSibling) {
+                count_td = count_td.previousElementSibling;
+            } else {
+                number_column = i;
+                break
+            };
+        }
+        if (tableMan.rows[0].cells[number_column].innerHTML == "родители") {
+            if (massive1.find((item) => (item.id == td.id)).parrent.length) {
+                // console.log(massive1.find((item) => (item.id == td.id)).parrent);
+                arrDR.length = 0;
+                nubmer_arrDR = 0;
+                console.log(massive1.find((item) => (item.id == td.id)).parrent);
+                arrDR = arrDR.concat(massive1.find((item) => (item.id == td.id)).parrent);
+                // console.log(arrDR);
+                showPhoto(arrDR[nubmer_arrDR]);
+            };
+        } else {
+            showPhoto(td.id)
+        };
     }
 });
 
@@ -438,7 +479,7 @@ mess2.addEventListener("mousemove", function (event) {
         let x = event.clientX;
         let y = event.clientY;
         float_text.style.left = x + 20 + "px";
-        float_text.style.top = y - 20 + "px";
+        float_text.style.top = y + 25 + "px";
         float_text.innerHTML = `нажмите для показа<br>следующего человека `;
         float_text.style.display = "block";
     }
@@ -449,7 +490,7 @@ mess2.addEventListener("mouseover", function (event) {
         let x = event.clientX;
         let y = event.clientY;
         float_text.style.left = x + 20 + "px";
-        float_text.style.top = y - 20 + "px";
+        float_text.style.top = y + 25 + "px";
         float_text.innerHTML = `нажмите для показа<br>следующего человека `;
         float_text.style.display = "block";
     }
