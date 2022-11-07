@@ -267,7 +267,6 @@ function showPhoto(idMan) {
 
 //--------- проверка по ширине экрана комп или смартфон для показа.скрытия иконки погоды-------------
 if (window.innerWidth <= window.innerHeight) {
-    console.log(window.innerWidth + "----" + window.innerHeight);
     document.getElementById("all").style.height = "auto";
     document.getElementById('weather__icon').classList.remove('weather__icon');
     document.getElementById('weather__icon').classList.add('displayNone');
