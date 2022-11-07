@@ -172,7 +172,6 @@ function table_list(array, arrayProp, arrayProp1, elem) {
         tbody_tableMan.insertAdjacentHTML("beforeend", itemProp1);
     };
     elem.insertAdjacentElement("beforeend", tableMan);
-    console.log(global_prop);
     document.getElementById(global_prop).style.backgroundColor = "#FFA07A";
     let arrow;
     if (minmax_global == "max") {
@@ -412,7 +411,6 @@ document.getElementsByClassName('button_table')[0].addEventListener("click", fun
     if (table_area1.style.display == "none") {
         table_area1.style.display = "block"
     } else table_area1.style.display = "none";
-    console.log(table_area1.style.display);
 });
 
 document.getElementsByClassName('weather')[0].addEventListener("click", function (event) {
