@@ -1,13 +1,19 @@
 body {
-    background: url(image/background_6.jpg) no-repeat;
+    
     background-size: cover;
     margin: 0px;
 }
 
 .backgroundImg {
+    background: url(image/background_6.jpg) no-repeat;
     position: relative;
     margin: 0px;
     padding: 0px;
+    height: 935px;
+    overflow: hidden;
+    /* width: 1620 px;
+    height: 1080 px; */
+    /* overflow: hidden; */
 }
 
 .f1 {
@@ -328,10 +334,6 @@ label {
     line-height: 1.1;
 }
 
-.osnova {
-    min-height: 100%;
-}
-
 #weather__city,
 #weather__forecast,
 #weather__discription {
@@ -504,6 +506,7 @@ label {
     background-color: rgb(226, 226, 18);
     box-shadow: 10px 10px 5px 0 black;
     transition-duration: 0.3s;
+    z-index: 120;
 }
 .button_table:hover{
     color: white;
@@ -517,20 +520,49 @@ label {
   }
 
 .table_area {
-    position: absolute;
-    width: auto;
+    position: relative;
+    width: 100%;
     font-size: 30px;
     max-width: 100%;
-    max-height: 70%;
-    left: 15px;
+    max-height: 90%;
+    overflow: scroll;
+    /* border: solid 7px rgb(170, 88, 88); */
+    border-radius: 7px;
+    background-color: #107ab8;
+    z-index: 101;
     overflow: auto;
-    border: solid 7px white;
+    /* padding: 10px; */
+    /* margin-top: 20px; */
+    /*box-shadow: 10px 10px 5px 0 black;*/
+}
+
+.table_area1 {
+    position: absolute;
+    width:max-content;
+    height: 650px;
+    font-size: 30px;
+    max-width: 1200px;
+    /* max-height: 650px; */
+    left: 15px;
+    overflow:hidden;
+    border: solid 7px #5867e6;
     border-radius: 7px;
     /* background-color: #107ab8; */
     z-index: 100;
     /* padding: 10px; */
-    margin-top: 20px;
+    /* margin-top: 20px; */
     box-shadow: 10px 10px 5px 0 black;
+}
+
+.table_area_header{
+    background-color: #78787d;
+    color: aliceblue;
+    text-align: center;
+}
+
+.table_area_header:hover{
+    cursor: grab;
+    user-select: none;
 }
 
 .ClassTableMan {
@@ -606,7 +638,7 @@ label {
     border-left: #000 1px solid;
     border-right: #000 1px solid;
 }
-#tableMan td:nth-child(1), #tableMan td:nth-child(2), #tableMan td:nth-child(3){
+#tableMan td:nth-child(2), #tableMan td:nth-child(3), #tableMan td:nth-child(4){
     text-align: center;
     /* background-color: #C9E3FE; */
     font-style: italic;

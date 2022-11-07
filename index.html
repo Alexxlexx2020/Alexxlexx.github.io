@@ -8,32 +8,33 @@
     <link href="my-css.css" rel="stylesheet" type="text/css">
 
 <body>
-    <div class="osnova">
-        <div id="all" class="backgroundImg">
-            <div class="f1">
-                <div id="f2">
-                    <div class="weather">
-                        <div id="weather__city">город</div>
-                        <div id="weather__icon" class="weather__icon"></div>
-                    </div>
-                </div>
-                <div id="f3">
-                    <div id="areaInput"><input id="inputka" type="number" min="1" max="3000" step="1"
-                            value="2022"></input></div>
-                </div>
-                <div id="f4"></div>
-            </div>
-            <div id="f5" class="f5_class">
-                <button type="button" class="button_table"><b>родственники</b><br><small><small><small><small>нажмите
-                                    для показа таблицы</small></small></small></small></button>
-                <div id="f6" class="f6">
-                    <span id="dr_photo" class="dr_photo_class"></span>
-                    <span id="dr" class="dr_class">день рождения</span>
+    <div id="all" class="backgroundImg">
+        <div class="f1">
+            <div id="f2">
+                <div class="weather">
+                    <div id="weather__city">город</div>
+                    <div id="weather__icon" class="weather__icon"></div>
                 </div>
             </div>
-            <div class="table_area" style="display: none"></div>
-            <div id="allArea"></div>
+            <div id="f3">
+                <div id="areaInput"><input id="inputka" type="number" min="1" max="3000" step="1" value="2022"></input>
+                </div>
+            </div>
+            <div id="f4"></div>
         </div>
+        <div id="f5" class="f5_class">
+            <button type="button" class="button_table"><b>родственники</b><br><small><small><small><small>показать/скрыть таблицу</small></small></small></small></button>
+            <div id="f6" class="f6">
+                <span id="dr_photo" class="dr_photo_class"></span>
+                <span id="dr" class="dr_class">день рождения</span>
+            </div>
+        </div>
+        <div class="table_area1" style="display: none">
+            <div class="table_area_header">сортируйте по колонкам<br>графа РОДИТЕЛИ кликабельна
+                для их показа</div>
+            <div class="table_area"></div>
+        </div>
+        <div id="allArea"></div>
     </div>
     <div id="float_text">Нажмите для следующего человека</div>
     <script src="database.js"></script>

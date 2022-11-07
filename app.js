@@ -139,7 +139,7 @@ function table_list(array, arrayProp, arrayProp1, elem) {
     tableMan.className = "ClassTableMan";
     tableMan.append(thead_tableMan);
     tableMan.append(tbody_tableMan);
-    tableMan.insertAdjacentHTML("afterbegin", `<caption>нажимайте на заголовки колонок для сортировки<br>нажмите на ячейку РОДИТЕЛИ для их показа</caption>`);
+    // tableMan.insertAdjacentHTML("afterbegin", `<caption>нажимайте на заголовки колонок для сортировки<br>нажмите на ячейку РОДИТЕЛИ для их показа</caption>`);
     let itemProp = "";
     let i = 0;
     for (item of arrayProp1) {
@@ -261,7 +261,7 @@ function showPhoto(idMan) {
         mess.classList.remove("mess_tel");
         mess.classList.add('mess_tel');
     }
-    document.getElementsByClassName('osnova')[0].insertAdjacentElement("afterbegin", mess);
+    document.getElementsByClassName('backgroundImg')[0].insertAdjacentElement("afterbegin", mess);
     mess.classList.add("OpacityAnimation");
     mess.style.display = "block";
 }
@@ -365,6 +365,8 @@ closer_point.id = 'closer_point';
 closer_point.innerText = 'X';
 // ---создание области таблицы людей  ----------
 let table_area = document.getElementsByClassName('table_area')[0];
+let table_area1 = document.getElementsByClassName('table_area1')[0];
+let table_area_header = document.getElementsByClassName("table_area_header")[0];
 // ---массив из id людей с др в один день----
 let arrDR = [];
 let nubmer_arrDR = 0;
@@ -391,8 +393,8 @@ document.getElementById("all").addEventListener("click", function (event) {
         nubmer_arrDR = 0;
         arrDR.length = 0;
     }
-    if (!document.elementFromPoint(event.clientX, event.clientY).closest('.button_table') && table_area.style.display == "block") {
-        table_area.style.display = "none"
+    if (!document.elementFromPoint(event.clientX, event.clientY).closest('.button_table') && table_area1.style.display == "block") {
+        table_area1.style.display = "none"
     }
 })
 
@@ -404,10 +406,11 @@ closer_point.addEventListener("click", function (event) {
 });
 
 document.getElementsByClassName('button_table')[0].addEventListener("click", function (event) {
-    if (table_area.style.display == "none") {
-        table_area.style.display = "block"
-    } else table_area.style.display = "none";
-})
+    if (table_area1.style.display == "none") {
+        table_area1.style.display = "block"
+    } else table_area1.style.display = "none";
+    console.log(table_area1.style.display);
+});
 
 document.getElementsByClassName('weather')[0].addEventListener("click", function (event) {
     Weather()
@@ -421,7 +424,7 @@ document.getElementById('inputka').oninput = function (event) {
 };
 
 // --------------- обработчик событий таблицы людей (сортировка если по заголовку, показ родителей или самого человека ) -----------------------
-document.getElementsByClassName("table_area")[0].addEventListener("click", function (event) {
+document.getElementsByClassName("table_area1")[0].addEventListener("click", function (event) {
     event.stopPropagation();
     let th = event.target.closest("th");
     let td = event.target.closest("td");
@@ -458,6 +461,26 @@ document.getElementsByClassName("table_area")[0].addEventListener("click", funct
         };
     }
 });
+let areaX, areaY;
+let flag_header = "false"
+// ---------- обработка клика по заголовку таблицы для переноса--------------
+table_area_header.addEventListener("mousedown", function (event) {
+    flag_header = true;
+    areaX = event.clientX - this.getBoundingClientRect().x + 7;
+    areaY = event.clientY - this.getBoundingClientRect().y + 7;
+})
+
+document.addEventListener("mouseup", function (event) {
+    flag_header = false;
+})
+
+document.addEventListener("mousemove", function (event) {
+    if (flag_header) {
+        table_area1.style.left = event.clientX - areaX + "px";
+        table_area1.style.top = event.clientY - areaY + "px";
+    }
+})
+
 
 // -----------обработка клика по фотографии mess------------
 mess.addEventListener("click", function (event) {
