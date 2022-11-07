@@ -261,7 +261,7 @@ function showPhoto(idMan) {
         mess.classList.remove("mess_tel");
         mess.classList.add('mess_tel');
     }
-    document.getElementsByClassName('backgroundImg')[0].insertAdjacentElement("afterbegin", mess);
+    document.getElementById('all').insertAdjacentElement("afterbegin", mess);
     mess.classList.add("OpacityAnimation");
     mess.style.display = "block";
 }
@@ -269,8 +269,11 @@ function showPhoto(idMan) {
 //--------- проверка по ширине экрана комп или смартфон для показа.скрытия иконки погоды-------------
 if (window.innerWidth <= window.innerHeight) {
     console.log(window.innerWidth + "----" + window.innerHeight);
+    document.getElementById("all").style.height = "auto";
     document.getElementById('weather__icon').classList.remove('weather__icon');
     document.getElementById('weather__icon').classList.add('displayNone');
+    document.getElementById('all').classList.remove('backgroundImg');
+    document.getElementById('all').classList.add('backgroundImg_S');
 }
 
 

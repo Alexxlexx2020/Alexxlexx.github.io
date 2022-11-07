@@ -16,6 +16,18 @@ body {
     /* overflow: hidden; */
 }
 
+.backgroundImg_S {
+    background: url(image/background_6.jpg);
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    height: auto;
+    overflow: hidden;
+    /* width: 1620 px;
+    height: 1080 px; */
+    /* overflow: hidden; */
+}
+
 .f1 {
     position: relative;
     display: grid;
