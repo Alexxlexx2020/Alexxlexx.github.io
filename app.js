@@ -272,6 +272,7 @@ if (window.innerWidth <= window.innerHeight) {
     document.getElementById('weather__icon').classList.add('displayNone');
     document.getElementById('all').classList.remove('backgroundImg');
     document.getElementById('all').classList.add('backgroundImg_S');
+    document.getElementsByClassName("table_area1")[0].style.maxWidth = "88vh";
 }
 
 
