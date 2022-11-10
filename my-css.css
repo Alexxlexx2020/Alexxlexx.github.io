@@ -255,7 +255,7 @@ span {
 
 .spanS {
     color: rgba(252, 248, 248, 0.5);
-    font-size: 28px;
+    font-size: 50px;
 }
 
 #container {
@@ -369,12 +369,13 @@ label {
 
 #mess {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: 25%;
+    /* top: 25%; */
+    /* transform: translate(-50%, -50%); */
     color: black;
-    border: rgb(87, 96, 226) solid 10px;
-    border-style: double;
+    border: #5867e6 solid 7px;
+    border-radius: 7px;
+    /* border-style: double; */
     background-color: rgb(250, 250, 246);
     word-wrap: break-word;
     font-size: 1.25rem;
@@ -396,6 +397,18 @@ label {
     z-index: 5;
     width: 100%;
     background-color: rgb(230, 231, 226);
+}
+
+#mess0 {
+    background-color: #5867e6;
+    color: aliceblue;
+    text-align: center;
+    height: 50px;
+}
+
+#mess0:hover{
+    cursor: grab;
+    user-select: none;
 }
 
 .no_info {
@@ -420,7 +433,7 @@ label {
     padding-right: 5px;
     margin-top: 0px;
     margin-left: 0px;
-    color: rgb(5, 5, 5);
+    color: white;
     z-index: 13;
 }
 
@@ -450,15 +463,38 @@ label {
 #closer_point {
     position: absolute;
     /* font-size:xx-large; */
-    height: 200%;
-    font-size: 200%;
+    /* height: 200%; */
+    font-size: 169%;
     top: 0px;
     right: 0px;
-    color: red;
+    width: 45px;
+    height: 45px;
+    /* color: red; */
     /* font-weight: 500; */
     z-index: 122;
     cursor: pointer;
     user-select: none;
+    opacity: 0.7;
+}
+
+#closer_point1 {
+    position: absolute;
+    right: 0px;
+    width: 60px;
+    height: 60px;
+    /* color: red; */
+    /* font-weight: 500; */
+    z-index: 122;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.7;
+}
+
+#closer_point1:hover{
+    opacity: 1;
+}
+#closer_point:hover{
+    opacity: 1;
 }
 
 .OpacityAnimation {
@@ -567,7 +603,7 @@ label {
 }
 
 .table_area_header{
-    background-color: #78787d;
+    background-color: #5867e6;
     color: aliceblue;
     text-align: center;
 }

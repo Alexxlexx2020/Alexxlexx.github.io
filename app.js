@@ -245,8 +245,9 @@ function showPhoto(idMan) {
     let realYear = document.getElementById('inputka').value;
     let oldYear = realYear - +k["birthday"].slice(0, 4);
     mess1.innerHTML = "";
-    mess1.innerHTML = `<div class = "text"><b>в ${realYear} году:  ${oldYear} лет</b></div>`;
-    mess1.insertAdjacentElement("beforeend", closer_point);
+    // mess1.innerHTML = `<div class = "text"><b>в ${realYear} году:  ${oldYear} лет</b></div>`;
+    mess0.innerHTML = `<div class = "text"><b>в ${realYear} году:  ${oldYear} лет</b></div>`;
+    mess.insertAdjacentElement("beforeend", closer_point);
     mess2.innerHTML = `<img class = "photo" src="image/${k["photo"]}" onError="this.src='image/none.png'" alt="фото" />`;
     mess3.innerHTML = `${k["photo"].slice(0, -4)}`;
 
@@ -272,7 +273,7 @@ if (window.innerWidth <= window.innerHeight) {
     document.getElementById('weather__icon').classList.add('displayNone');
     document.getElementById('all').classList.remove('backgroundImg');
     document.getElementById('all').classList.add('backgroundImg_S');
-    document.getElementsByClassName("table_area1")[0].style.maxWidth = "88vh";
+    document.getElementsByClassName("table_area1")[0].style.maxWidth = "90vh";
 }
 
 
@@ -349,6 +350,10 @@ let mess = document.createElement('div');
 mess.id = 'mess';
 mess.style.display = "none";
 
+let mess0 = document.createElement('div');
+mess0.id = 'mess0';
+mess0.innerHTML = "(поле для переноса фото)";
+
 let mess1 = document.createElement('div');
 mess1.id = 'mess1';
 
@@ -361,10 +366,16 @@ mess3.id = 'mess3';
 mess.insertAdjacentElement("afterbegin", mess3);
 mess.insertAdjacentElement("afterbegin", mess2);
 mess.insertAdjacentElement("afterbegin", mess1);
+mess.insertAdjacentElement("afterbegin", mess0);
 // ---кнопка закрытия mess----------------
-let closer_point = document.createElement('button');
+let closer_point = document.createElement('img');
 closer_point.id = 'closer_point';
-closer_point.innerText = 'X';
+closer_point.src = "image/closer_point.png"
+// let closer_point1 = document.createElement('button');
+// closer_point.id = 'closer_point1';
+// closer_point.innerText = 'X';
+
+
 // ---создание области таблицы людей  ----------
 let table_area = document.getElementsByClassName('table_area')[0];
 let table_area1 = document.getElementsByClassName('table_area1')[0];
@@ -389,16 +400,16 @@ table_list(massive1, ["photo", "surname", "name1", "name2", "parrent", "age", "b
 
 
 //------------------ обработчики событий таблицы, закрытия окна mess, погоды, текущей даты, поля ввода года ---------------
-document.getElementById("all").addEventListener("click", function (event) {
-    if (document.elementFromPoint(event.clientX, event.clientY).closest('#mess') != mess && mess.style.display != "none") {
-        mess.style.display = "none";
-        nubmer_arrDR = 0;
-        arrDR.length = 0;
-    }
-    if (!document.elementFromPoint(event.clientX, event.clientY).closest('.button_table') && table_area1.style.display == "block") {
-        table_area1.style.display = "none"
-    }
-})
+// document.getElementById("all").addEventListener("click", function (event) {
+//     if (document.elementFromPoint(event.clientX, event.clientY).closest('#mess') != mess && mess.style.display != "none") {
+//         mess.style.display = "none";
+//         nubmer_arrDR = 0;
+//         arrDR.length = 0;
+//     }
+//     if (!document.elementFromPoint(event.clientX, event.clientY).closest('.button_table') && table_area1.style.display == "block") {
+//         table_area1.style.display = "none"
+//     }
+// })
 
 closer_point.addEventListener("click", function (event) {
     mess.style.display = "none";
@@ -406,16 +417,23 @@ closer_point.addEventListener("click", function (event) {
     arrDR.length = 0;
     event.stopPropagation()
 });
-
+//----- обработчик собятия нажатия на кнопку для показа/скрытия таблицы
 document.getElementsByClassName('button_table')[0].addEventListener("click", function (event) {
     if (table_area1.style.display == "none") {
         table_area1.style.display = "block"
     } else table_area1.style.display = "none";
 });
 
+closer_point1.addEventListener("click", function(event){
+    table_area1.style.display = "none"
+})
+
+// ----------------------------нажатие на погоду - её обновляет ----------------
 document.getElementsByClassName('weather')[0].addEventListener("click", function (event) {
     Weather()
 });
+
+// ---------------- нажатие на дату ставит текущую дату -------------------------
 document.getElementsByClassName('current_date')[0].addEventListener("click", function (event) {
     document.getElementById('inputka').value = new Date().getFullYear();
     startCalendar(2022)
@@ -462,38 +480,50 @@ document.getElementsByClassName("table_area1")[0].addEventListener("click", func
         };
     }
 });
-let areaX, areaY;
-let flag_header = "false"
+
 // ---------- обработка клика по заголовку таблицы для переноса--------------
+let areaX, areaY;
+let flag_header = "false";
+let element_move;
 table_area_header.addEventListener("mousedown", function (event) {
     flag_header = true;
+    element_move = table_area_header.parentElement;
     areaX = event.clientX - this.getBoundingClientRect().x + 7;
     areaY = event.clientY - this.getBoundingClientRect().y + 7;
 })
 
+// -------- обработка клика по заголовку фото для переноса -----------------
+mess0.addEventListener("mousedown", function (event) {
+    flag_header = true;
+    element_move = mess0.parentElement;
+    areaX = event.clientX - this.getBoundingClientRect().x + 7;
+    areaY = event.clientY - this.getBoundingClientRect().y + 7;
+})
+
+
+// --------- обработка движения мыши по документу и отпускания кнопки -----------
 document.addEventListener("mouseup", function (event) {
     flag_header = false;
 })
-
 document.addEventListener("mousemove", function (event) {
-    if (flag_header) {
-        table_area1.style.left = event.clientX - areaX + "px";
-        table_area1.style.top = event.clientY - areaY + "px";
+    if (flag_header && element_move) {
+        element_move.style.left = event.clientX - areaX + "px";
+        element_move.style.top = event.clientY - areaY + "px";
     }
 })
 
 
 // -----------обработка клика по фотографии mess------------
-mess.addEventListener("click", function (event) {
+mess2.addEventListener("click", function (event) {
     event.stopPropagation();
     if (nubmer_arrDR + 1 == arrDR.length) {
         nubmer_arrDR = 0
     } else nubmer_arrDR++;
     if (arrDR.length > 1) {
-        mess.style.cursor = "pointer";
+        mess2.style.cursor = "pointer";
         showPhoto(arrDR[nubmer_arrDR])
     } else {
-        mess.style.cursor = "default"
+        mess2.style.cursor = "default"
     };
 });
 
