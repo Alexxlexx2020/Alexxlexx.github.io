@@ -1,5 +1,5 @@
 body {
-    
+    overflow: hidden;
     background-size: cover;
     margin: 0px;
 }
@@ -11,9 +11,6 @@ body {
     padding: 0px;
     height: 935px;
     overflow: hidden;
-    /* width: 1620 px;
-    height: 1080 px; */
-    /* overflow: hidden; */
 }
 
 .backgroundImg_S {
@@ -23,9 +20,6 @@ body {
     padding: 0px;
     height: auto;
     overflow: hidden;
-    /* width: 1620 px;
-    height: 1080 px; */
-    /* overflow: hidden; */
 }
 
 .f1 {
@@ -89,14 +83,9 @@ body {
     background-color: rgba(0, 0, 0, 0.2);
     padding-left: 10px;
     font-size: 50px;
-    /* height: 100%; */
-    /* max-height: 100%; */
     width: auto;
     height: 100%;
     overflow:hidden;
-    /* word-wrap: none; */
-    /* min-width:max-content; */
-    /* word-wrap:inherit; */
 }
 
 .dr_photo_class{
@@ -137,10 +126,6 @@ body {
     background-color: rgb(214, 214, 39);
     color: black;
 }
-
-/* th {
-    background-color: antiquewhite;
-} */
 
 .td_full {
     border: solid rgb(7, 158, 20);
@@ -196,16 +181,7 @@ body {
     padding: 3px 7px;
 }
 
-/* caption {
-    color: aliceblue;
-    background-color: rgb(130, 130, 130);
-    font-size: xx-large;
-    border: solid 1px black;
-    text-align: center;
-} */
-
 .caption_calendar {
-    /* cursor: pointer; */
     letter-spacing: 4px;
     font-size: xx-large;
     user-select: none;
@@ -250,7 +226,6 @@ span {
     color: white;
     font-style: normal;
     font-size: 60px;
-    /* background-color: antiquewhite; */
 }
 
 .spanS {
@@ -259,14 +234,12 @@ span {
 }
 
 #container {
-    /* position: relative; */
     top: 100px;
     min-height: 600px;
     min-width: 800px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    /* align-items: center; */
 }
 
 #clock {
@@ -281,7 +254,6 @@ span {
 .current_date:hover {
     background-color: rgb(7, 158, 147);
     cursor: pointer;
-    /* text-decoration:underline; */
 }
 
 #inputYear {
@@ -333,10 +305,6 @@ label {
     color: rgb(53, 53, 8);
 }
 
-/* .table_style{
-    box-shadow: 0 0 10px 10px rgba(130, 130, 255, 0.9);
-} */
-
 .weather {
     display: grid;
     grid-template-columns: 4fr 1fr;
@@ -360,7 +328,6 @@ label {
 .weather__icon {
     display: flex;
     align-items: center;
-    /* justify-content: center */
 }
 
 .imageIcon {
@@ -370,16 +337,13 @@ label {
 #mess {
     position: absolute;
     left: 25%;
-    /* top: 25%; */
-    /* transform: translate(-50%, -50%); */
     color: black;
     border: #5867e6 solid 7px;
     border-radius: 7px;
-    /* border-style: double; */
     background-color: rgb(250, 250, 246);
     word-wrap: break-word;
     font-size: 1.25rem;
-    overflow: auto;
+    /* overflow: auto; */
     z-index: 120;
     cursor: auto;
     user-select: text;
@@ -440,12 +404,12 @@ label {
 #mess3 {
     position: absolute;
     font-size: 30px;
-    bottom: 0;
-    left: 0;
     padding-left: 5px;
     padding-right: 5px;
+    bottom: 0;
+    left: 0;
     z-index: 13;
-    background-color: rgb(230, 231, 226, 0.7);
+    background-color: rgb(255, 255, 255, 0.8);
 }
 
 .mess_comp {
@@ -464,15 +428,11 @@ label {
 
 #closer_point {
     position: absolute;
-    /* font-size:xx-large; */
-    /* height: 200%; */
     font-size: 169%;
     top: 0px;
     right: 0px;
     width: 45px;
     height: 45px;
-    /* color: red; */
-    /* font-weight: 500; */
     z-index: 122;
     cursor: pointer;
     user-select: none;
@@ -484,8 +444,6 @@ label {
     right: 0px;
     width: 60px;
     height: 60px;
-    /* color: red; */
-    /* font-weight: 500; */
     z-index: 122;
     cursor: pointer;
     user-select: none;
@@ -544,7 +502,6 @@ label {
     font-size: 55px;
 }
 .button_table {
-    /* border: #000 solid ; */
     border: white solid 2px;
     color: black;
     line-height: .8;
@@ -576,14 +533,10 @@ label {
     max-width: 100%;
     max-height: 90%;
     overflow: scroll;
-    /* border: solid 7px rgb(170, 88, 88); */
     border-radius: 7px;
     background-color: #107ab8;
     z-index: 101;
     overflow: auto;
-    /* padding: 10px; */
-    /* margin-top: 20px; */
-    /*box-shadow: 10px 10px 5px 0 black;*/
 }
 
 .table_area1 {
@@ -592,15 +545,11 @@ label {
     height: 650px;
     font-size: 30px;
     max-width: 1200px;
-    /* max-height: 650px; */
     left: 15px;
     overflow:hidden;
     border: solid 7px #5867e6;
     border-radius: 7px;
-    /* background-color: #107ab8; */
     z-index: 100;
-    /* padding: 10px; */
-    /* margin-top: 20px; */
     box-shadow: 10px 10px 5px 0 black;
 }
 
@@ -620,7 +569,6 @@ label {
     font-size: 25px;
     border: 1px solid grey;
     background-color: #e8f3ce;
-    /* text-align: left; */
 }
 
 #tableMan caption {
@@ -639,7 +587,6 @@ label {
 
 #tableMan td {
     margin: 0;
-    /* padding: 5px 5px; */
     border-bottom: 1px solid black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
@@ -657,11 +604,6 @@ label {
     cursor: s-resize;
 }
 
-/* #tableMan td:hover {
-    background-color: #ddd;
-    cursor: pointer;
-} */
-
 #tableMan tr:nth-child(even) {
     background-color: #f2f2f2;
 }
@@ -676,9 +618,7 @@ label {
 }
 
 #tableMan td:last-child {
-    /* background: #C9E3FE; */
     margin-left: 30px;
-    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
     text-align: center;
     border-left: black 1px solid;
 }
@@ -690,7 +630,6 @@ label {
 }
 #tableMan td:nth-child(2), #tableMan td:nth-child(3), #tableMan td:nth-child(4){
     text-align: center;
-    /* background-color: #C9E3FE; */
     font-style: italic;
     text-align: left;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

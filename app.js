@@ -370,7 +370,8 @@ mess.insertAdjacentElement("afterbegin", mess0);
 // ---кнопка закрытия mess----------------
 let closer_point = document.createElement('img');
 closer_point.id = 'closer_point';
-closer_point.src = "image/closer_point.png"
+closer_point.src = "image/closer_point.png";
+closer_point.draggable = false;
 // let closer_point1 = document.createElement('button');
 // closer_point.id = 'closer_point1';
 // closer_point.innerText = 'X';
@@ -507,8 +508,9 @@ document.addEventListener("mouseup", function (event) {
 })
 document.addEventListener("mousemove", function (event) {
     if (flag_header && element_move) {
-        element_move.style.left = event.clientX - areaX + "px";
-        element_move.style.top = event.clientY - areaY + "px";
+        // element_move.style.left = (event.clientX - areaX > 0)? event.clientX - areaX + "px": 0 + "px";
+        element_move.style.top = (event.clientY - areaY < 0)? 0 +"px":(event.clientY - areaY > window.innerHeight - element_move.offsetHeight/4)?window.innerHeight - element_move.offsetHeight/4 + "px": event.clientY - areaY + "px" ;
+        element_move.style.left = (event.clientX - areaX < 0)? 0 +"px":(event.clientX - areaX > window.innerWidth - element_move.offsetWidth/4)?window.innerWidth - element_move.offsetWidth/4 + "px": event.clientX - areaX + "px" ;
     }
 })
 
