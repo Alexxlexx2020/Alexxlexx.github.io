@@ -442,6 +442,8 @@ label {
     font-size: 30px;
     bottom: 0;
     left: 0;
+    padding-left: 5px;
+    padding-right: 5px;
     z-index: 13;
     background-color: rgb(230, 231, 226, 0.7);
 }
