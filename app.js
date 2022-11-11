@@ -252,29 +252,29 @@ function showPhoto(idMan) {
     mess3.innerHTML = `${k["photo"].slice(0, -4)}`;
 
     //--------- проверка по ширине экрана комп или смартфон -------------
-    if (window.innerWidth >= window.innerHeight) {
-        mess.classList.remove("mess_tel");
-        mess.classList.remove("mess_comp");
-        mess.classList.add('mess_comp');
-    } else {
-        mess.classList.remove('mess_comp');
-        mess.classList.remove("mess_tel");
-        mess.classList.add('mess_tel');
-    }
+    // if (window.innerWidth >= window.innerHeight) {
+    //     mess.classList.remove("mess_tel");
+    //     mess.classList.remove("mess_comp");
+    //     mess.classList.add('mess_comp');
+    // } else {
+    //     mess.classList.remove('mess_comp');
+    //     mess.classList.remove("mess_tel");
+    //     mess.classList.add('mess_tel');
+    // }
     document.getElementById('all').insertAdjacentElement("afterbegin", mess);
     mess.classList.add("OpacityAnimation");
     mess.style.display = "block";
 }
 
 //--------- проверка по ширине экрана комп или смартфон для показа.скрытия иконки погоды-------------
-if (window.innerWidth <= window.innerHeight) {
-    document.getElementById("all").style.height = "auto";
-    document.getElementById('weather__icon').classList.remove('weather__icon');
-    document.getElementById('weather__icon').classList.add('displayNone');
-    document.getElementById('all').classList.remove('backgroundImg');
-    document.getElementById('all').classList.add('backgroundImg_S');
-    document.getElementsByClassName("table_area1")[0].style.maxWidth = "90vh";
-}
+// if (window.innerWidth <= window.innerHeight) {
+//     document.getElementById("all").style.height = "auto";
+//     document.getElementById('weather__icon').classList.remove('weather__icon');
+//     document.getElementById('weather__icon').classList.add('displayNone');
+//     document.getElementById('all').classList.remove('backgroundImg');
+//     document.getElementById('all').classList.add('backgroundImg_S');
+//     document.getElementsByClassName("table_area1")[0].style.maxWidth = "90vh";
+// }
 
 
 function startCalendar(year) {

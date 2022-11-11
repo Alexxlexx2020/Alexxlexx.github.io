@@ -1,5 +1,5 @@
 body {
-    /* overflow: hidden; */
+    overflow-x: hidden;
     background-size: cover;
     margin: 0px;
     max-width: 1920px;
@@ -12,8 +12,8 @@ body {
     position: relative;
     margin: 0px;
     padding: 0px;
-    height: 935px;
-    /* overflow: hidden; */
+    min-height:100vh;
+    overflow: hidden;
 }
 
 .backgroundImg_S {
@@ -333,6 +333,8 @@ label {
     align-items: center;
 }
 
+
+
 .imageIcon {
     height: 100%;
 }
@@ -351,6 +353,11 @@ label {
     cursor: auto;
     user-select: text;
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.9);
+
+    min-height: 15%;
+    max-height: 97vh;
+    min-width: 20%;
+    max-width: 50vh;
 }
 
 #mess2 {
@@ -367,6 +374,7 @@ label {
 }
 
 #mess0 {
+    position:static;
     background-color: #5867e6;
     color: aliceblue;
     text-align: center;
@@ -433,7 +441,6 @@ label {
 
 #closer_point {
     position: absolute;
-    font-size: 169%;
     top: 0px;
     right: 0px;
     width: 45px;
@@ -518,7 +525,7 @@ label {
     background-color: rgb(226, 226, 18);
     box-shadow: 10px 10px 5px 0 black;
     transition-duration: 0.3s;
-    z-index: 120;
+    z-index: 118;
 }
 .button_table:hover{
     color: white;
@@ -550,10 +557,11 @@ label {
     height: 650px;
     font-size: 30px;
     max-width: 100%;
+    /* left: 15px; */
     overflow:hidden;
     border: solid 7px #5867e6;
     border-radius: 7px;
-    z-index: 100;
+    z-index: 119;
     box-shadow: 10px 10px 5px 0 black;
 }
 
@@ -644,4 +652,129 @@ label {
     max-height: 50px;
     padding: 0;
     margin: 0;
+}
+
+@media screen and (max-width: 1090px) {
+    body {
+        overflow-x: hidden;
+        background-size: cover;
+        margin: 0px;
+        max-width: 1080px;
+        min-height: 1920px;
+        overflow: auto;
+    }
+
+
+    .backgroundImg {
+        background: url(image/background_6.jpg) repeat;
+        position: relative;
+        margin: 0px;
+        padding: 0px;
+        min-height: 1920px;
+        overflow: auto;
+    }
+
+    .ClassCalendar {
+        height: 200px;
+        margin: 5px;
+        margin-top: 10px;
+        border-collapse: collapse;
+        border-spacing: 0;
+        font-size: 40px;
+        position: relative;
+        background-color: rgb(239, 228, 248);
+        padding: 3px 8px;
+        border: 1px solid black;
+        box-shadow: 10px 10px 5px rgba(0, 0, 0, .9);
+    }
+
+
+    #mess {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 1060px;
+        color: black;
+        border: #5867e6 solid 7px;
+        border-radius: 7px;
+        background-color: rgb(250, 250, 246);
+        word-wrap: break-word;
+        font-size: 1.25rem;
+        /* overflow: auto; */
+        z-index: 121;
+        cursor: auto;
+        user-select: text;
+        box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.9);
+    
+        min-height: 15%;
+        max-height: 200vh;
+        min-width: 40vh;
+        max-width: 70vh;
+    }
+
+    #mess0 {
+        position:absolute;
+        background-color: #5867e6;
+        color: aliceblue;
+        text-align: center;
+        height: 50px;
+    }
+
+    #mess3 {
+        position: absolute;
+        font-size: 75px;
+        padding-left: 5px;
+        padding-right: 5px;
+        bottom: 0;
+        left: 0;
+        z-index: 13;
+        background-color: rgb(255, 255, 255, 0.8);
+    }
+
+    #closer_point {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 150px;
+        height: 150px;
+        z-index: 122;
+        cursor: pointer;
+        user-select: none;
+        opacity: 0.7;
+    }
+
+    .table_man_photo{
+        width: 0px;
+        max-height: 50px;
+        padding: 0;
+        margin: 0;
+    }
+
+    #photo{
+        width: 0px;
+        font-size: 0px;
+    }
+
+    .ClassTableMan {
+        border-collapse: collapse;
+        font-size: 28px;
+        border: 1px solid grey;
+        background-color: #e8f3ce;
+    }
+
+    .text {
+        position: relative;
+        display: block;
+        font-size: 70px;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-top: 0px;
+        margin-left: 0px;
+        color: white;
+        z-index: 13;
+    }
+
+    .weather__icon {
+        display: none;
+    }
 }
