@@ -302,8 +302,8 @@ function startCalendar(year) {
 
     // ----------------------------обработка клика по таблице ----------------------------------
     document.getElementById('allArea').addEventListener("click", function f333(event) {
-        let xClick = event.clientX;
-        let yClick = event.clientY;
+        let xClick = event.pageX - window.pageXOffset;
+        let yClick = event.pageY - window.pageYOffset;
         let elem1 = document.elementFromPoint(xClick, yClick);
         if (elem1.tagName == "TD" && elem1.innerText != "" && mess.style.display == "none") {
             event.stopPropagation();
@@ -402,12 +402,12 @@ table_list(massive1, ["photo", "surname", "name1", "name2", "parrent", "age", "b
 
 //------------------ обработчики событий таблицы, закрытия окна mess, погоды, текущей даты, поля ввода года ---------------
 // document.getElementById("all").addEventListener("click", function (event) {
-//     if (document.elementFromPoint(event.clientX, event.clientY).closest('#mess') != mess && mess.style.display != "none") {
+//     if (document.elementFromPoint(event.pageX, event.pageY).closest('#mess') != mess && mess.style.display != "none") {
 //         mess.style.display = "none";
 //         nubmer_arrDR = 0;
 //         arrDR.length = 0;
 //     }
-//     if (!document.elementFromPoint(event.clientX, event.clientY).closest('.button_table') && table_area1.style.display == "block") {
+//     if (!document.elementFromPoint(event.pageX, event.pageY).closest('.button_table') && table_area1.style.display == "block") {
 //         table_area1.style.display = "none"
 //     }
 // })
@@ -489,16 +489,16 @@ let element_move;
 table_area_header.addEventListener("mousedown", function (event) {
     flag_header = true;
     element_move = table_area_header.parentElement;
-    areaX = event.clientX - this.getBoundingClientRect().x + 7;
-    areaY = event.clientY - this.getBoundingClientRect().y + 7;
+    areaX = event.pageX - this.getBoundingClientRect().x + 7;
+    areaY = event.pageY - this.getBoundingClientRect().y + 7;
 })
 
 // -------- обработка клика по заголовку фото для переноса -----------------
 mess0.addEventListener("mousedown", function (event) {
     flag_header = true;
     element_move = mess0.parentElement;
-    areaX = event.clientX - this.getBoundingClientRect().x + 7;
-    areaY = event.clientY - this.getBoundingClientRect().y + 7;
+    areaX = event.pageX - this.getBoundingClientRect().x + 7;
+    areaY = event.pageY - this.getBoundingClientRect().y + 7;
 })
 
 
@@ -508,9 +508,9 @@ document.addEventListener("mouseup", function (event) {
 })
 document.addEventListener("mousemove", function (event) {
     if (flag_header && element_move) {
-        // element_move.style.left = (event.clientX - areaX > 0)? event.clientX - areaX + "px": 0 + "px";
-        element_move.style.top = (event.clientY - areaY < 0)? 0 +"px":(event.clientY - areaY > window.innerHeight - element_move.offsetHeight/4)?window.innerHeight - element_move.offsetHeight/4 + "px": event.clientY - areaY + "px" ;
-        element_move.style.left = (event.clientX - areaX < 0)? 0 +"px":(event.clientX - areaX > window.innerWidth - element_move.offsetWidth/4)?window.innerWidth - element_move.offsetWidth/4 + "px": event.clientX - areaX + "px" ;
+        // element_move.style.left = (event.pageX - areaX > 0)? event.pageX - areaX + "px": 0 + "px";
+        element_move.style.top = (event.pageY - areaY < 0)? window.pageYOffset +"px":(event.pageY - areaY > window.innerHeight - element_move.offsetHeight/4)?window.innerHeight - element_move.offsetHeight/4 + window.pageYOffset + "px": event.pageY - areaY + window.pageYOffset +"px" ;
+        element_move.style.left = (event.pageX - areaX < 0)? window.pageXOffset +"px":(event.pageX - areaX > window.innerWidth - element_move.offsetWidth/4)?window.innerWidth - element_move.offsetWidth/4 + window.pageXOffset + "px": event.pageX - areaX + window.pageXOffset + "px" ;
     }
 })
 
@@ -532,8 +532,8 @@ mess2.addEventListener("click", function (event) {
 // --------- обработка наведения курсора на mess ----------
 mess2.addEventListener("mousemove", function (event) {
     if (arrDR.length > 1) {
-        let x = event.clientX;
-        let y = event.clientY;
+        let x = event.pageX;
+        let y = event.pageY;
         float_text.style.left = x + 20 + "px";
         float_text.style.top = y + 25 + "px";
         float_text.innerHTML = `нажмите для показа<br>следующего человека `;
@@ -543,8 +543,8 @@ mess2.addEventListener("mousemove", function (event) {
 
 mess2.addEventListener("mouseover", function (event) {
     if (arrDR.length > 1) {
-        let x = event.clientX;
-        let y = event.clientY;
+        let x = event.pageX;
+        let y = event.pageY;
         float_text.style.left = x + 20 + "px";
         float_text.style.top = y + 25 + "px";
         float_text.innerHTML = `нажмите для показа<br>следующего человека `;
