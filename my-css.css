@@ -708,8 +708,8 @@ label {
     
         min-height: 15%;
         max-height: 200vh;
-        min-width: 40vh;
-        max-width: 70vh;
+        min-width: 98%;
+        max-width: 98%;
     }
 
     #mess0 {
