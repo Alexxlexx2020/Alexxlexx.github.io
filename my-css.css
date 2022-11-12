@@ -341,7 +341,7 @@ label {
 
 #mess {
     position: absolute;
-    /* left: 25%; */
+    left: 40%;
     color: black;
     border: #5867e6 solid 7px;
     border-radius: 7px;
@@ -423,7 +423,7 @@ label {
     background-color: rgb(255, 255, 255, 0.8);
 }
 
-.mess_comp {
+/* .mess_comp {
     min-height: 15%;
     max-height: 97vh;
     min-width: 20%;
@@ -437,7 +437,7 @@ label {
     max-width: 98vh;
     left : 0px;
     top: 0px;
-}
+} */
 
 #closer_point {
     position: absolute;
@@ -797,6 +797,7 @@ label {
         margin-top: 0px;
         margin-left: 0px;
         color: white;
+        background-color: #6684b0a6;
         z-index: 13;
     }
 

@@ -1,6 +1,6 @@
 //---------------- база данных в массиве находится в файле database.js ---------------------------------------------------------
 
-// ---------------------------- функция формирования блока одного месяца календаря конкретного года и вставки в элемент elem --------------------
+// ---------------------------- функция формирования блока одного месяца календаря конкретного года и вставки его в элемент elem --------------------
 function createCalendar(year, month, elem) {
     let days = [];
     let myDate = new Date(year, month, 1);
@@ -105,9 +105,7 @@ function myTime(elem) {
         'ноября',
         'декабря'
     ];
-    elem.insertAdjacentHTML("afterbegin",
-        `<div id="clock"><span class="spanH"></span><span class="spanX">:</span><span class="spanM"></span><span class="spanX">.</span><span class="spanS"></span><span></span><br><span class="current_date"></span></div>`);
-
+    elem.insertAdjacentElement("afterbegin", clock);
     function timeCalc() {
         let h1 = new Date().getHours();
         let m1 = new Date().getMinutes();
@@ -139,7 +137,6 @@ function table_list(array, arrayProp, arrayProp1, elem) {
     tableMan.className = "ClassTableMan";
     tableMan.append(thead_tableMan);
     tableMan.append(tbody_tableMan);
-    // tableMan.insertAdjacentHTML("afterbegin", `<caption>нажимайте на заголовки колонок для сортировки<br>нажмите на ячейку РОДИТЕЛИ для их показа</caption>`);
     let itemProp = "";
     let i = 0;
     for (item of arrayProp1) {
@@ -207,7 +204,6 @@ function arraySort(array, prop) {
 }
 
 //-----------------функция записи остатка дней до ДР и вывода ближайшего день рождения в элемент-----------------------------
-
 function closerDR() {
     let start_year = new Date(new Date().getFullYear(), 0, 1);
     let start_year1 = new Date(new Date().getFullYear() + 1, 0, 1);
@@ -233,58 +229,30 @@ function closerDR() {
     minmax_global = "max";
 }
 
-
-
 //------- функция вывода окна с фотографией и описанием в существующий блок mess-----------------------
 let k = {};
-
 function showPhoto(idMan) {
-    // massive1.map((item)=>{if (item["id"] == idMan){k = item; return}});
     k = massive1.find(item => (item.id == idMan));
     if (k == undefined) return;
     let realYear = document.getElementById('inputka').value;
     let oldYear = realYear - +k["birthday"].slice(0, 4);
     mess1.innerHTML = "";
-    // mess1.innerHTML = `<div class = "text"><b>в ${realYear} году:  ${oldYear} лет</b></div>`;
     mess0.innerHTML = `<div class = "text"><b>в ${realYear} году:  ${oldYear} лет</b></div>`;
-    mess.insertAdjacentElement("beforeend", closer_point);
-    mess2.innerHTML = `<img class = "photo" src="image/${k["photo"]}" onError="this.src='image/none.png'" alt="фото" />`;
+    mess2.innerHTML = `<img class = "photo" src="image/${k["photo"]}" onError="this.src='image/none.png'" alt="фото" draggable = false>`;
     mess3.innerHTML = `${k["photo"].slice(0, -4)}`;
-
-    //--------- проверка по ширине экрана комп или смартфон -------------
-    // if (window.innerWidth >= window.innerHeight) {
-    //     mess.classList.remove("mess_tel");
-    //     mess.classList.remove("mess_comp");
-    //     mess.classList.add('mess_comp');
-    // } else {
-    //     mess.classList.remove('mess_comp');
-    //     mess.classList.remove("mess_tel");
-    //     mess.classList.add('mess_tel');
-    // }
-    document.getElementById('all').insertAdjacentElement("afterbegin", mess);
+    // document.getElementById('all').insertAdjacentElement("afterbegin", mess);
     mess.classList.add("OpacityAnimation");
     mess.style.display = "block";
 }
 
-//--------- проверка по ширине экрана комп или смартфон для показа.скрытия иконки погоды-------------
-// if (window.innerWidth <= window.innerHeight) {
-//     document.getElementById("all").style.height = "auto";
-//     document.getElementById('weather__icon').classList.remove('weather__icon');
-//     document.getElementById('weather__icon').classList.add('displayNone');
-//     document.getElementById('all').classList.remove('backgroundImg');
-//     document.getElementById('all').classList.add('backgroundImg_S');
-//     document.getElementsByClassName("table_area1")[0].style.maxWidth = "90vh";
-// }
-
-
+// --------- функция первого запуска календаря -------------------------
 function startCalendar(year) {
     mess.style.display = "none";
-    document.getElementById('allArea').innerHTML = ``;
-    document.getElementById('allArea').innerHTML = `<div id = "container"></div>`;
+    // document.getElementById('allArea').innerHTML = ``;
+    // document.getElementById('allArea').innerHTML = `<div id = "container"></div>`;
     for (let month = 0; month < 12; month++) {
         createCalendar(year, month, 'container')
     }
-
     let month2 = [
         'января',
         'февраля',
@@ -334,7 +302,6 @@ function Weather() {
             //добавляем название города "lat":48.2864702,"lon":25.9376532
             document.getElementById("weather__city").innerHTML =
                 data.name + ' ' + Math.round(data.main.temp - 273) + '°, ' + Math.round(data.main.pressure * 0.750062) + " мм.<br>" + data.weather[0]['description'];
-            // + "/" + data.main.grnd_level;
             //data.main.temp содержит значение в Кельвинах, отнимаем от  273, чтобы получить значение в градусах Цельсия
             //Добавляем иконку погоды
             document.getElementById('weather__icon').innerHTML = `<img class = "imageIcon" src="https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">`;
@@ -345,39 +312,8 @@ function Weather() {
         });
 }
 
-// ----------------- создание окна mess с данными по человеку или дате и глобальные переменные---------------------------------------
-let mess = document.createElement('div');
-mess.id = 'mess';
-mess.style.display = "none";
-
-let mess0 = document.createElement('div');
-mess0.id = 'mess0';
-mess0.innerHTML = "(поле для переноса фото)";
-
-let mess1 = document.createElement('div');
-mess1.id = 'mess1';
-
-let mess2 = document.createElement('div');
-mess2.id = 'mess2';
-
-let mess3 = document.createElement('div');
-mess3.id = 'mess3';
-
-mess.insertAdjacentElement("afterbegin", mess3);
-mess.insertAdjacentElement("afterbegin", mess2);
-mess.insertAdjacentElement("afterbegin", mess1);
-mess.insertAdjacentElement("afterbegin", mess0);
-// ---кнопка закрытия mess----------------
-let closer_point = document.createElement('img');
-closer_point.id = 'closer_point';
-closer_point.src = "image/closer_point.png";
-closer_point.draggable = false;
-// let closer_point1 = document.createElement('button');
-// closer_point.id = 'closer_point1';
-// closer_point.innerText = 'X';
-
-
-// ---создание области таблицы людей  ----------
+// ----------------- глобальные переменные-------------------
+// ---определение области таблицы людей  ----------
 let table_area = document.getElementsByClassName('table_area')[0];
 let table_area1 = document.getElementsByClassName('table_area1')[0];
 let table_area_header = document.getElementsByClassName("table_area_header")[0];
@@ -385,33 +321,19 @@ let table_area_header = document.getElementsByClassName("table_area_header")[0];
 let arrDR = [];
 let nubmer_arrDR = 0;
 
-
 //------------------ заполнение массива числом остатка дней до дня рождения ------------
 closerDR();
-// ----------------- первый старт календаря -----------------------------------------
+// ----------------- первый старт календаря с текущим годом -----------------------------------------
 startCalendar(new Date().getFullYear());
 //------------------ запуск часов ------------------
 myTime(document.getElementById('f4'));
-
 // ----------------- первый и периодический запуск погоды -------------------------------------
 Weather();
 setInterval(() => Weather(), 100000);
 //----------------- запуск постоения таблицы людей и вставки в elem ----------------------------
 table_list(massive1, ["photo", "surname", "name1", "name2", "parrent", "age", "birthday", "days_for_bd"], ["фото", "фамилия", "имя", "отчество", "родители", "возраст", "дата ДР", "дней до ДР"], table_area);
 
-
-//------------------ обработчики событий таблицы, закрытия окна mess, погоды, текущей даты, поля ввода года ---------------
-// document.getElementById("all").addEventListener("click", function (event) {
-//     if (document.elementFromPoint(event.pageX, event.pageY).closest('#mess') != mess && mess.style.display != "none") {
-//         mess.style.display = "none";
-//         nubmer_arrDR = 0;
-//         arrDR.length = 0;
-//     }
-//     if (!document.elementFromPoint(event.pageX, event.pageY).closest('.button_table') && table_area1.style.display == "block") {
-//         table_area1.style.display = "none"
-//     }
-// })
-
+//------ обработчик нажатия на кнопку закрытия окна mess -----------------
 closer_point.addEventListener("click", function (event) {
     mess.style.display = "none";
     nubmer_arrDR = 0;
@@ -424,16 +346,14 @@ document.getElementsByClassName('button_table')[0].addEventListener("click", fun
         table_area1.style.display = "block"
     } else table_area1.style.display = "none";
 });
-
+// --------- обработчик нажатия на кнопку закрытия таблицы с людей -------------------
 closer_point1.addEventListener("click", function(event){
     table_area1.style.display = "none"
 })
-
 // ----------------------------нажатие на погоду - её обновляет ----------------
 document.getElementsByClassName('weather')[0].addEventListener("click", function (event) {
     Weather()
 });
-
 // ---------------- нажатие на дату ставит текущую дату -------------------------
 document.getElementsByClassName('current_date')[0].addEventListener("click", function (event) {
     document.getElementById('inputka').value = new Date().getFullYear();
@@ -468,12 +388,10 @@ document.getElementsByClassName("table_area1")[0].addEventListener("click", func
         }
         if (tableMan.rows[0].cells[number_column].innerHTML == "родители") {
             if (massive1.find((item) => (item.id == td.id)).parrent.length) {
-                // console.log(massive1.find((item) => (item.id == td.id)).parrent);
                 arrDR.length = 0;
                 nubmer_arrDR = 0;
                 console.log(massive1.find((item) => (item.id == td.id)).parrent);
                 arrDR = arrDR.concat(massive1.find((item) => (item.id == td.id)).parrent);
-                // console.log(arrDR);
                 showPhoto(arrDR[nubmer_arrDR]);
             };
         } else {
@@ -501,19 +419,16 @@ mess0.addEventListener("mousedown", function (event) {
     areaY = event.pageY - this.getBoundingClientRect().y + 7;
 })
 
-
 // --------- обработка движения мыши по документу и отпускания кнопки -----------
 document.addEventListener("mouseup", function (event) {
     flag_header = false;
 })
 document.addEventListener("mousemove", function (event) {
     if (flag_header && element_move) {
-        // element_move.style.left = (event.pageX - areaX > 0)? event.pageX - areaX + "px": 0 + "px";
-        element_move.style.top = (event.pageY - areaY < 0)? window.pageYOffset +"px":(event.pageY - areaY > window.innerHeight - element_move.offsetHeight/4)?window.innerHeight - element_move.offsetHeight/4 + window.pageYOffset + "px": event.pageY - areaY + window.pageYOffset +"px" ;
-        element_move.style.left = (event.pageX - areaX < 0)? window.pageXOffset +"px":(event.pageX - areaX > window.innerWidth - element_move.offsetWidth/4)?window.innerWidth - element_move.offsetWidth/4 + window.pageXOffset + "px": event.pageX - areaX + window.pageXOffset + "px" ;
+        element_move.style.left = (event.pageX - areaX < 0)? window.pageXOffset +"px":(event.pageX - areaX > window.innerWidth - element_move.offsetWidth/4)?window.innerWidth - element_move.offsetWidth/4 + window.pageXOffset + "px": event.pageX - areaX + window.pageXOffset + "px";
+        element_move.style.top = (event.pageY - areaY < 0)? window.pageYOffset +"px":(event.pageY - areaY > window.innerHeight - element_move.offsetHeight/4)?window.innerHeight - element_move.offsetHeight/4 + window.pageYOffset + "px": event.pageY - areaY + window.pageYOffset +"px";
     }
 })
-
 
 // -----------обработка клика по фотографии mess------------
 mess2.addEventListener("click", function (event) {
