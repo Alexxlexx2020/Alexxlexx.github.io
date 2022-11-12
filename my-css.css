@@ -666,7 +666,8 @@ label {
 
 
     .backgroundImg {
-        background: url(image/background_6.jpg) repeat;
+        background: url(image/9.jpg);
+        background-size: cover;
         position: relative;
         margin: 0px;
         padding: 0px;
