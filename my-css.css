@@ -689,6 +689,20 @@ label {
         box-shadow: 10px 10px 5px rgba(0, 0, 0, .9);
     }
 
+    .table_area1 {
+        position: absolute;
+        /* width:max-content; */
+        height: 650px;
+        font-size: 42px;
+        max-width: 100%;
+        /* left: 15px; */
+        overflow:hidden;
+        border: solid 7px #5867e6;
+        border-radius: 7px;
+        z-index: 119;
+        box-shadow: 10px 10px 5px 0 black;
+    }
+
 
     #mess {
         position: fixed;
@@ -738,6 +752,17 @@ label {
         right: 0px;
         width: 150px;
         height: 150px;
+        z-index: 122;
+        cursor: pointer;
+        user-select: none;
+        opacity: 0.7;
+    }
+
+    #closer_point1 {
+        position: absolute;
+        right: 0px;
+        width: 90px;
+        height: 90px;
         z-index: 122;
         cursor: pointer;
         user-select: none;
