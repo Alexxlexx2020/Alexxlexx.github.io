@@ -680,7 +680,7 @@ label {
         margin-top: 10px;
         border-collapse: collapse;
         border-spacing: 0;
-        font-size: 40px;
+        font-size: 38px;
         position: relative;
         background-color: rgb(239, 228, 248);
         padding: 3px 8px;
@@ -757,7 +757,7 @@ label {
 
     .ClassTableMan {
         border-collapse: collapse;
-        font-size: 27px;
+        font-size: 28px;
         border: 1px solid grey;
         background-color: #e8f3ce;
     }
