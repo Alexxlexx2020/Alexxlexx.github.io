@@ -336,6 +336,7 @@ table_list(massive1, ["photo", "surname", "name1", "name2", "parrent", "age", "b
 //------ обработчик нажатия на кнопку закрытия окна mess -----------------
 closer_point.addEventListener("click", function (event) {
     mess.style.display = "none";
+    float_text.style.display = "none";
     nubmer_arrDR = 0;
     arrDR.length = 0;
     event.stopPropagation()
