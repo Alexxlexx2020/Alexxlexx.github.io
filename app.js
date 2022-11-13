@@ -106,6 +106,7 @@ function myTime(elem) {
         'декабря'
     ];
     elem.insertAdjacentElement("afterbegin", clock);
+
     function timeCalc() {
         let h1 = new Date().getHours();
         let m1 = new Date().getMinutes();
@@ -231,6 +232,7 @@ function closerDR() {
 
 //------- функция вывода окна с фотографией и описанием в существующий блок mess-----------------------
 let k = {};
+
 function showPhoto(idMan) {
     k = massive1.find(item => (item.id == idMan));
     if (k == undefined) return;
@@ -242,12 +244,12 @@ function showPhoto(idMan) {
     mess3.innerHTML = `${k["photo"].slice(0, -4)}`;
     // document.getElementById('all').insertAdjacentElement("afterbegin", mess);
     mess.classList.add("OpacityAnimation");
-    arrow_next.style.display = (arrDR.length > 1 && number_arrDR != arrDR.length-1)? "block" : "none";
-    arrow_next_left.style.display = (arrDR.length > 1 && number_arrDR != 0)? "block" : "none";
+    arrow_next.style.display = (arrDR.length > 1 && number_arrDR != arrDR.length - 1) ? "block" : "none";
+    arrow_next_left.style.display = (arrDR.length > 1 && number_arrDR != 0) ? "block" : "none";
     mess.style.display = "block";
 }
 
-// --------- функция первого запуска календаря -------------------------
+// --------- функция первого запуска календаря и формирования календаря из 12 месяцев -------------------------
 function startCalendar(year) {
     mess.style.display = "none";
     arrDR.length = 0;
@@ -256,49 +258,6 @@ function startCalendar(year) {
     for (let month = 0; month < 12; month++) {
         createCalendar(year, month, 'container')
     }
-    let month2 = [
-        'января',
-        'февраля',
-        'марта',
-        'апреля',
-        'мая',
-        'июня',
-        'июля',
-        'августа',
-        'сентября',
-        'октября',
-        'ноября',
-        'декабря'
-    ];
-
-    // ----------------------------обработка клика по таблице ----------------------------------
-    document.getElementById('allArea').addEventListener("click", function f333(event) {
-        let xClick = event.pageX - window.pageXOffset;
-        let yClick = event.pageY - window.pageYOffset;
-        let elem1 = document.elementFromPoint(xClick, yClick);
-        if (elem1.tagName == "TD" && elem1.innerText != "" && mess.style.display == "none") {
-            event.stopPropagation();
-            let t1 = "<div class = 'no_info'><br>  *Нет информации по этой дате.*  </div>";
-            let massiveMonth = +elem1.parentNode.parentNode.parentNode.id.split("-")[1];
-            let massiveDate = elem1.innerText - 1;
-            for (item of massive1) {
-                if (+item["birthday"].substr(5, 2) == massiveMonth + 1 && +item["birthday"].substr(8, 2) == massiveDate + 1) {
-                    arrDR.push(item["id"]);
-                    number_arrDR = 0;
-                    if (arrDR.length > 1) {
-                        // mess.style.cursor = "pointer";
-                        arrow_next.style.display = "block";
-                        arrow_next_left.style.display = "none";
-                    } else {
-                        // mess.style.cursor = "default";
-                        arrow_next.style.display = "none";
-                        arrow_next_left.style.display = "none";
-                    }
-                    showPhoto(arrDR[number_arrDR]);
-                }
-            }
-        }
-    })
 }
 
 // ------------------- функция запроса и записи погоды в массив data--------------------------------------------------
@@ -340,14 +299,39 @@ setInterval(() => Weather(), 100000);
 //----------------- запуск постоения таблицы людей и вставки в elem ----------------------------
 table_list(massive1, ["photo", "surname", "name1", "name2", "parrent", "age", "birthday", "days_for_bd"], ["фото", "фамилия", "имя", "отчество", "родители", "возраст", "дата ДР", "дней до ДР"], table_area);
 
+// ----------------------------обработка клика по таблице ----------------------------------
+all.addEventListener("click", function f333(event) {
+    let xClick = event.pageX - window.pageXOffset;
+    let yClick = event.pageY - window.pageYOffset;
+    let elem1 = document.elementFromPoint(xClick, yClick);
+    if (elem1.tagName == "TD" && elem1.innerText != "" && mess.style.display == "none") {
+        event.stopPropagation();
+        let t1 = "<div class = 'no_info'><br>  *Нет информации по этой дате.*  </div>";
+        let massiveMonth = +elem1.parentNode.parentNode.parentNode.id.split("-")[1];
+        let massiveDate = elem1.innerText - 1;
+        for (item of massive1) {
+            if (+item["birthday"].substr(5, 2) == massiveMonth + 1 && +item["birthday"].substr(8, 2) == massiveDate + 1) {
+                arrDR.push(item["id"]);
+                number_arrDR = 0;
+                if (arrDR.length > 1) {
+                    arrow_next.style.display = "block";
+                    arrow_next_left.style.display = "none";
+                } else {
+                    arrow_next.style.display = "none";
+                    arrow_next_left.style.display = "none";
+                }
+                showPhoto(arrDR[number_arrDR]);
+            }
+        }
+    }
+})
+
 //------ обработчик нажатия на кнопку закрытия окна mess -----------------
 closer_point.addEventListener("click", function (event) {
     event.stopPropagation();
-    // float_text.style.display = "none";
     number_arrDR = 0;
     arrDR.length = 0;
     mess.style.display = "none";
-    
 });
 //----- обработчик собятия нажатия на кнопку для показа/скрытия таблицы
 document.getElementsByClassName('button_table')[0].addEventListener("click", function (event) {
@@ -356,7 +340,7 @@ document.getElementsByClassName('button_table')[0].addEventListener("click", fun
     } else table_area1.style.display = "none";
 });
 // --------- обработчик нажатия на кнопку закрытия таблицы с людей -------------------
-closer_point1.addEventListener("click", function(event){
+closer_point1.addEventListener("click", function (event) {
     table_area1.style.display = "none"
 })
 // ----------------------------нажатие на погоду - её обновляет ----------------
@@ -434,20 +418,20 @@ document.addEventListener("mouseup", function (event) {
 })
 document.addEventListener("mousemove", function (event) {
     if (flag_header && element_move) {
-        element_move.style.left = (event.pageX - areaX < 0)? window.pageXOffset +"px":(event.pageX - areaX > window.innerWidth - element_move.offsetWidth/4)?window.innerWidth - element_move.offsetWidth/4 + window.pageXOffset + "px": event.pageX - areaX + window.pageXOffset + "px";
-        element_move.style.top = (event.pageY - areaY < 0)? window.pageYOffset +"px":(event.pageY - areaY > window.innerHeight - element_move.offsetHeight/4)?window.innerHeight - element_move.offsetHeight/4 + window.pageYOffset + "px": event.pageY - areaY + window.pageYOffset +"px";
+        element_move.style.left = (event.pageX - areaX < 0) ? window.pageXOffset + "px" : (event.pageX - areaX > window.innerWidth - element_move.offsetWidth / 4) ? window.innerWidth - element_move.offsetWidth / 4 + window.pageXOffset + "px" : event.pageX - areaX + window.pageXOffset + "px";
+        element_move.style.top = (event.pageY - areaY < 0) ? window.pageYOffset + "px" : (event.pageY - areaY > window.innerHeight - element_move.offsetHeight / 4) ? window.innerHeight - element_move.offsetHeight / 4 + window.pageYOffset + "px" : event.pageY - areaY + window.pageYOffset + "px";
     }
 })
 
-arrow_next.addEventListener(("click"), function(event){
+arrow_next.addEventListener(("click"), function (event) {
     event.stopPropagation();
     if (number_arrDR + 1 == arrDR.length) {
-        number_arrDR = arrDR.length-1
+        number_arrDR = arrDR.length - 1
     } else number_arrDR++;
     showPhoto(arrDR[number_arrDR]);
 });
 
-arrow_next_left.addEventListener(("click"), function(event){
+arrow_next_left.addEventListener(("click"), function (event) {
     event.stopPropagation();
     if (number_arrDR - 1 == -1) {
         number_arrDR = 0
