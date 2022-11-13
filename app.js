@@ -250,6 +250,7 @@ function startCalendar(year) {
     mess.style.display = "none";
     // document.getElementById('allArea').innerHTML = ``;
     // document.getElementById('allArea').innerHTML = `<div id = "container"></div>`;
+    container.innerHTML = "";
     for (let month = 0; month < 12; month++) {
         createCalendar(year, month, 'container')
     }
