@@ -250,8 +250,8 @@ function showPhoto(idMan) {
 // --------- функция первого запуска календаря -------------------------
 function startCalendar(year) {
     mess.style.display = "none";
-    // document.getElementById('allArea').innerHTML = ``;
-    // document.getElementById('allArea').innerHTML = `<div id = "container"></div>`;
+    arrDR.length = 0;
+    number_arrDR = 0;
     container.innerHTML = "";
     for (let month = 0; month < 12; month++) {
         createCalendar(year, month, 'container')
