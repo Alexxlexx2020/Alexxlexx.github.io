@@ -242,6 +242,8 @@ function showPhoto(idMan) {
     mess3.innerHTML = `${k["photo"].slice(0, -4)}`;
     // document.getElementById('all').insertAdjacentElement("afterbegin", mess);
     mess.classList.add("OpacityAnimation");
+    arrow_next.style.display = (arrDR.length > 1 && number_arrDR != arrDR.length-1)? "block" : "none";
+    arrow_next_left.style.display = (arrDR.length > 1 && number_arrDR != 0)? "block" : "none";
     mess.style.display = "block";
 }
 
@@ -282,13 +284,17 @@ function startCalendar(year) {
             for (item of massive1) {
                 if (+item["birthday"].substr(5, 2) == massiveMonth + 1 && +item["birthday"].substr(8, 2) == massiveDate + 1) {
                     arrDR.push(item["id"]);
-                    nubmer_arrDR = 0;
+                    number_arrDR = 0;
                     if (arrDR.length > 1) {
-                        mess.style.cursor = "pointer"
+                        // mess.style.cursor = "pointer";
+                        arrow_next.style.display = "block";
+                        arrow_next_left.style.display = "none";
                     } else {
-                        mess.style.cursor = "default"
+                        // mess.style.cursor = "default";
+                        arrow_next.style.display = "none";
+                        arrow_next_left.style.display = "none";
                     }
-                    showPhoto(arrDR[nubmer_arrDR]);
+                    showPhoto(arrDR[number_arrDR]);
                 }
             }
         }
@@ -320,7 +326,7 @@ let table_area1 = document.getElementsByClassName('table_area1')[0];
 let table_area_header = document.getElementsByClassName("table_area_header")[0];
 // ---массив из id людей с др в один день----
 let arrDR = [];
-let nubmer_arrDR = 0;
+let number_arrDR = 0;
 
 //------------------ заполнение массива числом остатка дней до дня рождения ------------
 closerDR();
@@ -336,11 +342,12 @@ table_list(massive1, ["photo", "surname", "name1", "name2", "parrent", "age", "b
 
 //------ обработчик нажатия на кнопку закрытия окна mess -----------------
 closer_point.addEventListener("click", function (event) {
-    mess.style.display = "none";
-    float_text.style.display = "none";
-    nubmer_arrDR = 0;
+    event.stopPropagation();
+    // float_text.style.display = "none";
+    number_arrDR = 0;
     arrDR.length = 0;
-    event.stopPropagation()
+    mess.style.display = "none";
+    
 });
 //----- обработчик собятия нажатия на кнопку для показа/скрытия таблицы
 document.getElementsByClassName('button_table')[0].addEventListener("click", function (event) {
@@ -391,13 +398,13 @@ document.getElementsByClassName("table_area1")[0].addEventListener("click", func
         if (tableMan.rows[0].cells[number_column].innerHTML == "родители") {
             if (massive1.find((item) => (item.id == td.id)).parrent.length) {
                 arrDR.length = 0;
-                nubmer_arrDR = 0;
-                console.log(massive1.find((item) => (item.id == td.id)).parrent);
+                number_arrDR = 0;
                 arrDR = arrDR.concat(massive1.find((item) => (item.id == td.id)).parrent);
-                showPhoto(arrDR[nubmer_arrDR]);
+                showPhoto(arrDR[number_arrDR]);
             };
         } else {
-            showPhoto(td.id)
+            arrDR.length = 0;
+            showPhoto(td.id);
         };
     }
 });
@@ -432,43 +439,18 @@ document.addEventListener("mousemove", function (event) {
     }
 })
 
-// -----------обработка клика по фотографии mess------------
-mess2.addEventListener("click", function (event) {
+arrow_next.addEventListener(("click"), function(event){
     event.stopPropagation();
-    if (nubmer_arrDR + 1 == arrDR.length) {
-        nubmer_arrDR = 0
-    } else nubmer_arrDR++;
-    if (arrDR.length > 1) {
-        mess2.style.cursor = "pointer";
-        showPhoto(arrDR[nubmer_arrDR])
-    } else {
-        mess2.style.cursor = "default"
-    };
+    if (number_arrDR + 1 == arrDR.length) {
+        number_arrDR = arrDR.length-1
+    } else number_arrDR++;
+    showPhoto(arrDR[number_arrDR]);
 });
 
-// --------- обработка наведения курсора на mess ----------
-mess2.addEventListener("mousemove", function (event) {
-    if (arrDR.length > 1) {
-        let x = event.pageX;
-        let y = event.pageY;
-        float_text.style.left = x + 20 + "px";
-        float_text.style.top = y + 25 + "px";
-        float_text.innerHTML = `нажмите для показа<br>следующего человека `;
-        float_text.style.display = "block";
-    }
-})
-
-mess2.addEventListener("mouseover", function (event) {
-    if (arrDR.length > 1) {
-        let x = event.pageX;
-        let y = event.pageY;
-        float_text.style.left = x + 20 + "px";
-        float_text.style.top = y + 25 + "px";
-        float_text.innerHTML = `нажмите для показа<br>следующего человека `;
-        float_text.style.display = "block";
-    }
-})
-
-mess2.addEventListener("mouseleave", function (event) {
-    float_text.style.display = "none";
-})
+arrow_next_left.addEventListener(("click"), function(event){
+    event.stopPropagation();
+    if (number_arrDR - 1 == -1) {
+        number_arrDR = 0
+    } else number_arrDR--;
+    showPhoto(arrDR[number_arrDR]);
+});
