@@ -700,7 +700,7 @@ label {
     .table_area1 {
         position: absolute;
         height: 800px;
-        max-width: calc(100% - 7px);
+        max-width: calc(100% - 19px);
         font-size: 30px;
         overflow:hidden;
         border: solid 7px #5867e6;
