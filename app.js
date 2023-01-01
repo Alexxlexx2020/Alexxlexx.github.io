@@ -290,6 +290,7 @@ let number_arrDR = 0;
 //------------------ заполнение массива числом остатка дней до дня рождения ------------
 closerDR();
 // ----------------- первый старт календаря с текущим годом -----------------------------------------
+document.getElementById('inputka').value = new Date().getFullYear();
 startCalendar(new Date().getFullYear());
 //------------------ запуск часов ------------------
 myTime(document.getElementById('f4'));
@@ -350,7 +351,7 @@ document.getElementsByClassName('weather')[0].addEventListener("click", function
 // ---------------- нажатие на дату ставит текущую дату -------------------------
 document.getElementsByClassName('current_date')[0].addEventListener("click", function (event) {
     document.getElementById('inputka').value = new Date().getFullYear();
-    startCalendar(2022)
+    startCalendar(new Date().getFullYear());
 }); //
 document.getElementById('inputka').oninput = function (event) {
     startCalendar(this.value)
