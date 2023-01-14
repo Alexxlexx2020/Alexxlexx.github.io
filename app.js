@@ -223,7 +223,7 @@ function closerDR() {
     }
     arraySort(massive1, "days_for_bd");
     if (massive1[0]["days_for_bd"] == 0) {
-        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)}<br>сегодня день рождения`;
+        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} <br>сегодня ДР: ${new Date().getFullYear() - +massive1[0]["birthday"].slice(0,-6)} лет`;
         document.getElementById("dr").style.background = `#228B22`;
     } else
         document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)}<br>ДР через <span class="dayDR">${massive1[0]["days_for_bd"]}</span> д.`;
