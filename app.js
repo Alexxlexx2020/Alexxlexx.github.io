@@ -226,7 +226,7 @@ function closerDR() {
         document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} <br>сегодня ДР: ${new Date().getFullYear() - +massive1[0]["birthday"].slice(0,-6)} лет`;
         document.getElementById("dr").style.background = `#228B22`;
     } else
-        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)}<br>ДР через <span class="dayDR">${massive1[0]["days_for_bd"]}</span> д.`;
+        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)}<br>${new Date().getFullYear() - +massive1[0]["birthday"].slice(0,-6)} лет через <span class="dayDR">${massive1[0]["days_for_bd"]}</span> д.`;
     document.getElementById("dr_photo").innerHTML = `<img class = "dr_photo_class" src="image/${massive1[0]["photo"]}" alt="фото" />`;
     minmax_global = "max";
 }
