@@ -4,7 +4,7 @@ body {
     margin: 0px;
     max-width: 1920px;
     max-height: 1200px;
-    overflow:auto;
+    overflow: auto;
 }
 
 .backgroundImg {
@@ -12,7 +12,7 @@ body {
     position: relative;
     margin: 0px;
     padding: 0px;
-    min-height:100vh;
+    min-height: 100vh;
     overflow: hidden;
 }
 
@@ -42,7 +42,7 @@ body {
     font-size: 60px;
     color: rgb(199, 229, 243);
     text-align: left;
-    background-color: rgb(7, 158, 147, 50%);
+    background-color: #04554f80;
 }
 
 #f3 {
@@ -57,20 +57,20 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: rgb(7, 158, 147, 60%);
+    background-color: #04554f80;
 }
 
-.f5_class{
+.f5_class {
     display: flex;
     align-items: center;
-    flex-wrap:nowrap;
+    flex-wrap: nowrap;
     max-height: max-content;
     overflow: hidden;
     max-width: 100%;
     height: 150px;
 }
 
-.f6{
+.f6 {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -82,17 +82,17 @@ body {
     margin-top: 20px;
 }
 
-.dr_class{
+.dr_class {
     color: white;
     background-color: rgba(0, 0, 0, 0.2);
     padding-left: 10px;
     font-size: 50px;
     width: auto;
     height: 100%;
-    overflow:hidden;
+    overflow: hidden;
 }
 
-.dr_photo_class{
+.dr_photo_class {
     height: 100%;
 }
 
@@ -114,19 +114,30 @@ body {
     box-shadow: 10px 10px 5px rgba(0, 0, 0, .9);
 }
 
-#calendar-1 caption, #calendar-0 caption, #calendar-11 caption {
+#calendar-1 caption,
+#calendar-0 caption,
+#calendar-11 caption {
     background-color: rgb(245, 245, 245);
     color: black;
 }
-#calendar-2 caption, #calendar-3 caption, #calendar-4 caption {
+
+#calendar-2 caption,
+#calendar-3 caption,
+#calendar-4 caption {
     background-color: rgb(93, 192, 93);
     color: black;
 }
-#calendar-5 caption, #calendar-6 caption, #calendar-7 caption {
+
+#calendar-5 caption,
+#calendar-6 caption,
+#calendar-7 caption {
     background-color: rgb(223, 158, 39);
     color: black;
 }
-#calendar-8 caption, #calendar-9 caption, #calendar-10 caption {
+
+#calendar-8 caption,
+#calendar-9 caption,
+#calendar-10 caption {
     background-color: rgb(214, 214, 39);
     color: black;
 }
@@ -164,7 +175,7 @@ body {
     box-shadow: inset 0px 0px 2px 2px rgb(29, 105, 219);
 }
 
-.td_parrent:hover{
+.td_parrent:hover {
     background-color: rgb(130, 223, 240);
 }
 
@@ -197,6 +208,31 @@ body {
     padding: 4px 7px;
 }
 
+.date_now {
+    /* transition-property: all;
+    transition-duration: 5s; */
+    display: inline-block;
+    animation: flash 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes flash {
+    0% {
+        /* font-size: 100%; */
+        /* color: #000; */
+        background-color: #fff;
+        transform: rotate(-20deg);
+    }
+
+    100% {
+        /* font-size: 200%; */
+        /* color:#fff; */
+        transform: rotate(20deg);
+        background-color: #9ACD32;
+    }
+}
+
 .head_calendar {
     background-color: rgb(229, 233, 194);
     user-select: none;
@@ -219,9 +255,10 @@ span {
     color: white;
 }
 
-.current_date{
+.current_date {
     color: white;
 }
+
 .spanX,
 .spanH,
 .spanM,
@@ -342,9 +379,10 @@ label {
 
 #mess {
     position: absolute;
+    display: inline-block;
     left: 40%;
     color: black;
-    border: #5867e6 solid 7px;
+    border: #d63f3f solid 7px;
     border-radius: 7px;
     background-color: rgb(250, 250, 246);
     word-wrap: break-word;
@@ -354,12 +392,33 @@ label {
     cursor: auto;
     user-select: text;
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.9);
-
+    animation: mess_ani 700ms;
     min-height: 15%;
     max-height: 97vh;
     min-width: 20%;
     max-width: 50vh;
 }
+
+@keyframes mess_ani{
+    0%{
+        transform: rotate(-45deg);
+        opacity: 0;
+    }
+    50%{
+        transform: rotate(45deg);
+    }
+    67%{
+        transform: rotate(-23deg);
+    }
+    84%{
+        transform: rotate(23deg);
+    }
+    100%{
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+}
+
 
 #mess2 {
     word-wrap: break-word;
@@ -375,14 +434,14 @@ label {
 }
 
 #mess0 {
-    position:static;
+    position: static;
     background-color: #5867e6;
     color: aliceblue;
     text-align: center;
     height: 50px;
 }
 
-#mess0:hover{
+#mess0:hover {
     cursor: grab;
     user-select: none;
 }
@@ -424,7 +483,7 @@ label {
     background-color: rgb(255, 255, 255, 0.8);
 }
 
-#arrow_next{
+#arrow_next {
     position: absolute;
     right: 0px;
     top: 50%;
@@ -434,7 +493,7 @@ label {
     width: 50px;
 }
 
-#arrow_next_left{
+#arrow_next_left {
     position: absolute;
     left: 0px;
     top: 50%;
@@ -444,11 +503,11 @@ label {
     width: 50px;
 }
 
-#arrow_next:hover{
+#arrow_next:hover {
     opacity: 1;
 }
 
-#arrow_next_left:hover{
+#arrow_next_left:hover {
     opacity: 1;
 }
 
@@ -475,15 +534,16 @@ label {
     opacity: 0.7;
 }
 
-#closer_point1:hover{
+#closer_point1:hover {
     opacity: 1;
 }
-#closer_point:hover{
+
+#closer_point:hover {
     opacity: 1;
 }
 
 .OpacityAnimation {
-    animation: .7s show ease;
+    animation: show .7s  ease;
 }
 
 @keyframes show {
@@ -510,22 +570,39 @@ label {
     }
 }
 
-#float_text{
+#float_text {
     position: absolute;
     display: none;
     background-color: rgba(0, 0, 0, 0.5);
-    border:#000 1px solid;
+    border: #000 1px solid;
     color: white;
     font-size: 20px;
     z-index: 1000;
 }
 
-.dayDR{
-    background-color: rgb(10, 182, 81);
-    color:white;
+.dayDR {
+    /* background-color: rgb(10, 182, 81); */
+    display: inline-block;
+    color: white;
     border-radius: 12px;
     font-size: 55px;
+    animation: flash_dayDR 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
+
+@keyframes flash_dayDR {
+    0% {
+        transform: translateX(-5px);
+        background-color: rgb(209, 78, 165);
+    }
+
+    100% {
+        transform: translateX(5px);
+        background-color: #0bd11c;
+    }
+}
+
 .button_table {
     border: white solid 2px;
     color: black;
@@ -540,30 +617,32 @@ label {
     transition-duration: 0.3s;
     z-index: 118;
 }
-.button_table:hover{
+
+.button_table:hover {
     color: white;
     background-color: rgb(10, 182, 81);
 
 }
+
 .button_table:active {
     background-color: rgb(7, 121, 121);
     box-shadow: 1px 1px 1px 0 black;
     transform: translateY(4px);
-  }
+}
 
 .table_area1 {
     position: absolute;
     height: 640px;
     max-width: 100%;
     font-size: 30px;
-    overflow:hidden;
+    overflow: hidden;
     border: solid 7px #5867e6;
     border-radius: 7px;
     z-index: 119;
     box-shadow: 10px 10px 5px 0 black;
 }
 
-.table_area_header{
+.table_area_header {
     height: 69px;
     background-color: #5867e6;
     color: aliceblue;
@@ -580,7 +659,7 @@ label {
     overflow: auto;
 }
 
-.table_area_header:hover{
+.table_area_header:hover {
     cursor: grab;
     user-select: none;
 }
@@ -644,25 +723,30 @@ label {
     border-left: black 1px solid;
 }
 
-#tableMan td:nth-child(6){
+#tableMan td:nth-child(6) {
     text-align: center;
     border-left: #000 1px solid;
     border-right: #000 1px solid;
 }
-#tableMan td:nth-child(2), #tableMan td:nth-child(3), #tableMan td:nth-child(4){
+
+#tableMan td:nth-child(2),
+#tableMan td:nth-child(3),
+#tableMan td:nth-child(4) {
     text-align: center;
     font-style: italic;
     text-align: left;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.table_man_photo{
+.table_man_photo {
     display: block;
     max-height: 50px;
     padding: 0;
     margin: 0;
 }
 
+
+/* ------------- ДЛЯ ЭКРАНА СМАРТФОНА --------------------------------------------- */
 @media screen and (max-width: 1090px) {
     body {
         overflow-x: hidden;
@@ -703,21 +787,21 @@ label {
         height: 800px;
         max-width: calc(100% - 19px);
         font-size: 30px;
-        overflow:hidden;
+        overflow: hidden;
         border: solid 7px #5867e6;
         border-radius: 7px;
         z-index: 119;
         box-shadow: 10px 10px 5px 0 black;
     }
-    
-    .table_area_header{
+
+    .table_area_header {
         height: 110px;
         background-color: #5867e6;
         color: aliceblue;
         text-align: center;
         font-size: 42px;
     }
-    
+
     .table_area {
         height: calc(100% - 110px);
         font-size: 30px;
@@ -727,7 +811,7 @@ label {
         z-index: 101;
         overflow: auto;
     }
-    
+
     #closer_point1 {
         position: absolute;
         right: 5px;
@@ -747,7 +831,7 @@ label {
         left: 0px;
         width: 50vh;
         color: black;
-        border: #5867e6 solid 7px;
+        border: #888a89 solid 7px;
         border-radius: 7px;
         background-color: rgb(250, 250, 246);
         word-wrap: break-word;
@@ -757,7 +841,7 @@ label {
         cursor: auto;
         user-select: text;
         box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.9);
-    
+
         min-height: 15%;
         max-height: 200vh;
         min-width: 98%;
@@ -765,7 +849,7 @@ label {
     }
 
     #mess0 {
-        position:absolute;
+        position: absolute;
         background-color: #5867e6;
         color: aliceblue;
         text-align: center;
@@ -795,7 +879,7 @@ label {
         opacity: 0.7;
     }
 
-    #arrow_next{
+    #arrow_next {
         position: absolute;
         right: 0px;
         top: 50%;
@@ -805,7 +889,7 @@ label {
         width: 120px;
     }
 
-    #arrow_next_left{
+    #arrow_next_left {
         position: absolute;
         left: 0px;
         top: 50%;
@@ -815,16 +899,16 @@ label {
         width: 120px;
     }
 
-    
 
-    .table_man_photo{
+
+    .table_man_photo {
         width: 0px;
         max-height: 50px;
         padding: 0;
         margin: 0;
     }
 
-    #photo{
+    #photo {
         width: 0px;
         font-size: 0px;
     }
