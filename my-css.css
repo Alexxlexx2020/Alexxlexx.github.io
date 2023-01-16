@@ -211,6 +211,7 @@ body {
 .date_now {
     /* transition-property: all;
     transition-duration: 5s; */
+    margin-left: 3px;
     display: inline-block;
     animation: flash 0.5s;
     animation-iteration-count: infinite;
