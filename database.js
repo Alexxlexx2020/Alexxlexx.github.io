@@ -188,7 +188,7 @@ let massive1 = [
         "surname":"Макаров",
         "name1":"Владислав",
         "name2":"Александрович",
-        "birthday":"1984.06.13",
+        "birthday":"1985.06.13",
         "days_for_bd":0,
         "age":0,
         "photo":"Макаров В.А. 1984.jpg",
