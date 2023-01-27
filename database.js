@@ -191,7 +191,7 @@ let massive1 = [
         "birthday":"1985.06.13",
         "days_for_bd":0,
         "age":0,
-        "photo":"Макаров В.А. 1984.jpg",
+        "photo":"Макаров В.А. 1985.jpg",
         "description":"",
         "parrent":[11],
         "children":[]
