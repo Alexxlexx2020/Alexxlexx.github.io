@@ -379,7 +379,7 @@ label {
 }
 
 #mess {
-    position: absolute;
+    position: fixed;
     display: inline-block;
     left: 40%;
     color: black;
