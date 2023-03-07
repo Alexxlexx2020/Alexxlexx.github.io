@@ -337,6 +337,16 @@ closer_point.addEventListener("click", function (event) {
     arrDR.length = 0;
     mess.style.display = "none";
 });
+
+//------ обработчик нажатия на фото ближайшего ДР -----------------
+dr_photo.addEventListener("click", function (event) {
+    event.stopPropagation();
+    if (mess.style.display == "none") {
+        arrDR = massive1.map((i)=>i.id);
+        showPhoto(arrDR[0]);
+    }
+});
+
 //----- обработчик собятия нажатия на кнопку для показа/скрытия таблицы
 document.getElementsByClassName('button_table')[0].addEventListener("click", function (event) {
     if (table_area1.style.display == "none") {
