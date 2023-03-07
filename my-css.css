@@ -94,6 +94,7 @@ body {
 
 .dr_photo_class {
     height: 100%;
+    cursor: pointer;
 }
 
 .displayNone {
@@ -393,7 +394,7 @@ label {
     cursor: auto;
     user-select: text;
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.9);
-    animation: mess_ani 700ms;
+    animation: mess_ani 300ms;
     min-height: 15%;
     max-height: 97vh;
     min-width: 20%;
