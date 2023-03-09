@@ -633,7 +633,7 @@ label {
 }
 
 .table_area1 {
-    position: absolute;
+    position: fixed;
     height: 640px;
     max-width: 100%;
     font-size: 30px;
