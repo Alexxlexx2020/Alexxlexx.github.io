@@ -785,7 +785,7 @@ label {
     }
 
     .table_area1 {
-        position: absolute;
+        position: fixed;
         height: 800px;
         max-width: calc(100% - 19px);
         font-size: 30px;
