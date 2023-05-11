@@ -749,7 +749,7 @@ label {
 
 
 /* ------------- ДЛЯ ЭКРАНА СМАРТФОНА --------------------------------------------- */
-@media screen and (orientation: portrait) {
+@media all and (orientation: portrait) {
     body {
         overflow-x: hidden;
         background-size: cover;
