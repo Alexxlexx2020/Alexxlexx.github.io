@@ -179,8 +179,8 @@ let massive1 = [
         "age":0,
         "photo":"Сердюк Т.А. 1980.jpg",
         "description":"",
-        "parrent":[],
-        "children":[]
+        "parrent":[14],
+        "children":[15]
     },
 
     {
@@ -194,6 +194,34 @@ let massive1 = [
         "photo":"Макаров В.А. 1985.jpg",
         "description":"",
         "parrent":[11],
+        "children":[]
+    },
+
+    {
+        "id":14,
+        "surname":"Сердюк",
+        "name1":"Валентина",
+        "name2":"Васильевна",
+        "birthday":"1954.05.17",
+        "days_for_bd":0,
+        "age":0,
+        "photo":"Сердюк В.В 1954.jpg",
+        "description":"",
+        "parrent":[6,7],
+        "children":[12]
+    },
+
+    {
+        "id":15,
+        "surname":"Сердюк",
+        "name1":"Владислав",
+        "name2":"Васильевич",
+        "birthday":"2016.09.09",
+        "days_for_bd":0,
+        "age":0,
+        "photo":"Сердюк В.В 2016.jpg",
+        "description":"",
+        "parrent":[12],
         "children":[]
     },
 
