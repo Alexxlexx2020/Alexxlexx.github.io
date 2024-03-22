@@ -205,6 +205,25 @@ function arraySort(array, prop) {
     }
 }
 
+//---------------- функция определения слов "год", "года", "лет"
+function nameYears(N){
+    let nameZ = [ "год", "года", "лет", "лет ровно"];
+    let nameY = [
+        0,1,1,1,2,2,2,2,2,3,
+        2,2,2,2,2,2,2,2,2,3,
+        0,1,1,1,2,2,2,2,2,3,
+        0,1,1,1,2,2,2,2,2,3,
+        0,1,1,1,2,2,2,2,2,3,
+        0,1,1,1,2,2,2,2,2,3,
+        0,1,1,1,2,2,2,2,2,3,
+        0,1,1,1,2,2,2,2,2,3,
+        0,1,1,1,2,2,2,2,2,3,
+        0,1,1,1,2,2,2,2,2,3
+    ];
+    if (N%100 == 0) {N = 100} else {N = N - (Math.trunc(N/100)*100)};
+    return nameZ [nameY[N-1]];  
+}
+
 //-----------------функция записи остатка дней до ДР и вывода ближайшего день рождения в элемент-----------------------------
 function closerDR() {
     let start_year = new Date(new Date().getFullYear(), 0, 1);
@@ -223,11 +242,12 @@ function closerDR() {
         }
     }
     arraySort(massive1, "days_for_bd");
+    let Vozrast = new Date().getFullYear() - +massive1[0]["birthday"].slice(0,-6);
     if (massive1[0]["days_for_bd"] == 0) {
-        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} <br>сегодня ДР: ${new Date().getFullYear() - +massive1[0]["birthday"].slice(0,-6)} лет`;
+        document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)} <br>сегодня ДР: ${Vozrast} ${nameYears(Vozrast)}`;
         document.getElementById("dr").style.background = `#228B22`;
     } else
-    document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)}<br>${new Date().getFullYear() - +massive1[0]["birthday"].slice(0,-6)} лет через <span class="dayDR">${massive1[0]["days_for_bd"]}</span> д.`
+    document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)}<br>${Vozrast} ${nameYears(Vozrast)} через <span class="dayDR">${massive1[0]["days_for_bd"]}</span> д.`
         //document.getElementById("dr").innerHTML = `${massive1[0]["photo"].slice(0,-4)}<br>ДР через <span class="dayDR">${massive1[0]["days_for_bd"]}</span> д.`;
     document.getElementById("dr_photo").innerHTML = `<img class = "dr_photo_class" src="image/${massive1[0]["photo"]}" alt="фото" />`;
     minmax_global = "max";
@@ -240,9 +260,9 @@ function showPhoto(idMan) {
     k = massive1.find(item => (item.id == idMan));
     if (k == undefined) return;
     let realYear = document.getElementById('inputka').value;
-    let oldYear = realYear - +k["birthday"].slice(0, 4);
+    let Vozrast = realYear - +k["birthday"].slice(0, 4);
     mess1.innerHTML = "";
-    mess0.innerHTML = `<div class = "text"><b>в ${realYear} году:  ${oldYear} лет</b></div>`;
+    mess0.innerHTML = `<div class = "text"><b>в ${realYear} году:  ${Vozrast} ${nameYears(Vozrast)}</b></div>`;
     mess2.innerHTML = `<img class = "photo" src="image/${k["photo"]}" onError="this.src='image/none.png'" alt="фото" draggable = false>`;
     mess3.innerHTML = `${k["photo"].slice(0, -4)}`;
     // document.getElementById('all').insertAdjacentElement("afterbegin", mess);
