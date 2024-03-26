@@ -225,4 +225,18 @@ let massive1 = [
         "children":[]
     },
 
+    {
+        "id":16,
+        "surname":"Козолуп",
+        "name1":"Анна",
+        "name2":"Михайловна",
+        "birthday":"1989.02.16",
+        "days_for_bd":0,
+        "age":0,
+        "photo":"Козолуп А.М. 1989.jpg",
+        "description":"",
+        "parrent":[],
+        "children":[]
+    },
+
 ]
