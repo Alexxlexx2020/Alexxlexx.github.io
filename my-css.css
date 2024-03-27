@@ -491,7 +491,7 @@ label {
     top: 50%;
     transform: translate(0, -50%);
     cursor: pointer;
-    opacity: 0.4;
+    opacity: 0.8;
     width: 50px;
 }
 
@@ -501,7 +501,7 @@ label {
     top: 50%;
     transform: translate(0, -50%);
     cursor: pointer;
-    opacity: 0.4;
+    opacity: 0.8;
     width: 50px;
 }
 
