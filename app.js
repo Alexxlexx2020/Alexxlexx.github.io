@@ -262,7 +262,9 @@ function showPhoto(idMan) {
     let realYear = document.getElementById('inputka').value;
     let Vozrast = realYear - +k["birthday"].slice(0, 4);
     mess1.innerHTML = "";
-    mess0.innerHTML = `<div class = "text"><b>в ${realYear} году:  ${Vozrast} ${nameYears(Vozrast)}</b></div>`;
+    if (Vozrast > 0) {
+        mess0.innerHTML = `<div class = "text"><b>в ${realYear} году:  ${Vozrast} ${nameYears(Vozrast)}</b></div>`} else
+        {mess0.innerHTML = `<div class = "text"><b>в ${realYear} году ещё  ${-Vozrast} ${nameYears(-Vozrast)} до рождения</b></div>`}
     mess2.innerHTML = `<img class = "photo" src="image/${k["photo"]}" onError="this.src='image/none.png'" alt="фото" draggable = false>`;
     mess3.innerHTML = `${k["photo"].slice(0, -4)}`;
     // document.getElementById('all').insertAdjacentElement("afterbegin", mess);
