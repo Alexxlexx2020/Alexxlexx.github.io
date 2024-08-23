@@ -149,7 +149,7 @@ let massive1 = [
         "birthday":"1936.10.08",
         "days_for_bd":0,
         "age":0,
-        "photo":"Рудич Л.Ф. 1936.jpg",
+        "photo":"Рудич Л.Ф. 1936-2024.jpg",
         "description":"",
         "parrent":[],
         "children":[1,11]
